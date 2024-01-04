@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:trab_front/feature/presentation/view/google_map.dart';
 import 'package:trab_front/feature/presentation/view/temp_screen.dart';
 
 void main() {
@@ -34,8 +36,9 @@ class _MyAppState extends ConsumerState<TraB> {
       builder: (context, widget) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'TraB',
-        initialRoute: '/',
+        initialRoute: '/map',
         routes: {
+          '/map': (context) => const GoogleMapExample(),
           '/': (context) => const TempScreen(),
         },
         builder: (context, child) {
