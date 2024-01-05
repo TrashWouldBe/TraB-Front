@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "767428666945",
+    "project_id": "trab-92aff",
+    "storage_bucket": "trab-92aff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767428666945:android:a87eb2a5da56c7f867c8c0",
+        "android_client_info": {
+          "package_name": "com.example.trab_front"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9zdodXxVR295KZ5UNKLpuYs0fEZNj_9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
