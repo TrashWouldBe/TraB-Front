@@ -12,8 +12,7 @@
 - IOS, Android 선택
   - 이후 firebase_options.dart파일 생성 확인
 
-### reference
-[firebase docs](https://firebase.google.com/docs/flutter/setup?hl=ko&platform=ios)
+[참고 문헌](https://firebase.google.com/docs/flutter/setup?hl=ko&platform=ios)
 
 ## PR 요청 메세지 포맷
 
