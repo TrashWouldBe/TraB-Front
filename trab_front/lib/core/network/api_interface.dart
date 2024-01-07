@@ -21,7 +21,7 @@ abstract class ApiInterface {
   Future<T> setData<T>({
     required String endpoint,
     required JSON data,
-    Map<String, dynamic> headers,
+    Map<String, dynamic> queryParams,
     required T Function(ResponseModel<JSON> response) converter,
   });
 
