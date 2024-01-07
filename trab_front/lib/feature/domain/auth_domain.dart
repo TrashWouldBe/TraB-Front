@@ -1,10 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:trab_front/config/routes/app_router.dart';
-import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/all_providers.dart';
 import 'package:trab_front/feature/data/dataSource/auth_data_source.dart';
 import 'package:trab_front/feature/data/model/auth_model.dart';

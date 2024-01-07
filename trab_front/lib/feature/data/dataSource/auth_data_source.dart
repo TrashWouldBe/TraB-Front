@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:trab_front/feature/data/model/auth_model.dart';
 import 'package:trab_front/helpers/typedefs.dart';
 import 'package:trab_front/core/network/api_endpoint.dart';

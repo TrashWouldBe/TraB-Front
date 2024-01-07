@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:trab_front/helpers/typedefs.dart';
 
 import 'response_model.dart';
