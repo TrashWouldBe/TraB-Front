@@ -43,6 +43,9 @@ app.*.map.json
 /android/app/release
 
 
+# firebase option
+
+/lib/firebase_options.dart
 # .DS_Store
 
 .DS_Store
