@@ -1,9 +1,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.trab_front">
     
     <application
+    
         android:label="trab_front"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <activity
+           android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity"
+           android:exported="true">
+           <intent-filter android:label="flutter_web_auth">
+               <action android:name="android.intent.action.VIEW" />
+               <category android:name="android.intent.category.DEFAULT" />
+               <category android:name="android.intent.category.BROWSABLE" />
+
+               <!-- Redirect URI, "kakao${YOUR_NATIVE_APP_KEY}://oauth" 형식 -->
+               <data android:scheme="kakao0e922fab391d4b972bd2e03606d728af" android:host="oauth"/>
+           </intent-filter>
+       </activity>
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAboZZIacPVMR-buF5T79qGSNHGmiM495g"/>
         <activity
@@ -14,6 +27,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+            
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
