@@ -1,68 +1,74 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'package:flutter/services.dart';
-import 'package:trab_front/feature/presentation/view/google_map.dart';
-import 'package:trab_front/feature/presentation/view/temp_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:trab_front/config/routes/app_router.dart';
+import 'package:trab_front/config/routes/routes.dart';
+import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_themes.dart';
+import 'app_bootstrapper.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+
+  await AppBootstrapper.init(
+    mainAppWidget: const TraB(),
+    runApp: runApp,
   );
-  runApp(const ProviderScope(
-    child: TraB(),
-  ));
 }
 
-class TraB extends ConsumerStatefulWidget {
+class TraB extends StatelessWidget {
   const TraB({super.key});
 
   @override
-  ConsumerState<TraB> createState() => _MyAppState();
-}
-
-class _MyAppState extends ConsumerState<TraB> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(390, 844),
-      useInheritedMediaQuery: true,
-      builder: (context, widget) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'TraB',
-        initialRoute: '/map',
-        routes: {
-          '/map': (context) => const GoogleMapExample(),
-          '/': (context) => const TempScreen(),
-        },
-        builder: (context, child) {
-          return MediaQuery(
-            data: MediaQuery.of(context)
-                .copyWith(textScaler: const TextScaler.linear(1.0)),
-            child: child!,
-          );
-        },
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('en', 'US'), // 영어
-          Locale('ko', 'KR'), // 한국어
-        ],
-      ),
-    );
+    const title = 'Trab';
+    const showDebugBanner = false;
+    final platformIsIOS = Platform.isIOS;
+    const localizationsDelegates = [
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ];
+    const supportedLocales = [
+      Locale('en', 'US'),
+      Locale('ko', 'KR'),
+    ];
+    final app = platformIsIOS
+        ? ScreenUtilInit(
+            designSize: const Size(390, 844),
+            useInheritedMediaQuery: true,
+            builder: (context, widget) => Theme(
+                  data: AppThemes.mainTheme,
+                  child: CupertinoApp(
+                    title: title,
+                    debugShowCheckedModeBanner: showDebugBanner,
+                    initialRoute: Routes.initialRoute,
+                    color: AppColors.primaryColor,
+                    onGenerateRoute: AppRouter.generateRoute,
+                    navigatorKey: AppRouter.navigatorKey,
+                    localizationsDelegates: localizationsDelegates,
+                    supportedLocales: supportedLocales,
+                  ),
+                ))
+        : ScreenUtilInit(
+            designSize: const Size(390, 844),
+            useInheritedMediaQuery: true,
+            builder: (context, widget) => MaterialApp(
+                  title: title,
+                  debugShowCheckedModeBanner: showDebugBanner,
+                  color: AppColors.primaryColor,
+                  theme: AppThemes.mainTheme,
+                  initialRoute: Routes.initialRoute,
+                  onGenerateRoute: AppRouter.generateRoute,
+                  navigatorKey: AppRouter.navigatorKey,
+                  localizationsDelegates: localizationsDelegates,
+                  supportedLocales: supportedLocales,
+                ));
+    return ProviderScope(child: app);
   }
 }

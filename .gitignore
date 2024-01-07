@@ -29,3 +29,7 @@ doc/api/
 # firebase option
 
 /lib/firebase_options.dart
+
+# .DS_Store
+
+.DS_Store
