@@ -33,3 +33,6 @@ doc/api/
 # .DS_Store
 
 .DS_Store
+
+**/*.g.dart
+**/*.freezed.dart
