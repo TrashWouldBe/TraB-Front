@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trab_front/feature/domain/auth_domain.dart';
 import 'package:trab_front/feature/presentation/viewmodel/login_view_model.dart';
 import 'package:trab_front/feature/presentation/widget/common/button.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';

@@ -16,9 +16,9 @@ class ApiInterceptor extends Interceptor {
   ) async {
     final token =
         await _ref.watch(keyValueStorageServiceProvider).getAuthToken();
-    // options.headers.addAll(
-    //   <String, Object?>{'Authorization': 'Bearer $token'},
-    // );
+    options.headers.addAll(
+      <String, Object?>{'Authorization': 'Bearer $token'},
+    );
 
     options.extra.remove('requiresAuthToken');
 

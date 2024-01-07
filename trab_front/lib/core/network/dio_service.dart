@@ -4,16 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:trab_front/helpers/typedefs.dart';
 
-// Exceptions
-import './custom_exception.dart';
-
-// Models
 import 'response_model.dart';
 
 class DioService {
   final Dio _dio;
 
-  /// A set of cache options to be used for each request
   final CacheOptions? globalCacheOptions;
 
   DioService({
