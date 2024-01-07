@@ -90,7 +90,7 @@ class ApiService implements ApiInterface {
   Future<T> setData<T>({
     required String endpoint,
     required JSON data,
-    Map<String, dynamic> headers = const {},
+    Map<String, dynamic> queryParams = const {},
     required T Function(ResponseModel<JSON> response) converter,
   }) async {
     ResponseModel<JSON> response;
@@ -99,7 +99,7 @@ class ApiService implements ApiInterface {
       response = await _dioService.post<JSON>(
         endpoint: endpoint,
         data: data,
-        queryParameters: headers,
+        queryParameters: queryParams,
         options: Options(),
       );
     } on Exception catch (ex) {
