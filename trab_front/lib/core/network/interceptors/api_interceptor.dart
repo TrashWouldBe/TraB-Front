@@ -1,27 +1,25 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:trab_front/feature/all_providers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ApiInterceptor extends Interceptor {
-  late final Ref _ref;
-
-  ApiInterceptor(this._ref) : super();
+  ApiInterceptor() : super();
 
   @override
   Future<void> onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final token =
-        await _ref.watch(keyValueStorageServiceProvider).getAuthToken();
-    options.headers.addAll(
-      <String, Object?>{'Authorization': 'Bearer $token'},
-    );
-
-    options.extra.remove('requiresAuthToken');
-
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      String? idToken = await currentUser.getIdToken();
+      if (idToken != null) {
+        options.headers.addAll(
+          <String, Object?>{'Authorization': 'Bearer $idToken'},
+        );
+      }
+    }
     return handler.next(options);
   }
 

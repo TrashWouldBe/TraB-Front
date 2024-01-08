@@ -34,7 +34,7 @@ final _dioServiceProvider = Provider<DioService>((ref) {
     dioClient: _dio,
     globalCacheOptions: _cacheOptions,
     interceptors: [
-      ApiInterceptor(ref),
+      ApiInterceptor(),
       DioCacheInterceptor(options: _cacheOptions),
       if (kDebugMode) LoggingInterceptor(),
     ],
