@@ -19,9 +19,15 @@ class LoginViewController extends _$LoginViewController {
   //상태 업데이트
   void setState() {}
 
-  void signInWithKakao({required BuildContext context}) async {
+  void socialSignInWithKakao({required BuildContext context}) async {
     showLoading(context: context);
-    await ref.read(authControllerProvider.notifier).signInWithKakao();
+    await ref.read(authControllerProvider.notifier).socialSignInWithKakao();
+    closeLoading(context: context);
+  }
+
+  void socialSignInWithGoogle({required BuildContext context}) async {
+    showLoading(context: context);
+    await ref.read(authControllerProvider.notifier).socialSignInWithGoogle();
     closeLoading(context: context);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:trab_front/feature/presentation/viewmodel/login_view_model.dart';
 import 'package:trab_front/feature/presentation/widget/common/button.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
@@ -70,15 +71,20 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                     ),
                     onPressed: () => ref
                         .read(loginViewControllerProvider.notifier)
-                        .signInWithKakao(context: context),
+                        .socialSignInWithKakao(context: context),
                   ),
                   SizedBox(
                     height: 15.h,
                   ),
-                  Image.asset(
-                    "assets/images/google_login.png",
-                    width: 183.w,
-                    height: 45.h,
+                  noPaddingTextButton(
+                    child: Image.asset(
+                      "assets/images/google_login.png",
+                      width: 183.w,
+                      height: 45.h,
+                    ),
+                    onPressed: () => ref
+                        .read(loginViewControllerProvider.notifier)
+                        .socialSignInWithGoogle(context: context),
                   ),
                   SizedBox(
                     height: 15.h,

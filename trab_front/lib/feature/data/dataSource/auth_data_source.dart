@@ -8,14 +8,24 @@ class AuthDataSource {
 
   AuthDataSource({required ApiService apiService}) : _apiService = apiService;
 
-  Future<AuthModel> socialSignIn({
+  Future<AuthModel> socialSignInWithKakao({
     required JSON data,
-    required JSON queryParams,
   }) async {
     return _apiService.setData<AuthModel>(
       endpoint: ApiEndpoint.auth(AuthEndpoint.KAKAO),
       data: data,
-      queryParams: queryParams,
+      converter: (response) {
+        return AuthModel.fromJson(response.body);
+      },
+    );
+  }
+
+  Future<AuthModel> socialSignInWithGoogle({
+    required JSON data,
+  }) async {
+    return _apiService.setData<AuthModel>(
+      endpoint: ApiEndpoint.auth(AuthEndpoint.GOOGLE),
+      data: data,
       converter: (response) {
         return AuthModel.fromJson(response.body);
       },
