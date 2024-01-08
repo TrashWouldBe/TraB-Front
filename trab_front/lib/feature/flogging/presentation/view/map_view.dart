@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class GoogleMapExample extends StatefulWidget {
-  const GoogleMapExample({Key? key}) : super(key: key);
+class MapView extends ConsumerStatefulWidget {
+  const MapView({super.key});
 
   @override
-  _GoogleMapExampleState createState() => _GoogleMapExampleState();
+  ConsumerState<ConsumerStatefulWidget> createState() {
+    return _MapViewState();
+  }
 }
 
-class _GoogleMapExampleState extends State<GoogleMapExample> {
+class _MapViewState extends ConsumerState<MapView> {
   late GoogleMapController mapController;
 
   final LatLng _center = const LatLng(45.521563, -122.677433);

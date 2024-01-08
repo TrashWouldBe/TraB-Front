@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:trab_front/helpers/typedefs.dart';
 
 part 'auth_model.freezed.dart';
 part 'auth_model.g.dart';
@@ -10,6 +11,5 @@ class AuthModel with _$AuthModel {
     required String token,
   }) = _AuthModel;
 
-  factory AuthModel.fromJson(Map<String, dynamic> json) =>
-      _$AuthModelFromJson(json);
+  factory AuthModel.fromJson(JSON json) => _$AuthModelFromJson(json);
 }
