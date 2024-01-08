@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trab_front/feature/presentation/viewmodel/login_view_model.dart';
-import 'package:trab_front/feature/presentation/widget/common/button.dart';
+import 'package:trab_front/feature/auth/presentation/viewmodel/login_view_model.dart';
+import 'package:trab_front/feature/common/widget/button.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-class LogInScreen extends ConsumerStatefulWidget {
-  const LogInScreen({super.key});
+class LogInView extends ConsumerStatefulWidget {
+  const LogInView({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _LogInScreenState();
+    return _LogInViewState();
   }
 }
 
-class _LogInScreenState extends ConsumerState<LogInScreen> {
+class _LogInViewState extends ConsumerState<LogInView> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
       child: GestureDetector(
-        onTap: () {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
+        onTap: FocusManager.instance.primaryFocus?.unfocus,
         child: Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(
@@ -62,7 +60,7 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                   SizedBox(
                     height: 20.h,
                   ),
-                  noPaddingTextButton(
+                  noPaddingButton(
                     child: Image.asset(
                       "assets/images/kakao_login.png",
                       width: 183.w,
@@ -70,24 +68,34 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                     ),
                     onPressed: () => ref
                         .read(loginViewControllerProvider.notifier)
-                        .signInWithKakao(context: context),
+                        .socialSignInWithKakao(context: context),
                   ),
                   SizedBox(
                     height: 15.h,
                   ),
-                  Image.asset(
-                    "assets/images/google_login.png",
-                    width: 183.w,
-                    height: 45.h,
+                  noPaddingButton(
+                    child: Image.asset(
+                      "assets/images/google_login.png",
+                      width: 183.w,
+                      height: 45.h,
+                    ),
+                    onPressed: () => ref
+                        .read(loginViewControllerProvider.notifier)
+                        .socialSignInWithGoogle(context: context),
                   ),
                   SizedBox(
                     height: 15.h,
                   ),
-                  Image.asset(
-                    "assets/images/apple_login.png",
-                    width: 183.w,
-                    height: 45.h,
-                  ),
+                  noPaddingButton(
+                    child: Image.asset(
+                      "assets/images/apple_login.png",
+                      width: 183.w,
+                      height: 45.h,
+                    ),
+                    onPressed: () => ref
+                        .read(loginViewControllerProvider.notifier)
+                        .socialSignInWithApple(context: context),
+                  )
                 ],
               ),
             ),

@@ -16,7 +16,9 @@ class ApiEndpoint {
       case AuthEndpoint.APPLE:
         return '$path/socialSignInWithApple';
       case AuthEndpoint.KAKAO:
-        return '$path/socialSignIn';
+        return '$path/socialSignInWithKakao';
+      case AuthEndpoint.GOOGLE:
+        return '$path/socialSignInWithGoogle';
     }
   }
 }
@@ -24,4 +26,5 @@ class ApiEndpoint {
 enum AuthEndpoint {
   KAKAO,
   APPLE,
+  GOOGLE,
 }

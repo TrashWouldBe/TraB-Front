@@ -26,5 +26,13 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:767428666945:ios:56ec87abd9a5dc3667c8c0</string>
+	<key>CLIENT_ID</key>
+	<string>335769600902-d1vsh64gqc6ml4l2fh6dima598ap0abd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.335769600902-d1vsh64gqc6ml4l2fh6dima598ap0abd</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.solutionChallenge.trabFront</string>
 </dict>
 </plist>

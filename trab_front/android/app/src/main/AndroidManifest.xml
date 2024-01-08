@@ -17,6 +17,17 @@
                <data android:scheme="kakao0e922fab391d4b972bd2e03606d728af" android:host="oauth"/>
            </intent-filter>
        </activity>
+       <activity
+          android:name="com.aboutyou.dart_packages.sign_in_with_apple.SignInWithAppleCallback"
+          android:exported="true">
+             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="signinwithapple" />
+                <data android:path="callback" />
+             </intent-filter>
+        </activity>
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAboZZIacPVMR-buF5T79qGSNHGmiM495g"/>
         <activity

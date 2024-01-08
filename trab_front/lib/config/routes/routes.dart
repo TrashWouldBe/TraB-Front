@@ -1,6 +1,9 @@
 // ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
-import 'package:trab_front/feature/presentation/view/login_view.dart';
+import 'package:trab_front/feature/auth/presentation/view/login_view.dart';
+
+import 'package:trab_front/feature/flogging/presentation/view/map_view.dart';
 
 @immutable
 class Routes {
@@ -15,11 +18,14 @@ class Routes {
 
   static const String NotFoundScreenRoute = '/route-not-found-screen';
 
-  static const String LoginScreenRoute = '/login';
+  static const String LoginScreenRoute = '/auth/login';
+
+  static const String MapScreenRoute = '/flogging/map';
 
   static final Map<String, Widget Function()> _routesMap = {
-    AppStartupScreenRoute: () => const LogInScreen(),
-    LoginScreenRoute: () => const LogInScreen(),
+    AppStartupScreenRoute: () => const LogInView(),
+    LoginScreenRoute: () => const LogInView(),
+    MapScreenRoute: () => const MapView(),
   };
 
   static Widget Function() getRoute(String? routeName) {

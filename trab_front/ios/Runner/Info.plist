@@ -38,8 +38,10 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>Trab</string>
+				<string>com.googleusercontent.apps.335769600902-d1vsh64gqc6ml4l2fh6dima598ap0abd</string>
 			</array>
 		</dict>
+		
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
