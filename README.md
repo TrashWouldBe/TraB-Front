@@ -13,6 +13,10 @@
   - 이후 firebase_options.dart파일 생성 확인
 
 [참고 문헌](https://firebase.google.com/docs/flutter/setup?hl=ko&platform=ios)
+ 
+- code generator 사용 (riverpod, json_generator, freezed_annotation)
+
+```dart run build_runner build```
 
 ## PR 요청 메세지 포맷
 
