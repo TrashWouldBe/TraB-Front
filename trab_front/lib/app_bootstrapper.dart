@@ -33,6 +33,7 @@ class AppBootstrapper {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
     runApp(const TraB());
   }
 

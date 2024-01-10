@@ -1,9 +1,11 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:trab_front/feature/auth/presentation/view/login_view.dart';
-
-import 'package:trab_front/feature/flogging/presentation/view/map_view.dart';
+import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/flogging_stop_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/flogging_timer_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
 
 @immutable
 class Routes {
@@ -22,10 +24,16 @@ class Routes {
 
   static const String MapScreenRoute = '/flogging/map';
 
+  static const String FloggingTimerScreenRoute = '/flogging/timer';
+
+  static const String FloggingStopScreenRoute = '/flogging/stop';
   static final Map<String, Widget Function()> _routesMap = {
-    AppStartupScreenRoute: () => const LogInView(),
-    LoginScreenRoute: () => const LogInView(),
-    MapScreenRoute: () => const MapView(),
+    AppStartupScreenRoute: () => const HomeScreen(),
+    LoginScreenRoute: () => const LogInScreen(),
+    MapScreenRoute: () => MapScreen(),
+    NotFoundScreenRoute: () => const SizedBox.shrink(),
+    FloggingTimerScreenRoute: () => const FlogginTimerScreen(),
+    FloggingStopScreenRoute: () => const FlogginStopScreen(),
   };
 
   static Widget Function() getRoute(String? routeName) {

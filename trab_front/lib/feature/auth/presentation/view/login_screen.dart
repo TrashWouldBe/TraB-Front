@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trab_front/feature/auth/presentation/viewmodel/login_view_model.dart';
+import 'package:trab_front/feature/auth/presentation/viewmodel/login_screen_view_model.dart';
 import 'package:trab_front/feature/common/widget/button.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-class LogInView extends ConsumerStatefulWidget {
-  const LogInView({super.key});
+class LogInScreen extends ConsumerStatefulWidget {
+  const LogInScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _LogInViewState();
+    return _LogInScreenState();
   }
 }
 
-class _LogInViewState extends ConsumerState<LogInView> {
+class _LogInScreenState extends ConsumerState<LogInScreen> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -45,7 +46,7 @@ class _LogInViewState extends ConsumerState<LogInView> {
                       ),
                       Text(
                         "소셜 로그인 이용하기",
-                        style: AppTypography.captions.caption,
+                        style: AppTypography.caption,
                       ),
                       SizedBox(
                         width: 10.w,
@@ -62,12 +63,12 @@ class _LogInViewState extends ConsumerState<LogInView> {
                   ),
                   noPaddingButton(
                     child: Image.asset(
-                      "assets/images/kakao_login.png",
+                      AppImages.kakaoLogin,
                       width: 183.w,
                       height: 45.h,
                     ),
                     onPressed: () => ref
-                        .read(loginViewControllerProvider.notifier)
+                        .read(loginScreenControllerProvider.notifier)
                         .socialSignInWithKakao(context: context),
                   ),
                   SizedBox(
@@ -75,12 +76,12 @@ class _LogInViewState extends ConsumerState<LogInView> {
                   ),
                   noPaddingButton(
                     child: Image.asset(
-                      "assets/images/google_login.png",
+                      AppImages.googleLogin,
                       width: 183.w,
                       height: 45.h,
                     ),
                     onPressed: () => ref
-                        .read(loginViewControllerProvider.notifier)
+                        .read(loginScreenControllerProvider.notifier)
                         .socialSignInWithGoogle(context: context),
                   ),
                   SizedBox(
@@ -88,12 +89,12 @@ class _LogInViewState extends ConsumerState<LogInView> {
                   ),
                   noPaddingButton(
                     child: Image.asset(
-                      "assets/images/apple_login.png",
+                      AppImages.appleLogin,
                       width: 183.w,
                       height: 45.h,
                     ),
                     onPressed: () => ref
-                        .read(loginViewControllerProvider.notifier)
+                        .read(loginScreenControllerProvider.notifier)
                         .socialSignInWithApple(context: context),
                   )
                 ],
