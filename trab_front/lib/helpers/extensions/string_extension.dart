@@ -2,10 +2,8 @@
 
 import 'package:path/path.dart' as p;
 
-// Helpers
 import '../constants/app_utils.dart' show Regexes;
 
-/// A utility with extensions for strings.
 extension StringExt on String {
   /// An extension for validating String is an email.
   bool get isValidEmail => Regexes.emailRegex.hasMatch(this);
@@ -45,4 +43,23 @@ extension StringExt on String {
 
   /// An extension for getting file extension
   String get ext => p.extension(this);
+
+  String getTimerFormatted() {
+    List<String> parts = this.split(':');
+    if (parts.length != 2) {
+      return "00:00";
+    }
+
+    int minutes = int.tryParse(parts[0]) ?? 0;
+    int seconds = int.tryParse(parts[1]) ?? 0;
+
+    Duration duration = Duration(minutes: minutes, seconds: seconds);
+    Duration nextDuration = duration + Duration(seconds: 1);
+
+    String newMinutes = (nextDuration.inMinutes % 60).toString();
+    String newSeconds =
+        (nextDuration.inSeconds % 60).toString().padLeft(2, '0');
+
+    return "$newMinutes:$newSeconds";
+  }
 }

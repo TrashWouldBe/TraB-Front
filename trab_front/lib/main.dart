@@ -38,6 +38,7 @@ class TraB extends StatelessWidget {
       Locale('en', 'US'),
       Locale('ko', 'KR'),
     ];
+
     final app = platformIsIOS
         ? ScreenUtilInit(
             designSize: const Size(390, 844),

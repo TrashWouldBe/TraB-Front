@@ -6,54 +6,92 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 @immutable
 class AppTypography {
   const AppTypography._();
-  static final captions = _FontStyle(
+
+  static final headline_1 = TextStyle(
     fontFamily: "Pretendard",
-    caption: TextStyle(
-      fontSize: 13.sp,
-      fontWeight: FontWeight.w500,
-      color: Colors.black,
-    ),
-    // caption:
+    fontSize: 128.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+    decoration: TextDecoration.none,
   );
-}
 
-@immutable
-class _FontStyle {
-  final String? fontFamily;
-  // final TextStyle mainSubtitle;
-  // final TextStyle headline1;
-  // final TextStyle headline2;
-  // final TextStyle headline1_2;
-  // final TextStyle headline2_1;
-  // final TextStyle headline3;
-  // final TextStyle subtitle1;
-  // final TextStyle subtitle2;
-  // final TextStyle body;
-  // final TextStyle body2;
-  // final TextStyle body3;
-  // final TextStyle body4;
-  // final TextStyle body5;
-  final TextStyle caption;
-  // final TextStyle caption2;
-  // final TextStyle captionTitle;
+  static final headline_1_2 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 48.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
 
-  const _FontStyle({
-    this.fontFamily,
-    // required this.mainSubtitle,
-    // required this.headline1,
-    // required this.headline2,
-    // required this.headline1_2,
-    // required this.headline2_1,
-    // required this.headline3,
-    // required this.subtitle1,
-    // required this.subtitle2,
-    // required this.body,
-    // required this.body2,
-    // required this.body3,
-    // required this.body4,
-    // required this.body5,
-    required this.caption,
-    // required this.caption2,
-    // required this.captionTitle,
-  });
+  static final headline_2 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 96.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final headline_2_1 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 32.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final caption = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final title = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final body = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final body_3 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final mainCaption_1 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final mainCaption_2 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final subTitle_1 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
 }

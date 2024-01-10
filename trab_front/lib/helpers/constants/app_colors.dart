@@ -12,11 +12,12 @@ class AppColors {
   static const Color accentColor = Color(0xff27C841);
   static const Color grey1 = Color(0xffC0C0C0);
   static const Color grey2 = Color(0xff676767);
+  static const Color greenGrey3 = Color(0xffBEBEBE);
   static const Color body1 = Color(0xffFFFFFF);
+  static const Color greenGrey = Color(0xffF9FBF9);
 
   static const Color darkPrimaryColor = Color(0xff005A13);
   static const Color deepDarkPrimaryColor = Color(0xff00440E);
-  static const Color lightBackgroundColor = Color.fromARGB(255, 253, 253, 253);
   static const Color backgroundColor = Color(0xffFFFFFF);
   static const Color redColor = Color(0xFFed0000);
   static const Color lightSkeletonColor = Color(0xffC0C0C0);
