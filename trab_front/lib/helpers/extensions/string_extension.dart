@@ -47,7 +47,7 @@ extension StringExt on String {
   String getTimerFormatted() {
     List<String> parts = this.split(':');
     if (parts.length != 2) {
-      return "00:00";
+      return "0:00";
     }
 
     int minutes = int.tryParse(parts[0]) ?? 0;
