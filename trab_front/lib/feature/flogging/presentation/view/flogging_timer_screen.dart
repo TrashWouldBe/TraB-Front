@@ -25,13 +25,13 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ref.read(mapScreenControllerProvider.notifier).getCurrentLocation();
       ref.read(floggingInfoControllerProvider.notifier).startTimer();
-      print("여기");
     });
   }
 
   @override
   Widget build(BuildContext context) {
     String _time = ref.watch(floggingInfoControllerProvider).time;
+    bool _isFlogging = ref.watch(floggingInfoControllerProvider).isFlogging;
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -62,7 +62,13 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                 SizedBox(
                   height: 300.h,
                 ),
-                timerBottomButtons(context: context),
+                timerBottomButtons(
+                  context: context,
+                  isFlogging: _isFlogging,
+                  onPressedStartButton: ref
+                      .read(floggingInfoControllerProvider.notifier)
+                      .startTimer,
+                ),
               ],
             ),
           ],

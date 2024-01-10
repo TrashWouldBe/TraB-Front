@@ -9,11 +9,13 @@ class FloggingInfoState {
   int calories;
   String time;
   String distance;
+  bool isFlogging;
   FloggingInfoState(
       {required this.snack,
       required this.distance,
       required this.calories,
-      required this.time});
+      required this.time,
+      required this.isFlogging});
 }
 
 @Riverpod(keepAlive: true)
@@ -23,12 +25,12 @@ class FloggingInfoController extends _$FloggingInfoController {
     return FloggingInfoState(
       snack: 0,
       calories: 0,
-      time: "0.00",
+      time: "0:00",
       distance: "0.00",
+      isFlogging: true,
     );
   }
 
-  bool isRunning = false;
   Timer? timer;
 
   void setState() {
@@ -36,12 +38,16 @@ class FloggingInfoController extends _$FloggingInfoController {
         distance: state.distance,
         snack: state.snack,
         calories: state.calories,
+        isFlogging: state.isFlogging,
         time: state.time);
   }
 
   void startTimer() {
+    if (!state.isFlogging) {
+      state.isFlogging = true;
+      setState();
+    }
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      isRunning = true;
       state.time = state.time.getTimerFormatted();
       setState();
     });
@@ -50,7 +56,8 @@ class FloggingInfoController extends _$FloggingInfoController {
   void stopTimer() {
     if (timer != null && timer!.isActive) {
       timer!.cancel();
-      isRunning = false;
+      state.isFlogging = false;
+      setState();
     }
   }
 }

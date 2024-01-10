@@ -49,7 +49,7 @@ class FloggingStopController extends _$FloggingStopController {
     );
   }
 
-  void startTimer() {
+  void startTimer({required BuildContext context}) {
     ref.read(floggingInfoControllerProvider.notifier).startTimer();
   }
 }
