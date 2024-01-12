@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
 import 'package:trab_front/feature/flogging/presentation/viewmodel/map_screen_view_model.dart';
 import 'package:trab_front/feature/flogging/presentation/widget/flogging_timer_infos.dart';
@@ -58,7 +59,11 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                   height: 40.h,
                 ),
                 floggingTimerInfos(
-                    snack: "0", calorie: "0", time: _time, distance: "0.00"),
+                  snack: "0",
+                  calorie: "0",
+                  time: _time,
+                  distance: "0.00",
+                ),
                 SizedBox(
                   height: 300.h,
                 ),
@@ -68,6 +73,9 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                   onPressedStartButton: ref
                       .read(floggingInfoControllerProvider.notifier)
                       .startTimer,
+                  onPressedCameraButton: () async => await ref
+                      .read(floggingInfoControllerProvider.notifier)
+                      .getImage(imageSource: ImageSource.camera),
                 ),
               ],
             ),

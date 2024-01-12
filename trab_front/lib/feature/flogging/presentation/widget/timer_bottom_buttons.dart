@@ -8,7 +8,8 @@ import 'package:trab_front/helpers/constants/app_images.dart';
 Widget timerBottomButtons(
     {required BuildContext context,
     required bool isFlogging,
-    required onPressedStartButton}) {
+    required onPressedStartButton,
+    required onPressedCameraButton}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
@@ -26,11 +27,13 @@ Widget timerBottomButtons(
       SizedBox(
         width: 110.w,
       ),
-      Image.asset(
-        AppImages.cameraButton,
-        width: 79.w,
-        height: 79.h,
-      ),
+      noPaddingButton(
+          child: Image.asset(
+            AppImages.cameraButton,
+            width: 79.w,
+            height: 79.h,
+          ),
+          onPressed: onPressedCameraButton),
     ],
   );
 }
