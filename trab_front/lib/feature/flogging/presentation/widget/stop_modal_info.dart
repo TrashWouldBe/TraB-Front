@@ -13,6 +13,7 @@ Widget trabModalInfos({
   required time,
   required distance,
   required onPressedStartButton,
+  required onPressedStopButton,
 }) {
   return SizedBox(
     height: 422.h,
@@ -141,10 +142,13 @@ Widget trabModalInfos({
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                AppImages.stopButton,
-                width: 63.w,
-                height: 63.h,
+              noPaddingButton(
+                child: Image.asset(
+                  AppImages.stopButton,
+                  width: 63.w,
+                  height: 63.h,
+                ),
+                onPressed: onPressedStopButton,
               ),
               SizedBox(
                 width: 160.w,

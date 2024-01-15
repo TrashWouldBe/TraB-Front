@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//
 @immutable
 class AppColors {
   const AppColors._();
@@ -15,6 +14,8 @@ class AppColors {
   static const Color greenGrey3 = Color(0xffBEBEBE);
   static const Color body1 = Color(0xffFFFFFF);
   static const Color greenGrey = Color(0xffF9FBF9);
+  static const Color subColor = Color(0xff73C27A);
+  static const Color greenGrey2 = Color(0xffE4E4E4);
 
   static const Color darkPrimaryColor = Color(0xff005A13);
   static const Color deepDarkPrimaryColor = Color(0xff00440E);
