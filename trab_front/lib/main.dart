@@ -16,13 +16,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await AppBootstrapper.init(
-    mainAppWidget: const TraB(),
     runApp: runApp,
   );
 }
 
 class TraB extends StatelessWidget {
-  const TraB({super.key});
+  TraB({super.key, required this.idToken});
+  String? idToken;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,9 @@ class TraB extends StatelessWidget {
                   child: CupertinoApp(
                     title: title,
                     debugShowCheckedModeBanner: showDebugBanner,
-                    initialRoute: Routes.initialRoute,
+                    initialRoute: idToken != null
+                        ? Routes.HomeScreenRoute
+                        : Routes.LoginScreenRoute,
                     color: AppColors.primaryColor,
                     onGenerateRoute: AppRouter.generateRoute,
                     navigatorKey: AppRouter.navigatorKey,
@@ -64,7 +66,9 @@ class TraB extends StatelessWidget {
                   debugShowCheckedModeBanner: showDebugBanner,
                   color: AppColors.primaryColor,
                   theme: AppThemes.mainTheme,
-                  initialRoute: Routes.initialRoute,
+                  initialRoute: idToken != null
+                      ? Routes.HomeScreenRoute
+                      : Routes.LoginScreenRoute,
                   onGenerateRoute: AppRouter.generateRoute,
                   navigatorKey: AppRouter.navigatorKey,
                   localizationsDelegates: localizationsDelegates,

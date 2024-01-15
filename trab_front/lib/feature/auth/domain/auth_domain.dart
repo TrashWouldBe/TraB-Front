@@ -5,6 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:trab_front/config/routes/app_router.dart';
+import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/all_providers.dart';
 import 'package:trab_front/feature/auth/data/dataSource/auth_data_source.dart';
 import 'package:trab_front/feature/auth/data/model/auth_model.dart';
@@ -61,13 +63,6 @@ class AuthController extends _$AuthController {
   }
 
   Future<KakaoSignInBody?> signInWithKakao() async {
-    // try {
-    //   await UserApi.instance.unlink();
-    //   print('연결 끊기 성공, SDK에서 토큰 삭제');
-    // } catch (error) {
-    //   print('연결 끊기 실패 $error');
-    // }
-
     if (await isKakaoTalkInstalled()) {
       try {
         OAuthToken auth = await UserApi.instance.loginWithKakaoTalk();
@@ -129,6 +124,21 @@ class AuthController extends _$AuthController {
       }
     } catch (error) {
       print(error);
+    }
+  }
+
+  void signOut() async {
+    try {
+      await firebase_auth.FirebaseAuth.instance.signOut();
+      AppRouter.popUntil(Routes.LoginScreenRoute);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void withdrawal() async {
+    try {} catch (e) {
+      print(e);
     }
   }
 }
