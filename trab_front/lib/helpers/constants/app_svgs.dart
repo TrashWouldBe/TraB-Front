@@ -12,4 +12,5 @@ class AppSvgs {
   static String trab = "$basePath/trab.svg";
   static String union = "$basePath/union.svg";
   static String leftArrow = "$basePath/left_arrow.svg";
+  static String rightCursor = "$basePath/right_cursor.svg";
 }

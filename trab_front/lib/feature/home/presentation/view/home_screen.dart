@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:trab_front/feature/camera/presentation/view/camera_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_start_screen.dart';
 import 'package:trab_front/feature/home/presentation/viewmodel/home_screen_view_model.dart';
+import 'package:trab_front/feature/setting/presentation/view/setting_screen.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 
@@ -59,7 +61,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
         body: IndexedStack(
           index: _selectedIndex,
-          children: const [FloggingStartScreen()],
+          children: const [
+            FloggingStartScreen(),
+            CameraScreen(),
+            SettingScreen()
+          ],
         ));
   }
 }

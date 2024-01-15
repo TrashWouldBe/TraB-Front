@@ -5,6 +5,7 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 //TODO: userInfo
 Widget upperView({required String name, required String image}) {
@@ -19,7 +20,7 @@ Widget upperView({required String name, required String image}) {
           height: 18.h,
         ),
         Text(
-          "마이 페이지",
+          AppStrings.myPage,
           style:
               AppTypography.headline_3.copyWith(color: AppColors.textColor_2),
         ),
