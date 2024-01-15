@@ -22,20 +22,20 @@ class LoginScreenController extends _$LoginScreenController {
     showLoading(context: context);
     await ref.read(authControllerProvider.notifier).socialSignInWithKakao();
     closeLoading(context: context);
-    AppRouter.pushNamed(Routes.AppStartupScreenRoute);
+    AppRouter.pushNamed(Routes.HomeScreenRoute);
   }
 
   void socialSignInWithGoogle({required BuildContext context}) async {
     showLoading(context: context);
     await ref.read(authControllerProvider.notifier).socialSignInWithGoogle();
     closeLoading(context: context);
-    AppRouter.pushNamed(Routes.AppStartupScreenRoute);
+    AppRouter.pushNamed(Routes.HomeScreenRoute);
   }
 
   void socialSignInWithApple({required BuildContext context}) async {
     showLoading(context: context);
     await ref.read(authControllerProvider.notifier).socialSignInWithApple();
     closeLoading(context: context);
-    AppRouter.pushNamed(Routes.AppStartupScreenRoute);
+    AppRouter.pushNamed(Routes.HomeScreenRoute);
   }
 }

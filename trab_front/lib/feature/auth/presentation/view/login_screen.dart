@@ -31,7 +31,15 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 400.h,
+                    height: 270.h,
+                  ),
+                  Image.asset(
+                    'assets/images/trab_logo.png',
+                    width: 258.w,
+                    height: 102.h,
+                  ),
+                  SizedBox(
+                    height: 58.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +67,7 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 11.h,
                   ),
                   noPaddingButton(
                     child: Image.asset(
@@ -72,7 +80,7 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                         .socialSignInWithKakao(context: context),
                   ),
                   SizedBox(
-                    height: 15.h,
+                    height: 13.h,
                   ),
                   noPaddingButton(
                     child: Image.asset(
@@ -85,7 +93,7 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                         .socialSignInWithGoogle(context: context),
                   ),
                   SizedBox(
-                    height: 15.h,
+                    height: 13.h,
                   ),
                   noPaddingButton(
                     child: Image.asset(

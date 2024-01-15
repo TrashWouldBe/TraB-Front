@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/flogging_end_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_stop_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_timer_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
@@ -27,13 +28,19 @@ class Routes {
   static const String FloggingTimerScreenRoute = '/flogging/timer';
 
   static const String FloggingStopScreenRoute = '/flogging/stop';
+
+  static const String FloggingEndScreenRoute = '/flogging/end';
+
+  static const String HomeScreenRoute = '/home';
+
   static final Map<String, Widget Function()> _routesMap = {
-    AppStartupScreenRoute: () => const HomeScreen(),
     LoginScreenRoute: () => const LogInScreen(),
-    MapScreenRoute: () => MapScreen(),
+    MapScreenRoute: () => const MapScreen(),
     NotFoundScreenRoute: () => const SizedBox.shrink(),
+    HomeScreenRoute: () => const HomeScreen(),
     FloggingTimerScreenRoute: () => const FlogginTimerScreen(),
     FloggingStopScreenRoute: () => const FlogginStopScreen(),
+    FloggingEndScreenRoute: () => const FloggingEndScreen(),
   };
 
   static Widget Function() getRoute(String? routeName) {

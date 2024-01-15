@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:clock/clock.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firbaseAuth;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +17,11 @@ class AppBootstrapper {
   const AppBootstrapper._();
 
   static Future<void> init({
-    required Widget mainAppWidget,
     required void Function(Widget) runApp,
   }) async {
+    String? idToken;
     debugPrint = _prettifyDebugPrint;
-    // For preparing the key-value mem cache
     await KeyValueStorageBase.init();
-
-    // For preparing to read application directory paths
     await PathProviderService.init();
     KakaoSdk.init(nativeAppKey: '0e922fab391d4b972bd2e03606d728af');
     await Firebase.initializeApp(
@@ -34,7 +32,15 @@ class AppBootstrapper {
       DeviceOrientation.portraitDown,
     ]);
 
-    runApp(const TraB());
+    firbaseAuth.User? currentUser =
+        firbaseAuth.FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      idToken = await currentUser.getIdToken();
+    }
+
+    runApp(TraB(
+      idToken: idToken,
+    ));
   }
 
   static void _prettifyDebugPrint(String? message, {int? wrapWidth}) {

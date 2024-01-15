@@ -57,7 +57,7 @@ class AppRouter {
 
   static void popUntilRoot() {
     navigatorKey.currentState!.popUntil(
-      ModalRoute.withName(Routes.initialRoute),
+      ModalRoute.withName(Routes.HomeScreenRoute),
     );
   }
 }
