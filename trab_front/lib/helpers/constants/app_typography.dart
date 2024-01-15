@@ -79,6 +79,14 @@ class AppTypography {
     decoration: TextDecoration.none,
   );
 
+  static final body_5 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
   static final mainCaption_1 = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 16.sp,
