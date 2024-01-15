@@ -20,6 +20,7 @@ Future<void> main() async {
   );
 }
 
+// ignore: must_be_immutable
 class TraB extends StatelessWidget {
   TraB({super.key, required this.idToken});
   String? idToken;

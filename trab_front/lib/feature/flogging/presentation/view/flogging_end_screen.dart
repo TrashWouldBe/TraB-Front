@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
 class FloggingEndScreen extends ConsumerStatefulWidget {
@@ -44,7 +45,7 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
               child: Row(
                 children: [
                   SvgPicture.asset(
-                    'assets/svgs/left_arrow.svg',
+                    AppSvgs.leftArrow,
                   ),
                   SizedBox(
                     width: 13.w,
