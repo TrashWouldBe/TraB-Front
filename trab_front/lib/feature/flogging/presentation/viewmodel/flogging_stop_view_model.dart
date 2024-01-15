@@ -23,6 +23,11 @@ class FloggingStopController extends _$FloggingStopController {
     AppRouter.popAndPushNamed(Routes.FloggingTimerScreenRoute);
   }
 
+  void handlePressedStopButton() {
+    AppRouter.popUntilRoot();
+    AppRouter.popAndPushNamed(Routes.FloggingEndScreenRoute);
+  }
+
   void showTrabInfos({
     required BuildContext context,
   }) {
@@ -44,12 +49,13 @@ class FloggingStopController extends _$FloggingStopController {
           time: ref.read(floggingInfoControllerProvider).time,
           distance: "3",
           onPressedStartButton: handlePressedStartButton,
+          onPressedStopButton: handlePressedStopButton,
         );
       },
     );
   }
 
-  void startTimer() {
+  void startTimer({required BuildContext context}) {
     ref.read(floggingInfoControllerProvider.notifier).startTimer();
   }
 }

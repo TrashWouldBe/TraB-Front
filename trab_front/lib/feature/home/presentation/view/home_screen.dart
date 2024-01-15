@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_start_screen.dart';
 import 'package:trab_front/feature/home/presentation/viewmodel/home_screen_view_model.dart';
+import 'package:trab_front/feature/setting/presentation/view/setting_screen.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -25,20 +26,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         backgroundColor: AppColors.backgroundColor,
         bottomNavigationBar: CupertinoTabBar(
           height: 56.h,
-          iconSize: 32.h,
           backgroundColor: AppColors.greenGrey,
           border: const Border(top: BorderSide(color: AppColors.grey1)),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: SvgPicture.asset('assets/svgs/flogging.svg',
-                  width: 32.w,
-                  height: 32.h,
+                  width: 26.w,
+                  height: 26.h,
                   color: _selectedIndex == 0 ? AppColors.accentColor : null),
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset('assets/svgs/camera.svg',
-                  width: 32.w,
-                  height: 32.h,
+                  width: 26.w,
+                  height: 26.h,
                   color: _selectedIndex == 1 ? AppColors.accentColor : null),
             ),
             BottomNavigationBarItem(
@@ -49,8 +49,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset('assets/svgs/union.svg',
-                  width: 32.w,
-                  height: 32.h,
+                  width: 26.w,
+                  height: 26.h,
                   color: _selectedIndex == 3 ? AppColors.accentColor : null),
             ),
           ],
@@ -59,7 +59,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
         body: IndexedStack(
           index: _selectedIndex,
-          children: const [FloggingStartScreen()],
+          children: const [FloggingStartScreen(), SettingScreen()],
         ));
   }
 }

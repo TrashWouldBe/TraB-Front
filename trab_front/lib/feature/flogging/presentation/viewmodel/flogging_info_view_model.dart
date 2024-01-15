@@ -1,19 +1,22 @@
 import 'dart:async';
-
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/helpers/extensions/string_extension.dart';
 part 'flogging_info_view_model.g.dart';
 
 class FloggingInfoState {
-  int snack;
   int calories;
   String time;
   String distance;
+  bool isFlogging;
+  List<File> trabSnacks;
   FloggingInfoState(
-      {required this.snack,
+      {required this.trabSnacks,
       required this.distance,
       required this.calories,
-      required this.time});
+      required this.time,
+      required this.isFlogging});
 }
 
 @Riverpod(keepAlive: true)
@@ -21,27 +24,40 @@ class FloggingInfoController extends _$FloggingInfoController {
   @override
   FloggingInfoState build() {
     return FloggingInfoState(
-      snack: 0,
+      trabSnacks: [],
       calories: 0,
-      time: "0.00",
+      time: "0:00",
       distance: "0.00",
+      isFlogging: true,
     );
   }
 
-  bool isRunning = false;
   Timer? timer;
 
   void setState() {
     state = FloggingInfoState(
         distance: state.distance,
-        snack: state.snack,
+        trabSnacks: state.trabSnacks,
         calories: state.calories,
+        isFlogging: state.isFlogging,
         time: state.time);
   }
 
+  Future<void> getImage({required ImageSource imageSource}) async {
+    final image = await ImagePicker().pickImage(source: imageSource);
+    if (image != null) {
+      File img = File(image.path);
+      state.trabSnacks.add(img);
+      setState();
+    }
+  }
+
   void startTimer() {
+    if (!state.isFlogging) {
+      state.isFlogging = true;
+      setState();
+    }
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      isRunning = true;
       state.time = state.time.getTimerFormatted();
       setState();
     });
@@ -50,7 +66,8 @@ class FloggingInfoController extends _$FloggingInfoController {
   void stopTimer() {
     if (timer != null && timer!.isActive) {
       timer!.cancel();
-      isRunning = false;
+      state.isFlogging = false;
+      setState();
     }
   }
 }
