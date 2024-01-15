@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_images.dart';
+import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
 //TODO: userInfo
@@ -41,7 +43,7 @@ Widget upperView({required String name, required String image}) {
                             width: 3.w, color: AppColors.primaryColor),
                       ),
                       child: Image.asset(
-                        "assets/images/trab.png",
+                        AppImages.trab,
                         width: double.infinity,
                         height: double.infinity,
                         fit: BoxFit.cover,
@@ -58,7 +60,7 @@ Widget upperView({required String name, required String image}) {
                       ),
                       child: Center(
                         child: SvgPicture.asset(
-                          'assets/svgs/camera_1.svg',
+                          AppSvgs.camera_1,
                           width: 15.w,
                           height: 13.h,
                         ),

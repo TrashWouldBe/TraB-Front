@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
 Widget floggingExplainContiner({required String title, required String body}) {
@@ -19,8 +20,7 @@ Widget floggingExplainContiner({required String title, required String body}) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset('assets/svgs/flogging.svg',
-                width: 52.w, height: 52.h),
+            SvgPicture.asset(AppSvgs.flogging, width: 52.w, height: 52.h),
             SizedBox(
               width: 15.w,
             ),

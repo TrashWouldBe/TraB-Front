@@ -22,19 +22,19 @@ Widget customerCenter() {
       ),
       Padding(
         padding: EdgeInsets.only(bottom: 14.h),
-        child: Container(
+        child: SizedBox(
           height: 22.h,
           child: rightButton(text: "이용방법"),
         ),
       ),
       Padding(
         padding: EdgeInsets.only(bottom: 14.h),
-        child: Container(
+        child: SizedBox(
           height: 22.h,
           child: rightButton(text: "1:1 문의"),
         ),
       ),
-      Container(
+      SizedBox(
         height: 22.h,
         child: rightButton(text: "이용약관"),
       ),
