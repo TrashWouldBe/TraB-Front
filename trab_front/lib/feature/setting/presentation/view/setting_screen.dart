@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/auth/domain/auth_domain.dart';
+import 'package:trab_front/feature/common/widget/button.dart';
+import 'package:trab_front/feature/setting/presentation/viewmodel/setting_screen_view_model.dart';
 import 'package:trab_front/feature/setting/presentation/widget/customer_center.dart';
 import 'package:trab_front/feature/setting/presentation/widget/login.dart';
 import 'package:trab_front/feature/setting/presentation/widget/upper_view.dart';
@@ -29,13 +31,18 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
             color: AppColors.greenGrey2,
             thickness: 5.h,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 24.w),
-            child: Text(
-              "플로깅 기록",
-              style: AppTypography.mainCaption_1
-                  .copyWith(color: AppColors.textColor_2),
+          noPaddingButton(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 24.w),
+              child: Text(
+                "플로깅 기록",
+                style: AppTypography.mainCaption_1
+                    .copyWith(color: AppColors.textColor_2),
+              ),
             ),
+            onPressed: ref
+                .read(settingScreenControllerProvider.notifier)
+                .handleTapFlogginRecord,
           ),
           customerCenter(),
           login(

@@ -8,6 +8,7 @@ import 'package:trab_front/feature/flogging/presentation/view/flogging_start_scr
 import 'package:trab_front/feature/home/presentation/viewmodel/home_screen_view_model.dart';
 import 'package:trab_front/feature/setting/presentation/view/setting_screen.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_svgs.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -30,25 +31,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           border: const Border(top: BorderSide(color: AppColors.grey1)),
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/svgs/flogging.svg',
+              icon: SvgPicture.asset(AppSvgs.flogging,
                   width: 26.w,
                   height: 26.h,
                   color: _selectedIndex == 0 ? AppColors.accentColor : null),
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/svgs/camera.svg',
+              icon: SvgPicture.asset(AppSvgs.camera,
                   width: 26.w,
                   height: 26.h,
                   color: _selectedIndex == 1 ? AppColors.accentColor : null),
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/svgs/trab.svg',
+              icon: SvgPicture.asset(AppSvgs.trab,
                   width: 32.w,
                   height: 32.h,
                   color: _selectedIndex == 2 ? AppColors.accentColor : null),
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/svgs/union.svg',
+              icon: SvgPicture.asset(AppSvgs.union,
                   width: 26.w,
                   height: 26.h,
                   color: _selectedIndex == 3 ? AppColors.accentColor : null),

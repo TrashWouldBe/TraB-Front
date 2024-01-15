@@ -7,6 +7,7 @@ import 'package:trab_front/feature/flogging/presentation/view/flogging_stop_scre
 import 'package:trab_front/feature/flogging/presentation/view/flogging_timer_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
+import 'package:trab_front/feature/setting/presentation/view/flogging_record_screen.dart';
 
 @immutable
 class Routes {
@@ -33,6 +34,8 @@ class Routes {
 
   static const String HomeScreenRoute = '/home';
 
+  static const String FloggingRecord = '/setting/flogging-record';
+
   static final Map<String, Widget Function()> _routesMap = {
     LoginScreenRoute: () => const LogInScreen(),
     MapScreenRoute: () => const MapScreen(),
@@ -41,6 +44,7 @@ class Routes {
     FloggingTimerScreenRoute: () => const FlogginTimerScreen(),
     FloggingStopScreenRoute: () => const FlogginStopScreen(),
     FloggingEndScreenRoute: () => const FloggingEndScreen(),
+    FloggingRecord: () => const FloggingRecordScreen(),
   };
 
   static Widget Function() getRoute(String? routeName) {
