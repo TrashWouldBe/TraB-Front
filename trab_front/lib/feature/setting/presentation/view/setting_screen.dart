@@ -9,6 +9,7 @@ import 'package:trab_front/feature/setting/presentation/widget/login.dart';
 import 'package:trab_front/feature/setting/presentation/widget/upper_view.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 class SettingScreen extends ConsumerStatefulWidget {
   const SettingScreen({super.key});
@@ -26,7 +27,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          upperView(name: "마이 트래비", image: "ㅇㅁㄴ"),
+          upperView(name: AppStrings.myTrab, image: "ㅇㅁㄴ"),
           Divider(
             color: AppColors.greenGrey2,
             thickness: 5.h,
@@ -35,7 +36,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 24.w),
               child: Text(
-                "플로깅 기록",
+                AppStrings.floggingRecord,
                 style: AppTypography.mainCaption_1
                     .copyWith(color: AppColors.textColor_2),
               ),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/feature/setting/presentation/widget/flogging_record_container.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 class FloggingRecordScreen extends ConsumerStatefulWidget {
   const FloggingRecordScreen({super.key});
@@ -19,7 +20,7 @@ class _FloggingRecordScreenState extends ConsumerState<FloggingRecordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: "플로깅 기록",
+        title: AppStrings.floggingRecord,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(2.h),
           child: Container(

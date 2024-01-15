@@ -20,4 +20,28 @@ class AppStrings {
   static String calorie = "칼로리";
 
   static String time = "시간";
+
+  static String cameraExpain = "내가 주운 쓰레기를 촬영해\n분리배출 방법을 알아볼까요?";
+
+  static String floggingRecord = "플로깅 기록";
+
+  static String myTrab = "마이 트래비";
+
+  static String myPage = "마이 페이지";
+
+  static String customerCenter = "고객 센터";
+
+  static String method = "이용방법";
+
+  static String invidualQuery = "1:1 문의";
+
+  static String termsOfUse = "이용약관";
+
+  static String logIn = "로그인";
+
+  static String logOut = "로그아웃";
+
+  static String withdrawal = "회원탈퇴";
+
+  static String goToSnackPhoto = "간식 촬영하러 가기";
 }
