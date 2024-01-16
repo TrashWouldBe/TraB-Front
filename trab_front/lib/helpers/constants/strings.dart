@@ -13,6 +13,8 @@ class AppStrings {
         : "분리수거용 봉지와 일반 쓰레기용\n봉지 두 개를 준비하면 더욱 좋아요!";
   }
 
+  static String empty = "";
+
   static String kiloMeter = "km";
 
   static String trabSnack = "트래비 간식";
@@ -44,4 +46,24 @@ class AppStrings {
   static String withdrawal = "회원탈퇴";
 
   static String goToSnackPhoto = "간식 촬영하러 가기";
+
+  static String sortTrash = "간식 분류하기";
+
+  static String plastic = "플라스틱";
+
+  static String glass = "유리";
+
+  static String paper = "종이";
+
+  static String can = "캔";
+
+  static String vinyl = "비닐";
+
+  static String styrofoam = "스티로폼";
+
+  static String waste = "일반 쓰레기";
+
+  static String foodWaste = "음식물 쓰레기";
+
+  static String snackToTrab = "트래비에게 간식주러 가기";
 }

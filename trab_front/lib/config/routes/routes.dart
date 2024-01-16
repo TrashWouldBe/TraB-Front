@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
+import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
+import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_end_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_stop_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_timer_screen.dart';
@@ -34,7 +36,11 @@ class Routes {
 
   static const String HomeScreenRoute = '/home';
 
-  static const String FloggingRecord = '/setting/flogging-record';
+  static const String FloggingRecordScreenRoute = '/setting/flogging-record';
+
+  static const String SortedTrashScreenRoute = '/camera/sorted-trash';
+
+  static const String EattingSnackTrabScreenRoute = '/camera/eatting-trab';
 
   static final Map<String, Widget Function()> _routesMap = {
     LoginScreenRoute: () => const LogInScreen(),
@@ -44,7 +50,9 @@ class Routes {
     FloggingTimerScreenRoute: () => const FlogginTimerScreen(),
     FloggingStopScreenRoute: () => const FlogginStopScreen(),
     FloggingEndScreenRoute: () => const FloggingEndScreen(),
-    FloggingRecord: () => const FloggingRecordScreen(),
+    FloggingRecordScreenRoute: () => const FloggingRecordScreen(),
+    SortedTrashScreenRoute: () => const SortedTrashScreen(),
+    EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
   };
 
   static Widget Function() getRoute(String? routeName) {
