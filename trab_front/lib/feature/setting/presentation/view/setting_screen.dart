@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/auth/domain/auth_domain.dart';
-import 'package:trab_front/feature/common/widget/button.dart';
+import 'package:trab_front/feature/common/widget/no_padding_button.dart';
 import 'package:trab_front/feature/setting/presentation/viewmodel/setting_screen_view_model.dart';
 import 'package:trab_front/feature/setting/presentation/widget/customer_center.dart';
 import 'package:trab_front/feature/setting/presentation/widget/login.dart';

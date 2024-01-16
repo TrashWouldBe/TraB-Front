@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/config/routes/app_router.dart';
-import 'package:trab_front/feature/common/widget/button.dart';
+import 'package:trab_front/feature/common/widget/no_padding_button.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
@@ -17,12 +17,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleColor,
     this.systemOverlayStyle,
     this.bottom,
+    this.onPressed,
   });
   String title;
   Color? backgroundColor;
   Color? titleColor;
   SystemUiOverlayStyle? systemOverlayStyle;
   PreferredSizeWidget? bottom;
+  void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -39,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 AppSvgs.leftArrow,
                 color: AppColors.grey1,
               ),
-              onPressed: () => AppRouter.pop(),
+              onPressed: onPressed ?? () => AppRouter.pop(),
             ),
             SizedBox(
               width: 13.w,

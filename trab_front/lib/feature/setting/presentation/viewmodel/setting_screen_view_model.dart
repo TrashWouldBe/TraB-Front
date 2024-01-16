@@ -16,7 +16,6 @@ class SettingScreenController extends _$SettingScreenController {
   }
 
   void handleTapFlogginRecord() {
-    print("여기");
-    AppRouter.pushNamed(Routes.FloggingRecord);
+    AppRouter.pushNamed(Routes.FloggingRecordScreenRoute);
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
-import 'package:trab_front/feature/common/widget/button.dart';
+import 'package:trab_front/feature/common/widget/no_padding_button.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 
 Widget timerBottomButtons(
