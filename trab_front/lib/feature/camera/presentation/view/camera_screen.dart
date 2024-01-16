@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:trab_front/feature/camera/presentation/viewmodel/camera_screen_view_model.dart';
+import 'package:trab_front/feature/common/widget/container_button.dart';
 
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
@@ -20,6 +24,7 @@ class CameraScreen extends ConsumerStatefulWidget {
 class _CameraScreenState extends ConsumerState<CameraScreen> {
   @override
   Widget build(BuildContext context) {
+    File? image = ref.watch(cameraScreenControllerProvider).image;
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -44,21 +49,11 @@ class _CameraScreenState extends ConsumerState<CameraScreen> {
             SizedBox(
               height: 25.h,
             ),
-            Container(
-              width: 339.w,
-              height: 52.h,
-              decoration: ShapeDecoration(
-                color: AppColors.accentColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.r),
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  AppStrings.goToSnackPhoto,
-                  style: AppTypography.body_5.copyWith(color: AppColors.body1),
-                ),
-              ),
+            containerButton(
+              title: AppStrings.goToSnackPhoto,
+              onPressed: ref
+                  .read(cameraScreenControllerProvider.notifier)
+                  .handlePressedContainerButton,
             )
           ],
         ),

@@ -76,8 +76,6 @@ PODS:
   - GTMSessionFetcher/Core (3.2.0)
   - image_picker_ios (0.0.1):
     - Flutter
-  - image_picker_ios (0.0.1):
-    - Flutter
   - kakao_flutter_sdk_common (1.8.0):
     - Flutter
   - location (0.0.1):
