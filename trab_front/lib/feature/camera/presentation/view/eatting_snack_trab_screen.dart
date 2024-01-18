@@ -25,30 +25,32 @@ class _EattingSnackTrabScreenState
   @override
   Widget build(BuildContext context) {
     File image = ref.watch(cameraScreenControllerProvider).image!;
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: AppStrings.empty,
-        onPressed: () => AppRouter.popUntil(Routes.HomeScreenRoute),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 30.h,
-              ),
-              sortedTrashImage(image: image, text: AppStrings.plastic),
-              SizedBox(
-                height: 32.h,
-              ),
-              Image.asset("assets/images/seperation_and_discharge_1.png"),
-              SizedBox(
-                height: 35.h,
-              ),
-              containerButton(title: AppStrings.snackToTrab)
-            ],
+    return PopScope(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: AppStrings.empty,
+          onPressed: () => AppRouter.popUntil(Routes.HomeScreenRoute),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 30.h,
+                ),
+                sortedTrashImage(image: image, text: AppStrings.plastic),
+                SizedBox(
+                  height: 32.h,
+                ),
+                Image.asset("assets/images/seperation_and_discharge_1.png"),
+                SizedBox(
+                  height: 35.h,
+                ),
+                containerButton(title: AppStrings.snackToTrab)
+              ],
+            ),
           ),
         ),
       ),

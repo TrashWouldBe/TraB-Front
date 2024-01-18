@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,6 +34,7 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
   @override
   Widget build(BuildContext context) {
     String _time = ref.watch(floggingInfoControllerProvider).time;
+    List<File> _snacks = ref.watch(floggingInfoControllerProvider).trabSnacks;
     bool _isFlogging = ref.watch(floggingInfoControllerProvider).isFlogging;
     return PopScope(
       canPop: false,
@@ -59,7 +62,7 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                   height: 40.h,
                 ),
                 floggingTimerInfos(
-                  snack: "0",
+                  snack: _snacks.length.toString(),
                   calorie: "0",
                   time: _time,
                   distance: "0.00",

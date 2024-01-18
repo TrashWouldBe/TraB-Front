@@ -144,7 +144,7 @@ Widget trabModalInfos({
             children: [
               noPaddingButton(
                 child: Image.asset(
-                  AppImages.stopButton,
+                  AppImages.endButton,
                   width: 63.w,
                   height: 63.h,
                 ),

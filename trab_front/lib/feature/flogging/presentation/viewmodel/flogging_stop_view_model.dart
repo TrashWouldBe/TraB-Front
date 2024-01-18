@@ -24,8 +24,7 @@ class FloggingStopController extends _$FloggingStopController {
   }
 
   void handlePressedStopButton() {
-    AppRouter.popUntilRoot();
-    AppRouter.popAndPushNamed(Routes.FloggingEndScreenRoute);
+    AppRouter.pushAndRemoveUntil(Routes.FloggingEndScreenRoute);
   }
 
   void showTrabInfos({

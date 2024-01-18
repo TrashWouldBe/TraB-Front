@@ -130,7 +130,7 @@ class AuthController extends _$AuthController {
   void signOut() async {
     try {
       await firebase_auth.FirebaseAuth.instance.signOut();
-      AppRouter.popUntil(Routes.LoginScreenRoute);
+      AppRouter.pushAndRemoveUntil(Routes.LoginScreenRoute);
     } catch (e) {
       print(e);
     }

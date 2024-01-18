@@ -18,10 +18,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.systemOverlayStyle,
     this.bottom,
     this.onPressed,
+    this.leadingColor,
   });
   String title;
   Color? backgroundColor;
   Color? titleColor;
+  Color? leadingColor;
   SystemUiOverlayStyle? systemOverlayStyle;
   PreferredSizeWidget? bottom;
   void Function()? onPressed;
@@ -39,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             noPaddingButton(
               child: SvgPicture.asset(
                 AppSvgs.leftArrow,
-                color: AppColors.grey1,
+                color: leadingColor ?? AppColors.grey1,
               ),
               onPressed: onPressed ?? () => AppRouter.pop(),
             ),

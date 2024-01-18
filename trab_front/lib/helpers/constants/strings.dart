@@ -66,4 +66,8 @@ class AppStrings {
   static String foodWaste = "음식물 쓰레기";
 
   static String snackToTrab = "트래비에게 간식주러 가기";
+
+  static String withTrabAgainToday = "오늘도 트래비와 함께!";
+
+  static String snackSettlement = "간식 정산하러 가기";
 }

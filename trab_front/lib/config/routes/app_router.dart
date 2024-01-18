@@ -49,6 +49,13 @@ class AppRouter {
     );
   }
 
+  static Future<dynamic> pushAndRemoveUntil(String routeName, {dynamic args}) {
+    return navigatorKey.currentState!.pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => Routes.getRoute(routeName)()),
+      (Route<dynamic> route) => false,
+    );
+  }
+
   static void popUntil(String routeName) {
     navigatorKey.currentState!.popUntil(
       ModalRoute.withName(routeName),
