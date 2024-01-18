@@ -19,6 +19,6 @@ class SortedTrashScreenController extends _$SortedTrashScreenController {
   }
 
   void handlePressedContainerButton() {
-    AppRouter.pushNamed(Routes.EattingSnackTrabScreenRoute);
+    AppRouter.popAndPushNamed(Routes.EattingSnackTrabScreenRoute);
   }
 }

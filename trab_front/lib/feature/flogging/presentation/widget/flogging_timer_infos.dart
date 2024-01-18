@@ -5,8 +5,12 @@ import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/dateTime_extension.dart';
 
-Widget floggingTimerInfos(
-    {required snack, required calorie, required time, required distance}) {
+Widget floggingTimerInfos({
+  required snack,
+  required calorie,
+  required time,
+  required distance,
+}) {
   return Column(
     children: [
       Text(

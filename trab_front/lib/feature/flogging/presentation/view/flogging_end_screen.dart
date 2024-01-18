@@ -1,11 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:trab_front/config/routes/app_router.dart';
+import 'package:trab_front/config/routes/routes.dart';
+import 'package:trab_front/feature/common/widget/container_button.dart';
+import 'package:trab_front/feature/common/widget/custom_appbar.dart';
+import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
+import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
 class FloggingEndScreen extends ConsumerStatefulWidget {
   const FloggingEndScreen({super.key});
@@ -27,6 +37,8 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<File> _snacks = ref.watch(floggingInfoControllerProvider).trabSnacks;
+    String time = ref.watch(floggingInfoControllerProvider).time;
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -35,34 +47,18 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
         canPop: false,
         child: Scaffold(
           backgroundColor: AppColors.subColor,
-          appBar: AppBar(
+          appBar: CustomAppBar(
+            title: AppStrings.withTrabAgainToday,
             backgroundColor: AppColors.subColor,
-            toolbarHeight: 30.h,
             systemOverlayStyle: SystemUiOverlayStyle.light,
-            leadingWidth: double.infinity,
-            leading: Padding(
-              padding: EdgeInsets.only(left: 28.w),
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    AppSvgs.leftArrow,
-                  ),
-                  SizedBox(
-                    width: 13.w,
-                  ),
-                  Text(
-                    "오늘도 트래비와 함께!",
-                    style: AppTypography.headline_3
-                        .copyWith(color: AppColors.body1),
-                  ),
-                ],
-              ),
-            ),
+            titleColor: AppColors.body1,
+            leadingColor: AppColors.body1,
+            onPressed: () =>
+                AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute),
           ),
           body: Padding(
-            padding: EdgeInsets.only(top: 63.h),
+            padding: EdgeInsets.only(top: 36.h),
             child: Container(
-              width: 390,
               decoration: ShapeDecoration(
                 color: AppColors.body1,
                 shape: RoundedRectangleBorder(
@@ -72,34 +68,77 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
                   ),
                 ),
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 34.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 34.h,
-                    ),
-                    Text(
-                      "DECEMBER 23, 2023",
-                      style: AppTypography.subTitle_1
-                          .copyWith(color: AppColors.textColor_1),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        suffixIcon: SvgPicture.asset(
-                          'assets/svgs/edit.svg',
-                          color: AppColors.grey1,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 34.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 34.h,
                         ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.grey1),
+                        Text(
+                          DateTime.now().getCurrentDateFormatted(),
+                          style: AppTypography.subTitle_1
+                              .copyWith(color: AppColors.textColor_1),
                         ),
-                        suffixIconConstraints:
-                            BoxConstraints(maxWidth: 24.w, maxHeight: 24.h),
-                      ),
+                        TextField(
+                          style: AppTypography.body
+                              .copyWith(color: AppColors.grey1),
+                          decoration: InputDecoration(
+                            suffixIcon: SvgPicture.asset(
+                              'assets/svgs/edit.svg',
+                              color: AppColors.grey1,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: AppColors.grey1),
+                            ),
+                            suffixIconConstraints:
+                                BoxConstraints(maxWidth: 24.w, maxHeight: 24.h),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 105.h,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                "0.00",
+                                style: AppTypography.headline_2
+                                    .copyWith(color: AppColors.textColor_2),
+                              ),
+                              SizedBox(
+                                width: 4.w,
+                              ),
+                              Text(
+                                "km",
+                                style: AppTypography.headline_2_1
+                                    .copyWith(color: AppColors.textColor_2),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              _snacks.length.toString(),
+                              style: AppTypography.body_2
+                                  .copyWith(color: AppColors.textColor_2),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 300.h, child: const MapScreen()),
+                  SizedBox(
+                    height: 28.h,
+                  ),
+                  containerButton(
+                    title: AppStrings.snackSettlement,
+                  )
+                ],
               ),
             ),
           ),

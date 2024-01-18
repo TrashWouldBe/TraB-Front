@@ -15,4 +15,5 @@ class AppImages {
   static String restartbutton = "$basePath/restart_button.png";
   static String trab = "$basePath/trab.png";
   static String amazedTrab = "$basePath/amazed_trab.png";
+  static String endButton = "$basePath/end_button.png";
 }
