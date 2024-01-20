@@ -1,9 +1,16 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:trab_front/feature/auth/presentation/view/login_view.dart';
-
-import 'package:trab_front/feature/flogging/presentation/view/map_view.dart';
+import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
+import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.dart';
+import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
+import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/flogging_end_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/flogging_stop_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/flogging_timer_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
+import 'package:trab_front/feature/setting/presentation/view/flogging_record_screen.dart';
 
 @immutable
 class Routes {
@@ -20,12 +27,22 @@ class Routes {
 
   static const String LoginScreenRoute = '/auth/login';
 
+  static const String SetTrabNameScreenRoute = '/auth/set-trab-name';
+
   static const String MapScreenRoute = '/flogging/map';
 
   static final Map<String, Widget Function()> _routesMap = {
-    AppStartupScreenRoute: () => const LogInView(),
-    LoginScreenRoute: () => const LogInView(),
-    MapScreenRoute: () => const MapView(),
+    LoginScreenRoute: () => const LogInScreen(),
+    MapScreenRoute: () => const MapScreen(),
+    NotFoundScreenRoute: () => const SizedBox.shrink(),
+    HomeScreenRoute: () => const HomeScreen(),
+    FloggingTimerScreenRoute: () => const FlogginTimerScreen(),
+    FloggingStopScreenRoute: () => const FlogginStopScreen(),
+    FloggingEndScreenRoute: () => const FloggingEndScreen(),
+    FloggingRecordScreenRoute: () => const FloggingRecordScreen(),
+    SortedTrashScreenRoute: () => const SortedTrashScreen(),
+    EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
+    SetTrabNameScreenRoute: () => const SetTrabNameScreen(),
   };
 
   static Widget Function() getRoute(String? routeName) {
