@@ -21,10 +21,25 @@ class ApiEndpoint {
         return '$path/socialSignInWithGoogle';
     }
   }
+
+  static String user(UserEndpoint endpoint){
+    const path = '/user';
+    switch(endpoint){
+      case UserEndpoint.USER:
+        return '$path';
+      case UserEndpoint.IMAGE:
+        return '$path/image';
+    }
+  }
 }
 
 enum AuthEndpoint {
   KAKAO,
   APPLE,
   GOOGLE,
+}
+
+enum UserEndpoint {
+  USER,
+  IMAGE,
 }
