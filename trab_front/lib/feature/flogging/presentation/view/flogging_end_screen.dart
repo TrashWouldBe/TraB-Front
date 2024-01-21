@@ -49,40 +49,44 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
         child: Scaffold(
           backgroundColor: AppColors.subColor,
           appBar: CustomAppBar(
-              title: AppStrings.withTrabAgainToday,
-              backgroundColor: AppColors.subColor,
-              systemOverlayStyle: SystemUiOverlayStyle.light,
-              titleColor: AppColors.body1,
-              leadingColor: AppColors.body1,
-              onPressed: () async {
-                await showCustomDialog(
-                  context: context,
-                  title: AppStrings.notSaveWhenNotSettle,
-                  actions: [
-                    adaptiveAction(
-                      context: context,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
-                      },
-                      child: Text(
-                        AppStrings.notDo,
-                        style: AppTypography.mainCaption_1
-                            .copyWith(color: AppColors.grey1),
-                      ),
+            title: AppStrings.withTrabAgainToday,
+            backgroundColor: AppColors.subColor,
+            systemOverlayStyle: SystemUiOverlayStyle.light,
+            titleColor: AppColors.body1,
+            leadingColor: AppColors.body1,
+            onPressed: () async {
+              await showCustomDialog(
+                context: context,
+                title: AppStrings.notSaveWhenNotSettle,
+                actions: [
+                  adaptiveAction(
+                    context: context,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      ref
+                          .read(floggingInfoControllerProvider.notifier)
+                          .endTimer();
+                      AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
+                    },
+                    child: Text(
+                      AppStrings.notDo,
+                      style: AppTypography.mainCaption_1
+                          .copyWith(color: AppColors.grey1),
                     ),
-                    adaptiveAction(
-                      context: context,
-                      onPressed: Navigator.of(context).pop,
-                      child: Text(
-                        AppStrings.close,
-                        style: AppTypography.mainCaption_1
-                            .copyWith(color: AppColors.primaryColor),
-                      ),
+                  ),
+                  adaptiveAction(
+                    context: context,
+                    onPressed: Navigator.of(context).pop,
+                    child: Text(
+                      AppStrings.close,
+                      style: AppTypography.mainCaption_1
+                          .copyWith(color: AppColors.primaryColor),
                     ),
-                  ],
-                );
-              }),
+                  ),
+                ],
+              );
+            },
+          ),
           body: Padding(
             padding: EdgeInsets.only(top: 20.h),
             child: Container(

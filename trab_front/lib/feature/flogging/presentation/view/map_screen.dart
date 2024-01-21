@@ -18,41 +18,11 @@ class MapScreen extends ConsumerStatefulWidget {
 class _MapScreenState extends ConsumerState<MapScreen> {
   GoogleMapController? mapController;
 
-  Set<Polyline> polylines = {};
-  List<LatLng> polylineCoordinates = [];
-  Timer? timer;
-  LatLng? lastPosition;
-
-  @override
-  void initState() {
-    super.initState();
-    // timer = Timer.periodic(
-    //     const Duration(seconds: 3), (Timer t) => _getCurrentLocation());
-  }
-
-  @override
-  void dispose() {
-    timer?.cancel();
-    super.dispose();
-  }
-
-  void _updatePolyline() {
-    setState(() {
-      Polyline polyline = Polyline(
-        polylineId: PolylineId('poly'),
-        visible: true,
-        points: polylineCoordinates,
-        width: 5,
-        color: Colors.blue,
-      );
-      polylines = {polyline};
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     var _currentLocation =
         ref.watch(mapScreenControllerProvider).currentLocation;
+    var _polyLine = ref.watch(mapScreenControllerProvider).polylines;
     return GoogleMap(
       myLocationEnabled: true,
       onMapCreated: ref.read(mapScreenControllerProvider.notifier).onMapCreated,
@@ -60,7 +30,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         target: _currentLocation,
         zoom: 17.0,
       ),
-      polylines: polylines,
+      minMaxZoomPreference: const MinMaxZoomPreference(13, 20),
+      polylines: _polyLine,
       myLocationButtonEnabled: true,
       buildingsEnabled: false,
     );

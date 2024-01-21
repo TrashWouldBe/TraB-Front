@@ -10,6 +10,7 @@ import 'package:trab_front/feature/flogging/presentation/viewmodel/map_screen_vi
 import 'package:trab_front/feature/flogging/presentation/widget/flogging_timer_infos.dart';
 import 'package:trab_front/feature/flogging/presentation/widget/timer_bottom_buttons.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_gifs.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 
 class FlogginTimerScreen extends ConsumerStatefulWidget {
@@ -54,6 +55,14 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
               right: 0,
               child: Image.asset(
                 AppImages.timerEllipse,
+              ),
+            ),
+            Positioned(
+              bottom: 0.h,
+              left: 0,
+              right: 0,
+              child: Image.asset(
+                AppGifs.runTrab,
               ),
             ),
             Column(

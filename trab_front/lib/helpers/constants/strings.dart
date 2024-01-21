@@ -84,4 +84,6 @@ class AppStrings {
   static String nameToMe = "저에게 이름이 생겼어요!";
 
   static String withYouForever = "앞으로의 발걸음마다 제가 함께 할게요!";
+
+  static String start = "START!";
 }
