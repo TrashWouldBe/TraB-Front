@@ -74,4 +74,8 @@ class AppStrings {
   static String pleaseSetTrabName = "함께 지속가능한 걸음을 만들어나갈\n나만의 트래비 이름을 지어주세요.";
 
   static String pleaseInputLeastTwo = "2글자 이상 입력해주세요!";
+
+  static String nameToMe = "저에게 이름이 생겼어요!";
+
+  static String withYouForever = "앞으로의 발걸음마다 제가 함께 할게요!";
 }

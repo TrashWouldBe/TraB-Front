@@ -61,7 +61,6 @@ class ApiService implements ApiInterface {
     JSON body;
     try {
       // Entire map of response
-      print("여기");
       final data = await _dioService.get<JSON>(
         endpoint: endpoint,
         queryParams: queryParams,
@@ -72,8 +71,6 @@ class ApiService implements ApiInterface {
               : null,
         ),
       );
-
-      print(data);
 
       body = data.body;
     } on Exception catch (ex) {

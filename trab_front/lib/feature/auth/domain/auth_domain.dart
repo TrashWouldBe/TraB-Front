@@ -10,6 +10,7 @@ import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/all_providers.dart';
 import 'package:trab_front/feature/auth/data/dataSource/auth_data_source.dart';
 import 'package:trab_front/feature/auth/data/model/auth_model.dart';
+import 'package:trab_front/feature/auth/domain/user_domain.dart';
 import 'package:trab_front/feature/auth/types.dart';
 
 part 'auth_domain.g.dart';
@@ -137,7 +138,11 @@ class AuthController extends _$AuthController {
   }
 
   void withdrawal() async {
-    try {} catch (e) {
+    try {
+      await firebase_auth.FirebaseAuth.instance.signOut();
+      await ref.read(userControllerProvider.notifier).deleteUser();
+      AppRouter.pushAndRemoveUntil(Routes.LoginScreenRoute);
+    } catch (e) {
       print(e);
     }
   }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:trab_front/feature/auth/data/model/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:trab_front/feature/auth/data/model/user_info_model.dart';
 
 import 'package:trab_front/core/network/api_endpoint.dart';
 import 'package:trab_front/core/network/api_service.dart';
@@ -9,12 +10,11 @@ class UserDataSource {
 
   UserDataSource({required ApiService apiService}) : _apiService = apiService;
 
-  Future<UserModel> getUserInfo() async {
-    return _apiService.getDocumentData(
+  Future<UserInfoModel> getUserInfo() async {
+    return _apiService.getDocumentData<UserInfoModel>(
       endpoint: ApiEndpoint.user(UserEndpoint.USER),
       converter: (response) {
-        print(response);
-        return UserModel.fromJson(response);
+        return UserInfoModel.fromJson(response);
       },
     );
   }
@@ -22,23 +22,16 @@ class UserDataSource {
   Future<void> deleteUser() async {
     return _apiService.deleteData(
       endpoint: ApiEndpoint.user(UserEndpoint.USER),
-      converter: (response) {
-        print(response);
-      },
+      converter: (response) {},
     );
   }
 
-  Future<void> socialSignInWithApple() async {
-    var formData = FormData.fromMap({
-      'name': 'wendux',
-      'age': 25,
-      'file': await MultipartFile.fromFile('./text.txt', filename: 'upload.txt')
-    });
+  Future<String> patchUserImage({required FormData data}) async {
     return _apiService.updateDataWithImage(
       endpoint: ApiEndpoint.user(UserEndpoint.IMAGE),
-      data: formData,
+      data: data,
       converter: (response) {
-        print(response);
+        return response.body;
       },
     );
   }
