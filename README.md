@@ -4,19 +4,20 @@
 
 - 아래의 명령어를 터미널에 입력
 
-```firebase login```
+`firebase login`
 
-```dart pub global activate flutterfire_cli```
+`dart pub global activate flutterfire_cli`
 
-```flutterfire configure```
+`flutterfire configure`
+
 - IOS, Android 선택
   - 이후 firebase_options.dart파일 생성 확인
 
 [참고 문헌](https://firebase.google.com/docs/flutter/setup?hl=ko&platform=ios)
- 
+
 - code generator 사용 (riverpod, json_generator, freezed_annotation)
 
-```dart run build_runner build```
+`dart run build_runner build`
 
 ## PR 요청 메세지 포맷
 
