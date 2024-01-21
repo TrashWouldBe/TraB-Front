@@ -61,7 +61,6 @@ class ApiService implements ApiInterface {
     JSON body;
     try {
       // Entire map of response
-
       final data = await _dioService.get<JSON>(
         endpoint: endpoint,
         queryParams: queryParams,
@@ -125,6 +124,32 @@ class ApiService implements ApiInterface {
     try {
       // Entire map of response
       response = await _dioService.patch<JSON>(
+        endpoint: endpoint,
+        data: data,
+      );
+    } on Exception catch (ex) {
+      throw CustomException.fromDioException(ex);
+    }
+
+    try {
+      // Returning the serialized object
+      return converter(response);
+    } on Exception catch (ex) {
+      throw CustomException.fromParsingException(ex);
+    }
+  }
+
+  @override
+  Future<T> updateDataWithImage<T>({
+    required String endpoint,
+    required FormData data,
+    required T Function(ResponseModel<JSON> response) converter,
+  }) async {
+    ResponseModel<JSON> response;
+
+    try {
+      // Entire map of response
+      response = await _dioService.patchWithImage<JSON>(
         endpoint: endpoint,
         data: data,
       );

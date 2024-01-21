@@ -24,48 +24,51 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var _selectedIndex = ref.watch(homeScreenControllerProvider).selectedIndex;
-    return Scaffold(
-        backgroundColor: AppColors.backgroundColor,
-        bottomNavigationBar: CupertinoTabBar(
-          height: 56.h,
-          backgroundColor: AppColors.greenGrey,
-          border: const Border(top: BorderSide(color: AppColors.grey1)),
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppSvgs.flogging,
-                  width: 26.w,
-                  height: 26.h,
-                  color: _selectedIndex == 0 ? AppColors.accentColor : null),
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppSvgs.camera,
-                  width: 26.w,
-                  height: 26.h,
-                  color: _selectedIndex == 1 ? AppColors.accentColor : null),
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppSvgs.trab,
-                  width: 32.w,
-                  height: 32.h,
-                  color: _selectedIndex == 2 ? AppColors.accentColor : null),
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppSvgs.union,
-                  width: 26.w,
-                  height: 26.h,
-                  color: _selectedIndex == 3 ? AppColors.accentColor : null),
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: ref.read(homeScreenControllerProvider.notifier).onItemTapped,
-        ),
-        body: IndexedStack(
-          index: _selectedIndex,
-          children: const [
-            FloggingStartScreen(),
-            CameraScreen(),
-            SettingScreen()
-          ],
-        ));
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+          backgroundColor: AppColors.backgroundColor,
+          bottomNavigationBar: CupertinoTabBar(
+            height: 56.h,
+            backgroundColor: AppColors.greenGrey,
+            border: const Border(top: BorderSide(color: AppColors.grey1)),
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(AppSvgs.flogging,
+                    width: 26.w,
+                    height: 26.h,
+                    color: _selectedIndex == 0 ? AppColors.accentColor : null),
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(AppSvgs.camera,
+                    width: 26.w,
+                    height: 26.h,
+                    color: _selectedIndex == 1 ? AppColors.accentColor : null),
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(AppSvgs.trab,
+                    width: 32.w,
+                    height: 32.h,
+                    color: _selectedIndex == 2 ? AppColors.accentColor : null),
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(AppSvgs.union,
+                    width: 26.w,
+                    height: 26.h,
+                    color: _selectedIndex == 3 ? AppColors.accentColor : null),
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: ref.read(homeScreenControllerProvider.notifier).onItemTapped,
+          ),
+          body: IndexedStack(
+            index: _selectedIndex,
+            children: const [
+              FloggingStartScreen(),
+              CameraScreen(),
+              SettingScreen()
+            ],
+          )),
+    );
   }
 }
