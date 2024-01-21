@@ -143,6 +143,32 @@ class ApiService implements ApiInterface {
   }
 
   @override
+  Future<T> updateDataWithImage<T>({
+    required String endpoint,
+    required FormData data,
+    required T Function(ResponseModel<JSON> response) converter,
+  }) async {
+    ResponseModel<JSON> response;
+
+    try {
+      // Entire map of response
+      response = await _dioService.patchWithImage<JSON>(
+        endpoint: endpoint,
+        data: data,
+      );
+    } on Exception catch (ex) {
+      throw CustomException.fromDioException(ex);
+    }
+
+    try {
+      // Returning the serialized object
+      return converter(response);
+    } on Exception catch (ex) {
+      throw CustomException.fromParsingException(ex);
+    }
+  }
+
+  @override
   Future<T> deleteData<T>({
     required String endpoint,
     JSON? data,

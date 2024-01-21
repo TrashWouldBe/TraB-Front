@@ -67,6 +67,19 @@ class DioService {
     return ResponseModel<R>.fromJson(response.data!);
   }
 
+  Future<ResponseModel<R>> patchWithImage<R>({
+    required String endpoint,
+    FormData? data,
+    Options? options,
+  }) async {
+    final response = await _dio.patch<JSON>(
+      endpoint,
+      data: data,
+      options: options,
+    );
+    return ResponseModel<R>.fromJson(response.data!);
+  }
+
   Future<ResponseModel<R>> delete<R>({
     required String endpoint,
     JSON? data,

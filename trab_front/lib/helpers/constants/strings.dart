@@ -70,4 +70,8 @@ class AppStrings {
   static String withTrabAgainToday = "오늘도 트래비와 함께!";
 
   static String snackSettlement = "간식 정산하러 가기";
+
+  static String pleaseSetTrabName = "함께 지속가능한 걸음을 만들어나갈\n나만의 트래비 이름을 지어주세요.";
+
+  static String pleaseInputLeastTwo = "2글자 이상 입력해주세요!";
 }
