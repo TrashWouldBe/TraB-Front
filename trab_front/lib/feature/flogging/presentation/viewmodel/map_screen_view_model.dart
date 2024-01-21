@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 part 'map_screen_view_model.g.dart';
 
@@ -69,16 +70,26 @@ class MapScreenController extends _$MapScreenController {
   }
 
   //시뮬레이터로 시험해보기
-  void getCurrentLocation() async {
+  void startLocationSubscription() async {
+    if (locationSubscription != null) {
+      if (locationSubscription!.isPaused) {
+        locationSubscription!.resume();
+        return;
+      }
+    }
     locationSubscription =
         location.onLocationChanged.listen((LocationData currentLocation) {
-      LatLng newLocation =
+      LatLng newPosition =
           LatLng(currentLocation.latitude!, currentLocation.longitude!);
 
-      if (state.lastPosition == null || state.lastPosition != newLocation) {
-        state.lastPosition = newLocation;
+      if (state.lastPosition == null || state.lastPosition != newPosition) {
+        state.lastPosition = newPosition;
 
-        state.polylineCoordinates.add(newLocation);
+        state.polylineCoordinates.add(newPosition);
+        ref.read(floggingInfoControllerProvider.notifier).calculateDistance(
+              lastPosition: state.lastPosition,
+              newPosition: newPosition,
+            );
 
         Polyline polyline = Polyline(
           polylineId: PolylineId('poly'),
@@ -94,9 +105,18 @@ class MapScreenController extends _$MapScreenController {
     });
   }
 
-  void stopListening() {
+  void clearPolylines() {
     if (locationSubscription != null) {
+      state.polylines = {};
+      state.polylineCoordinates = [];
       locationSubscription!.cancel();
+      setState();
+    }
+  }
+
+  void cancleLocationSubscription() {
+    if (locationSubscription != null) {
+      locationSubscription!.pause();
     }
   }
 }

@@ -6,6 +6,7 @@ import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
 import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
+import 'package:trab_front/feature/flogging/presentation/view/flogging_calculate_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_end_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_stop_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_timer_screen.dart';
@@ -41,6 +42,8 @@ class Routes {
 
   static const String FloggingEndScreenRoute = '/flogging/end';
 
+  static const String FloggingCalculateScreenRoute = '/flogging/calculate';
+
   static const String HomeScreenRoute = '/home';
 
   static const String FloggingRecordScreenRoute = '/setting/flogging-record';
@@ -58,6 +61,7 @@ class Routes {
     FloggingStopScreenRoute: () => const FlogginStopScreen(),
     FloggingEndScreenRoute: () => const FloggingEndScreen(),
     FloggingRecordScreenRoute: () => const FloggingRecordScreen(),
+    FloggingCalculateScreenRoute: () => const FloggingCalculateScreen(),
     SortedTrashScreenRoute: () => const SortedTrashScreen(),
     EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
     SetTrabNameScreenRoute: () => const SetTrabNameScreen(),

@@ -5,12 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:trab_front/feature/flogging/presentation/types.dart';
 import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/map_screen_view_model.dart';
-import 'package:trab_front/feature/flogging/presentation/widget/flogging_timer_infos.dart';
+import 'package:trab_front/feature/flogging/presentation/widget/flogging_infos.dart';
 import 'package:trab_front/feature/flogging/presentation/widget/timer_bottom_buttons.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
-import 'package:trab_front/helpers/constants/app_gifs.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 
 class FlogginTimerScreen extends ConsumerStatefulWidget {
@@ -27,7 +26,6 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(mapScreenControllerProvider.notifier).getCurrentLocation();
       ref.read(floggingInfoControllerProvider.notifier).startTimer();
     });
   }
@@ -37,6 +35,7 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
     String _time = ref.watch(floggingInfoControllerProvider).time;
     List<File> _snacks = ref.watch(floggingInfoControllerProvider).trabSnacks;
     bool _isFlogging = ref.watch(floggingInfoControllerProvider).isFlogging;
+    double _distance = ref.watch(floggingInfoControllerProvider).distance;
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -57,14 +56,15 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                 AppImages.timerEllipse,
               ),
             ),
-            Positioned(
-              bottom: 0.h,
-              left: 0,
-              right: 0,
-              child: Image.asset(
-                AppGifs.runTrab,
-              ),
-            ),
+            // Positioned(
+            //   bottom: 0.h,
+            //   left: 0,
+            //   right: 0,
+            //   top: 0,
+            //   child: const CustomNetworkImage(
+            //       imageUrl:
+            //           "https://storage.googleapis.com/trab-image/trab_gif/run_trab.gif"),
+            // ),
             Column(
               children: [
                 SizedBox(
@@ -74,7 +74,8 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                   snack: _snacks.length.toString(),
                   calorie: "0",
                   time: _time,
-                  distance: "0.00",
+                  distance: _distance.toStringAsFixed(2),
+                  type: InfoType.timer,
                 ),
                 SizedBox(
                   height: 300.h,

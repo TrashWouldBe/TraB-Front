@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
-import 'package:trab_front/feature/flogging/presentation/widget/stop_modal_info.dart';
+import 'package:trab_front/feature/flogging/presentation/widget/flogging_stop_modal_info.dart';
 part 'flogging_stop_view_model.g.dart';
 
 class FloggingStopState {
@@ -43,18 +43,21 @@ class FloggingStopController extends _$FloggingStopController {
       ),
       builder: (BuildContext context) {
         return trabModalInfos(
-          snack: "0",
+          snack: ref
+              .read(floggingInfoControllerProvider)
+              .trabSnacks
+              .length
+              .toString(),
           calorie: "0",
           time: ref.read(floggingInfoControllerProvider).time,
-          distance: "3",
+          distance: ref
+              .read(floggingInfoControllerProvider)
+              .distance
+              .toStringAsFixed(2),
           onPressedStartButton: handlePressedStartButton,
           onPressedStopButton: handlePressedStopButton,
         );
       },
     );
-  }
-
-  void startTimer({required BuildContext context}) {
-    ref.read(floggingInfoControllerProvider.notifier).startTimer();
   }
 }
