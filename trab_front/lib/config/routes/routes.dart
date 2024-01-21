@@ -1,7 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:trab_front/feature/auth/presentation/view/complete_set_trab_name_screen.dart';
 import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
+import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_end_screen.dart';
@@ -25,6 +27,11 @@ class Routes {
   static const String NotFoundScreenRoute = '/route-not-found-screen';
 
   static const String LoginScreenRoute = '/auth/login';
+
+  static const String SetTrabNameScreenRoute = '/auth/set-trab-name';
+
+  static const String CompleteSetTrabNameScreenRoute =
+      '/auth/complete-set-trab-name';
 
   static const String MapScreenRoute = '/flogging/map';
 
@@ -53,6 +60,8 @@ class Routes {
     FloggingRecordScreenRoute: () => const FloggingRecordScreen(),
     SortedTrashScreenRoute: () => const SortedTrashScreen(),
     EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
+    SetTrabNameScreenRoute: () => const SetTrabNameScreen(),
+    CompleteSetTrabNameScreenRoute: () => const CompleteSetTrabNameScreen(),
   };
 
   static Widget Function() getRoute(String? routeName) {

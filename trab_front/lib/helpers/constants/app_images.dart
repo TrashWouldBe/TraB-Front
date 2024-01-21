@@ -16,4 +16,8 @@ class AppImages {
   static String trab = "$basePath/trab.png";
   static String amazedTrab = "$basePath/amazed_trab.png";
   static String endButton = "$basePath/end_button.png";
+  static String setTrabNameBackground =
+      "$basePath/set_trab_name_background.png";
+  static String nameSettingCompleteBackggound =
+      "$basePath/name_setting_complete_background.png";
 }
