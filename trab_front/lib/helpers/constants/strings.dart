@@ -71,6 +71,12 @@ class AppStrings {
 
   static String snackSettlement = "간식 정산하러 가기";
 
+  static String notSaveWhenNotSettle = "간식 정산을 하지 않으면 플로깅 기록이\n저장되지 않아요!";
+
+  static String notDo = "안할래요";
+
+  static String close = "닫기";
+
   static String pleaseSetTrabName = "함께 지속가능한 걸음을 만들어나갈\n나만의 트래비 이름을 지어주세요.";
 
   static String pleaseInputLeastTwo = "2글자 이상 입력해주세요!";

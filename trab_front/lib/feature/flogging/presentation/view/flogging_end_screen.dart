@@ -11,6 +11,7 @@ import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
+import 'package:trab_front/feature/setting/presentation/widget/adaptive_dialog.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
@@ -38,7 +39,7 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
   @override
   Widget build(BuildContext context) {
     List<File> _snacks = ref.watch(floggingInfoControllerProvider).trabSnacks;
-    String time = ref.watch(floggingInfoControllerProvider).time;
+    String _time = ref.watch(floggingInfoControllerProvider).time;
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -48,16 +49,42 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
         child: Scaffold(
           backgroundColor: AppColors.subColor,
           appBar: CustomAppBar(
-            title: AppStrings.withTrabAgainToday,
-            backgroundColor: AppColors.subColor,
-            systemOverlayStyle: SystemUiOverlayStyle.light,
-            titleColor: AppColors.body1,
-            leadingColor: AppColors.body1,
-            onPressed: () =>
-                AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute),
-          ),
+              title: AppStrings.withTrabAgainToday,
+              backgroundColor: AppColors.subColor,
+              systemOverlayStyle: SystemUiOverlayStyle.light,
+              titleColor: AppColors.body1,
+              leadingColor: AppColors.body1,
+              onPressed: () async {
+                await showCustomDialog(
+                  context: context,
+                  title: AppStrings.notSaveWhenNotSettle,
+                  actions: [
+                    adaptiveAction(
+                      context: context,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
+                      },
+                      child: Text(
+                        AppStrings.notDo,
+                        style: AppTypography.mainCaption_1
+                            .copyWith(color: AppColors.grey1),
+                      ),
+                    ),
+                    adaptiveAction(
+                      context: context,
+                      onPressed: Navigator.of(context).pop,
+                      child: Text(
+                        AppStrings.close,
+                        style: AppTypography.mainCaption_1
+                            .copyWith(color: AppColors.primaryColor),
+                      ),
+                    ),
+                  ],
+                );
+              }),
           body: Padding(
-            padding: EdgeInsets.only(top: 36.h),
+            padding: EdgeInsets.only(top: 20.h),
             child: Container(
               decoration: ShapeDecoration(
                 color: AppColors.body1,
@@ -87,15 +114,18 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
                           style: AppTypography.body
                               .copyWith(color: AppColors.grey1),
                           decoration: InputDecoration(
-                            suffixIcon: SvgPicture.asset(
-                              'assets/svgs/edit.svg',
-                              color: AppColors.grey1,
+                            suffixIcon: Padding(
+                              padding: EdgeInsets.only(top: 10.h),
+                              child: SvgPicture.asset(
+                                AppSvgs.edit,
+                                color: AppColors.grey1,
+                              ),
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: AppColors.grey1),
                             ),
                             suffixIconConstraints:
-                                BoxConstraints(maxWidth: 24.w, maxHeight: 24.h),
+                                BoxConstraints(maxWidth: 60.w, maxHeight: 60.h),
                           ),
                         ),
                         SizedBox(
@@ -105,8 +135,10 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
                             children: [
                               Text(
                                 "0.00",
-                                style: AppTypography.headline_2
-                                    .copyWith(color: AppColors.textColor_2),
+                                style: AppTypography.headline_2.copyWith(
+                                  color: AppColors.textColor_2,
+                                  letterSpacing: -0.41,
+                                ),
                               ),
                               SizedBox(
                                 width: 4.w,
@@ -121,12 +153,52 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
                         ),
                         Row(
                           children: [
-                            Text(
-                              _snacks.length.toString(),
-                              style: AppTypography.body_2
-                                  .copyWith(color: AppColors.textColor_2),
+                            Column(
+                              children: [
+                                Text(
+                                  _snacks.length.toString(),
+                                  style: AppTypography.body_2
+                                      .copyWith(color: AppColors.textColor_2),
+                                ),
+                                Text(
+                                  AppStrings.trabSnack,
+                                  style: AppTypography.body_3
+                                      .copyWith(color: AppColors.textColor_2),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  _snacks.length.toString(),
+                                  style: AppTypography.body_2
+                                      .copyWith(color: AppColors.textColor_2),
+                                ),
+                                Text(
+                                  AppStrings.trabSnack,
+                                  style: AppTypography.body_3
+                                      .copyWith(color: AppColors.textColor_2),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  _snacks.length.toString(),
+                                  style: AppTypography.body_2
+                                      .copyWith(color: AppColors.textColor_2),
+                                ),
+                                Text(
+                                  AppStrings.trabSnack,
+                                  style: AppTypography.body_3
+                                      .copyWith(color: AppColors.textColor_2),
+                                ),
+                              ],
                             )
                           ],
+                        ),
+                        SizedBox(
+                          height: 10.h,
                         ),
                       ],
                     ),
