@@ -16,6 +16,7 @@ class AppThemes {
     colorScheme: const ColorScheme.light().copyWith(
       primary: AppColors.primaryColor,
       background: AppColors.backgroundColor,
+      onBackground: AppColors.backgroundColor,
       error: AppColors.redColor,
     ),
     scaffoldBackgroundColor: AppColors.backgroundColor,

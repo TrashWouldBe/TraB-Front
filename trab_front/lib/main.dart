@@ -40,41 +40,22 @@ class TraB extends StatelessWidget {
       Locale('ko', 'KR'),
     ];
 
-    final app = platformIsIOS
-        ? ScreenUtilInit(
-            designSize: const Size(390, 844),
-            useInheritedMediaQuery: true,
-            builder: (context, widget) => Theme(
-                  data: AppThemes.mainTheme,
-                  child: CupertinoApp(
-                    title: title,
-                    debugShowCheckedModeBanner: showDebugBanner,
-                    initialRoute: idToken != null
-                        ? Routes.HomeScreenRoute
-                        : Routes.LoginScreenRoute,
-                    color: AppColors.primaryColor,
-                    onGenerateRoute: AppRouter.generateRoute,
-                    navigatorKey: AppRouter.navigatorKey,
-                    localizationsDelegates: localizationsDelegates,
-                    supportedLocales: supportedLocales,
-                  ),
-                ))
-        : ScreenUtilInit(
-            designSize: const Size(390, 844),
-            useInheritedMediaQuery: true,
-            builder: (context, widget) => MaterialApp(
-                  title: title,
-                  debugShowCheckedModeBanner: showDebugBanner,
-                  color: AppColors.primaryColor,
-                  theme: AppThemes.mainTheme,
-                  initialRoute: idToken != null
-                      ? Routes.HomeScreenRoute
-                      : Routes.LoginScreenRoute,
-                  onGenerateRoute: AppRouter.generateRoute,
-                  navigatorKey: AppRouter.navigatorKey,
-                  localizationsDelegates: localizationsDelegates,
-                  supportedLocales: supportedLocales,
-                ));
+    final app = ScreenUtilInit(
+      designSize: const Size(390, 844),
+      useInheritedMediaQuery: true,
+      builder: (context, widget) => MaterialApp(
+        title: title,
+        debugShowCheckedModeBanner: showDebugBanner,
+        color: AppColors.primaryColor,
+        theme: AppThemes.mainTheme,
+        initialRoute:
+            idToken != null ? Routes.HomeScreenRoute : Routes.LoginScreenRoute,
+        onGenerateRoute: AppRouter.generateRoute,
+        navigatorKey: AppRouter.navigatorKey,
+        localizationsDelegates: localizationsDelegates,
+        supportedLocales: supportedLocales,
+      ),
+    );
     return ProviderScope(child: app);
   }
 }

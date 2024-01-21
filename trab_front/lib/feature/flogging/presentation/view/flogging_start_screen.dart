@@ -92,7 +92,7 @@ class _FloggingStartScreenState extends ConsumerState<FloggingStartScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      "START!",
+                      AppStrings.start,
                       style:
                           AppTypography.title.copyWith(color: AppColors.body1),
                     ),

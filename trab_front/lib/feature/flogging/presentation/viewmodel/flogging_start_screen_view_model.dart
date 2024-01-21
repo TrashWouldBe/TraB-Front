@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
-
 part 'flogging_start_screen_view_model.g.dart';
 
 class FloggingStartScreenState {

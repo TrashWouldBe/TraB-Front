@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/helpers/extensions/string_extension.dart';
 part 'flogging_info_view_model.g.dart';
 
+//TODO: 객체화
 class FloggingInfoState {
   int calories;
   String time;
@@ -69,5 +70,16 @@ class FloggingInfoController extends _$FloggingInfoController {
       state.isFlogging = false;
       setState();
     }
+  }
+
+  //TODO: 간식 정산할때 호출
+  void endTimer() {
+    stopTimer();
+    state.time = "0:00";
+    state.distance = "0.00";
+    state.calories = 0;
+    state.trabSnacks = [];
+    state.isFlogging = false;
+    setState();
   }
 }
