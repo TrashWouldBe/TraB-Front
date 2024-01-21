@@ -20,12 +20,18 @@ Widget floggingExplainContiner({required String title, required String body}) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(AppSvgs.flogging, width: 52.w, height: 52.h),
+            SvgPicture.asset(
+              AppSvgs.flogging,
+              width: 52.w,
+              height: 52.h,
+              color: AppColors.subColor,
+            ),
             SizedBox(
               width: 15.w,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,

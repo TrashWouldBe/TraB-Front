@@ -56,7 +56,7 @@ class UserController extends _$UserController {
       String _userImage =
           await state.userDataSource.patchUserImage(data: formData);
       if (state.userInfo != null) {
-        state.userInfo!.copyWith(user_image: _userImage);
+        state.userInfo = state.userInfo!.copyWith(user_image: _userImage);
         setState();
       }
     } catch (error) {
