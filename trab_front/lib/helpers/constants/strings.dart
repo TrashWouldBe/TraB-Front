@@ -17,6 +17,8 @@ class AppStrings {
 
   static String kiloMeter = "km";
 
+  static String exampleFlogging = "마장동 트래비 간식사냥";
+
   static String trabSnack = "트래비 간식";
 
   static String calorie = "칼로리";
@@ -86,4 +88,6 @@ class AppStrings {
   static String withYouForever = "앞으로의 발걸음마다 제가 함께 할게요!";
 
   static String start = "START!";
+
+  static String initialTime = "0:00";
 }

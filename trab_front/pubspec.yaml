@@ -62,6 +62,7 @@ dependencies:
   flutter_svg: ^2.0.9
   image_picker: ^1.0.7
   adaptive_dialog: ^2.0.0
+  geolocator: ^10.1.0
 
 dev_dependencies:
   flutter_test:

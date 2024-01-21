@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:trab_front/feature/flogging/presentation/viewmodel/map_screen_view_model.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/string_extension.dart';
 part 'flogging_info_view_model.g.dart';
 
@@ -9,7 +13,7 @@ part 'flogging_info_view_model.g.dart';
 class FloggingInfoState {
   int calories;
   String time;
-  String distance;
+  double distance;
   bool isFlogging;
   List<File> trabSnacks;
   FloggingInfoState(
@@ -27,8 +31,8 @@ class FloggingInfoController extends _$FloggingInfoController {
     return FloggingInfoState(
       trabSnacks: [],
       calories: 0,
-      time: "0:00",
-      distance: "0.00",
+      time: AppStrings.initialTime,
+      distance: 0,
       isFlogging: true,
     );
   }
@@ -56,6 +60,9 @@ class FloggingInfoController extends _$FloggingInfoController {
   void startTimer() {
     if (!state.isFlogging) {
       state.isFlogging = true;
+      ref
+          .read(mapScreenControllerProvider.notifier)
+          .startLocationSubscription();
       setState();
     }
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -68,6 +75,9 @@ class FloggingInfoController extends _$FloggingInfoController {
     if (timer != null && timer!.isActive) {
       timer!.cancel();
       state.isFlogging = false;
+      ref
+          .read(mapScreenControllerProvider.notifier)
+          .cancleLocationSubscription();
       setState();
     }
   }
@@ -75,11 +85,29 @@ class FloggingInfoController extends _$FloggingInfoController {
   //TODO: 간식 정산할때 호출
   void endTimer() {
     stopTimer();
-    state.time = "0:00";
-    state.distance = "0.00";
+    state.time = AppStrings.initialTime;
+    state.distance = 0;
     state.calories = 0;
     state.trabSnacks = [];
     state.isFlogging = false;
+    ref.read(mapScreenControllerProvider.notifier).clearPolylines();
     setState();
+  }
+
+  void calculateDistance({
+    required LatLng? lastPosition,
+    required LatLng newPosition,
+  }) {
+    if (lastPosition != null) {
+      double distance = Geolocator.distanceBetween(
+        lastPosition.latitude,
+        lastPosition.longitude,
+        newPosition.latitude,
+        newPosition.longitude,
+      );
+
+      state.distance += distance;
+      setState();
+    }
   }
 }

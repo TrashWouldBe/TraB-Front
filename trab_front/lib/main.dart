@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +27,6 @@ class TraB extends StatelessWidget {
   Widget build(BuildContext context) {
     const title = 'Trab';
     const showDebugBanner = false;
-    final platformIsIOS = Platform.isIOS;
     const localizationsDelegates = [
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
