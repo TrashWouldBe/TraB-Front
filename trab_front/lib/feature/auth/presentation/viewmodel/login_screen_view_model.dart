@@ -19,23 +19,38 @@ class LoginScreenController extends _$LoginScreenController {
   }
 
   void socialSignInWithKakao({required BuildContext context}) async {
-    showLoading(context: context);
-    await ref.read(authControllerProvider.notifier).socialSignInWithKakao();
-    closeLoading(context: context);
-    AppRouter.pushNamed(Routes.HomeScreenRoute);
+    try {
+      showLoading(context: context);
+      await ref.read(authControllerProvider.notifier).socialSignInWithKakao();
+      closeLoading(context: context);
+      AppRouter.pushAndRemoveUntil(Routes.InitialRoute);
+    } catch (error) {
+      closeLoading(context: context);
+      print(error);
+    }
   }
 
   void socialSignInWithGoogle({required BuildContext context}) async {
-    showLoading(context: context);
-    await ref.read(authControllerProvider.notifier).socialSignInWithGoogle();
-    closeLoading(context: context);
-    AppRouter.pushNamed(Routes.HomeScreenRoute);
+    try {
+      showLoading(context: context);
+      await ref.read(authControllerProvider.notifier).socialSignInWithGoogle();
+      closeLoading(context: context);
+      AppRouter.pushAndRemoveUntil(Routes.InitialRoute);
+    } catch (error) {
+      closeLoading(context: context);
+      print(error);
+    }
   }
 
   void socialSignInWithApple({required BuildContext context}) async {
-    showLoading(context: context);
-    await ref.read(authControllerProvider.notifier).socialSignInWithApple();
-    closeLoading(context: context);
-    AppRouter.pushNamed(Routes.HomeScreenRoute);
+    try {
+      showLoading(context: context);
+      await ref.read(authControllerProvider.notifier).socialSignInWithApple();
+      closeLoading(context: context);
+      AppRouter.pushAndRemoveUntil(Routes.InitialRoute);
+    } catch (error) {
+      closeLoading(context: context);
+      print(error);
+    }
   }
 }

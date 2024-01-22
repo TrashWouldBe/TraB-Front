@@ -14,7 +14,7 @@ abstract class ApiInterface {
   Future<T> getDocumentData<T>({
     required String endpoint,
     JSON? queryParams,
-    required T Function(JSON responseBody) converter,
+    required T Function(ResponseModel<JSON> responseBody) converter,
   });
 
   Future<T> setData<T>({

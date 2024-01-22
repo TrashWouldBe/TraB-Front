@@ -22,13 +22,21 @@ class ApiEndpoint {
     }
   }
 
-  static String user(UserEndpoint endpoint){
+  static String user(UserEndpoint endpoint) {
     const path = '/user';
-    switch(endpoint){
+    switch (endpoint) {
       case UserEndpoint.USER:
         return '$path';
       case UserEndpoint.IMAGE:
         return '$path/image';
+    }
+  }
+
+  static String trab(TrabEndpoint endpoint) {
+    const path = '/trab';
+    switch (endpoint) {
+      case TrabEndpoint.TRAB:
+        return '$path';
     }
   }
 }
@@ -42,4 +50,8 @@ enum AuthEndpoint {
 enum UserEndpoint {
   USER,
   IMAGE,
+}
+
+enum TrabEndpoint {
+  TRAB,
 }

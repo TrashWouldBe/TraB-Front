@@ -6,7 +6,9 @@ import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
-Widget setTrabNameTextField({required focusNode}) {
+Widget setTrabNameTextField(
+    {required FocusNode focusNode,
+    required TextEditingController textEditingController}) {
   return Container(
     width: 270.w,
     height: 42.h,
@@ -29,6 +31,7 @@ Widget setTrabNameTextField({required focusNode}) {
     child: Padding(
       padding: EdgeInsets.only(left: 20.w, right: 5.w, top: 3.h),
       child: TextField(
+        controller: textEditingController,
         focusNode: focusNode,
         style:
             AppTypography.mainCaption_2.copyWith(color: AppColors.textColor_2),

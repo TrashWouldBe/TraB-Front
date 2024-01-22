@@ -19,10 +19,15 @@ Future<void> main() async {
 }
 
 // ignore: must_be_immutable
-class TraB extends StatelessWidget {
+class TraB extends ConsumerStatefulWidget {
   TraB({super.key, required this.idToken});
   String? idToken;
 
+  @override
+  ConsumerState<TraB> createState() => _TraBState();
+}
+
+class _TraBState extends ConsumerState<TraB> {
   @override
   Widget build(BuildContext context) {
     const title = 'Trab';
@@ -45,8 +50,9 @@ class TraB extends StatelessWidget {
         debugShowCheckedModeBanner: showDebugBanner,
         color: AppColors.primaryColor,
         theme: AppThemes.mainTheme,
-        initialRoute:
-            idToken != null ? Routes.HomeScreenRoute : Routes.LoginScreenRoute,
+        initialRoute: this.widget.idToken != null
+            ? Routes.AppStartupScreenRoute
+            : Routes.LoginScreenRoute,
         onGenerateRoute: AppRouter.generateRoute,
         navigatorKey: AppRouter.navigatorKey,
         localizationsDelegates: localizationsDelegates,

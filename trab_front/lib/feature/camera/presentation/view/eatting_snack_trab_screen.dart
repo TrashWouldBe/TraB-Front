@@ -29,7 +29,7 @@ class _EattingSnackTrabScreenState
       child: Scaffold(
         appBar: CustomAppBar(
           title: AppStrings.empty,
-          onPressed: () => AppRouter.popUntil(Routes.HomeScreenRoute),
+          onPressedLeading: () => AppRouter.popUntil(Routes.HomeScreenRoute),
         ),
         body: SafeArea(
           child: Padding(

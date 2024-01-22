@@ -43,6 +43,7 @@ class _CameraScreenState extends ConsumerState<CameraScreen> {
             ),
             Text(
               AppStrings.cameraExpain,
+              textAlign: TextAlign.center,
               style:
                   AppTypography.body_5.copyWith(color: AppColors.textColor_1),
             ),
