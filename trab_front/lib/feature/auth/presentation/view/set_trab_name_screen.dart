@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/feature/auth/presentation/viewmodel/set_trab_name_view_model.dart';
 import 'package:trab_front/feature/auth/presentation/widget/set_trab_name_text_field.dart';
+import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
@@ -28,7 +29,10 @@ class _SetTrabNameScreenState extends ConsumerState<SetTrabNameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var focusNode = ref.watch(setTrabNameScreenControllerProvider).focusNode;
+    FocusNode focusNode =
+        ref.watch(setTrabNameScreenControllerProvider).focusNode;
+    TextEditingController textEditingController =
+        ref.watch(setTrabNameScreenControllerProvider).textEditingController;
     return PopScope(
       canPop: false,
       child: GestureDetector(
@@ -36,6 +40,14 @@ class _SetTrabNameScreenState extends ConsumerState<SetTrabNameScreen> {
         child: Scaffold(
           backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
+          appBar: CustomAppBar(
+            canPop: false,
+            canPush: true,
+            trailingColor: AppColors.primaryColor,
+            onPressedTrailing: () => ref
+                .read(setTrabNameScreenControllerProvider.notifier)
+                .handlePressedTrailing(context: context),
+          ),
           body: SafeArea(
             child: Stack(
               children: [
@@ -61,7 +73,9 @@ class _SetTrabNameScreenState extends ConsumerState<SetTrabNameScreen> {
                       SizedBox(
                         height: 16.h,
                       ),
-                      setTrabNameTextField(focusNode: focusNode),
+                      setTrabNameTextField(
+                          focusNode: focusNode,
+                          textEditingController: textEditingController),
                     ],
                   ),
                 ),

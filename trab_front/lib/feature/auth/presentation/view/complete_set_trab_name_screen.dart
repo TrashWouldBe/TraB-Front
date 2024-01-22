@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trab_front/feature/auth/presentation/viewmodel/complete_set_trab_name_screen_view_model.dart';
 import 'package:trab_front/feature/auth/presentation/widget/complete_set_trab_image_widget.dart';
 import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
@@ -69,7 +70,13 @@ class _CompleteSetTrabNameScreenState
                       SizedBox(
                         height: 31.h,
                       ),
-                      containerButton(title: AppStrings.withYouForever),
+                      containerButton(
+                        title: AppStrings.withYouForever,
+                        onPressed: ref
+                            .read(completeSetTrabNameScreenControllerProvider
+                                .notifier)
+                            .handlePressedContainerButton,
+                      ),
                     ],
                   )
                 ],
