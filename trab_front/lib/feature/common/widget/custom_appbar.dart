@@ -12,21 +12,29 @@ import 'package:trab_front/helpers/constants/app_typography.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({
     super.key,
-    required this.title,
+    this.title,
     this.backgroundColor,
     this.titleColor,
     this.systemOverlayStyle,
     this.bottom,
-    this.onPressed,
+    this.onPressedLeading,
     this.leadingColor,
+    this.canPop,
+    this.canPush,
+    this.trailingColor,
+    this.onPressedTrailing,
   });
-  String title;
+  String? title;
   Color? backgroundColor;
   Color? titleColor;
   Color? leadingColor;
+  Color? trailingColor;
   SystemUiOverlayStyle? systemOverlayStyle;
   PreferredSizeWidget? bottom;
-  void Function()? onPressed;
+  void Function()? onPressedLeading;
+  void Function()? onPressedTrailing;
+  bool? canPop;
+  bool? canPush;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -38,20 +46,34 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         padding: EdgeInsets.only(left: 25.w),
         child: Row(
           children: [
-            noPaddingButton(
-              child: SvgPicture.asset(
-                AppSvgs.leftArrow,
-                color: leadingColor ?? AppColors.grey1,
+            if (canPop ?? true)
+              noPaddingButton(
+                child: SvgPicture.asset(
+                  AppSvgs.leftArrow,
+                  color: leadingColor ?? AppColors.grey1,
+                ),
+                onPressed: onPressedLeading ?? () => AppRouter.pop(),
               ),
-              onPressed: onPressed ?? () => AppRouter.pop(),
-            ),
             SizedBox(
               width: 13.w,
             ),
-            Text(
-              title,
-              style: AppTypography.headline_3
-                  .copyWith(color: titleColor ?? AppColors.textColor_2),
+            if (title != null)
+              Text(
+                title!,
+                style: AppTypography.headline_3
+                    .copyWith(color: titleColor ?? AppColors.textColor_2),
+              ),
+            const Spacer(),
+            if (canPush ?? false)
+              noPaddingButton(
+                child: SvgPicture.asset(
+                  AppSvgs.rightArrow,
+                  color: trailingColor ?? AppColors.grey1,
+                ),
+                onPressed: onPressedTrailing ?? () => AppRouter.pop(),
+              ),
+            SizedBox(
+              width: 13.w,
             ),
           ],
         ),

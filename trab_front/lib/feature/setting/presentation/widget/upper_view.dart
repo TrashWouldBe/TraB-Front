@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:trab_front/feature/common/widget/image.dart';
-import 'package:trab_front/feature/common/widget/image_action_sheet.dart';
 import 'package:trab_front/feature/common/widget/no_padding_button.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
@@ -91,7 +89,7 @@ Widget upperView(
               width: 19.w,
             ),
             Text(
-              "마이 트래비",
+              name,
               style: AppTypography.subTitle_1.copyWith(color: AppColors.grey1),
             ),
             SizedBox(

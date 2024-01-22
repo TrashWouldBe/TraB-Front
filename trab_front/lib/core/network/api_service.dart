@@ -56,9 +56,9 @@ class ApiService implements ApiInterface {
     JSON? queryParams,
     CachePolicy? cachePolicy,
     int? cacheAgeDays,
-    required T Function(JSON response) converter,
+    required T Function(ResponseModel<JSON> response) converter,
   }) async {
-    JSON body;
+    ResponseModel<JSON> responseModel;
     try {
       // Entire map of response
       final data = await _dioService.get<JSON>(
@@ -71,15 +71,13 @@ class ApiService implements ApiInterface {
               : null,
         ),
       );
-
-      body = data.body;
+      responseModel = data;
     } on Exception catch (ex) {
       throw CustomException.fromDioException(ex);
     }
 
     try {
-      // Returning the deserialized object
-      return converter(body);
+      return converter(responseModel);
     } on Exception catch (ex) {
       throw CustomException.fromParsingException(ex);
     }

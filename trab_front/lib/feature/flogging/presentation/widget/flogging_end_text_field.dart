@@ -9,6 +9,7 @@ import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
 Widget floggingEndTextField() {
   return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
         DateTime.now().getCurrentDateFormatted(),

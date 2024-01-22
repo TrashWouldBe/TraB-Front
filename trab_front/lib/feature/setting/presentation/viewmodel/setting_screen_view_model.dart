@@ -7,6 +7,8 @@ import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/auth/domain/user_domain.dart';
 import 'package:trab_front/feature/common/widget/loading.dart';
+import 'package:trab_front/feature/trab/data/model/trab_model.dart';
+import 'package:trab_front/feature/trab/domain/trab_domain.dart';
 
 part 'setting_screen_view_model.g.dart';
 
@@ -25,13 +27,21 @@ class SettingScreenController extends _$SettingScreenController {
     AppRouter.pushNamed(Routes.FloggingRecordScreenRoute);
   }
 
+  void init() async {
+    await ref.read(userControllerProvider.notifier).getUserInfo();
+    TrabModel? trabModel =
+        await ref.read(trabControllerProvider.notifier).getTrab();
+    if (trabModel == null) {
+      AppRouter.pushNamed(Routes.SetTrabNameScreenRoute);
+    }
+  }
+
   Future<void> getImage(
       {required ImageSource imageSource, required context}) async {
     showLoading(context: context);
     final image = await ImagePicker().pickImage(source: imageSource);
     if (image != null) {
       File img = File(image.path);
-      print(img);
       await ref
           .read(userControllerProvider.notifier)
           .patchUserImage(file: img.path);

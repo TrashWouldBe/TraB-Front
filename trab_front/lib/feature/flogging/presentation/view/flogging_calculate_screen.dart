@@ -5,6 +5,7 @@ import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/no_padding_button.dart';
+import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
@@ -40,8 +41,10 @@ class _FloggingCalculateScreenState
                   "종료하기",
                   style: AppTypography.body.copyWith(color: AppColors.grey1),
                 ),
-                onPressed: () =>
-                    AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute),
+                onPressed: () {
+                  ref.read(floggingInfoControllerProvider.notifier).endTimer();
+                  AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
+                },
               ),
             ],
           ),
