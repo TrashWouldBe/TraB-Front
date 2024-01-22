@@ -13,6 +13,10 @@ class AppStrings {
         : "분리수거용 봉지와 일반 쓰레기용\n봉지 두 개를 준비하면 더욱 좋아요!";
   }
 
+  static String googleSignInError = "구글 로그인에 실패했습니다.";
+
+  static String appleSignInError = "애플 로그인에 실패했습니다.";
+
   static String empty = "";
 
   static String kiloMeter = "km";

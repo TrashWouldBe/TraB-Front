@@ -49,6 +49,8 @@ class MapScreenController extends _$MapScreenController {
 
   void onMapCreated(GoogleMapController controller) {
     state.mapController = controller;
+    location.enableBackgroundMode(enable: true);
+
     getInitialLocation();
   }
 
@@ -77,11 +79,14 @@ class MapScreenController extends _$MapScreenController {
         return;
       }
     }
+    await location.changeSettings(
+      distanceFilter: 10,
+      accuracy: LocationAccuracy.high,
+    );
     locationSubscription =
         location.onLocationChanged.listen((LocationData currentLocation) {
       LatLng newPosition =
           LatLng(currentLocation.latitude!, currentLocation.longitude!);
-
       if (state.lastPosition == null || state.lastPosition != newPosition) {
         state.lastPosition = newPosition;
 
@@ -92,10 +97,10 @@ class MapScreenController extends _$MapScreenController {
             );
 
         Polyline polyline = Polyline(
-          polylineId: PolylineId('poly'),
+          polylineId: const PolylineId('poly'),
           visible: true,
           points: state.polylineCoordinates,
-          width: 5,
+          width: 10,
           color: AppColors.primaryColor,
         );
         state.polylines = {polyline};

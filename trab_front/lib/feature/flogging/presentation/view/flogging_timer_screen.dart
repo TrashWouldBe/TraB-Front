@@ -1,15 +1,18 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:trab_front/feature/common/widget/image.dart';
 import 'package:trab_front/feature/flogging/presentation/types.dart';
 import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
 import 'package:trab_front/feature/flogging/presentation/widget/flogging_infos.dart';
 import 'package:trab_front/feature/flogging/presentation/widget/timer_bottom_buttons.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_gifs.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 
 class FlogginTimerScreen extends ConsumerStatefulWidget {
@@ -56,15 +59,15 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                 AppImages.timerEllipse,
               ),
             ),
-            // Positioned(
-            //   bottom: 0.h,
-            //   left: 0,
-            //   right: 0,
-            //   top: 0,
-            //   child: const CustomNetworkImage(
-            //       imageUrl:
-            //           "https://storage.googleapis.com/trab-image/trab_gif/run_trab.gif"),
-            // ),
+            Positioned(
+              bottom: 0.h,
+              left: 0,
+              right: 0,
+              top: 0,
+              child: CustomNetworkImage(
+                imageUrl: AppGifs.runTrab,
+              ),
+            ),
             Column(
               children: [
                 SizedBox(
