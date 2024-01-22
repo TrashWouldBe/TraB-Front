@@ -6,6 +6,7 @@ import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
 import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
+import 'package:trab_front/feature/common/view/splash_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_calculate_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_end_screen.dart';
 import 'package:trab_front/feature/flogging/presentation/view/flogging_stop_screen.dart';
@@ -19,7 +20,7 @@ class Routes {
   const Routes._();
 
   /// The route to be loaded when app launches
-  static const String initialRoute = AppStartupScreenRoute;
+  static const String InitialRoute = AppStartupScreenRoute;
 
   static const String fallbackRoute = NotFoundScreenRoute;
 
@@ -53,6 +54,7 @@ class Routes {
   static const String EattingSnackTrabScreenRoute = '/camera/eatting-trab';
 
   static final Map<String, Widget Function()> _routesMap = {
+    AppStartupScreenRoute: () => const SplashScreen(),
     LoginScreenRoute: () => const LogInScreen(),
     MapScreenRoute: () => const MapScreen(),
     NotFoundScreenRoute: () => const SizedBox.shrink(),

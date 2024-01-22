@@ -99,14 +99,15 @@ class FloggingInfoController extends _$FloggingInfoController {
     required LatLng newPosition,
   }) {
     if (lastPosition != null) {
-      double distance = Geolocator.distanceBetween(
+      double distanceInMeters = Geolocator.distanceBetween(
         lastPosition.latitude,
         lastPosition.longitude,
         newPosition.latitude,
         newPosition.longitude,
       );
 
-      state.distance += distance;
+      double distanceInKilometers = distanceInMeters / 1000;
+      state.distance += distanceInKilometers;
       setState();
     }
   }

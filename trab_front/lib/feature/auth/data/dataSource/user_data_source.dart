@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trab_front/feature/auth/data/model/user_info_model.dart';
 
 import 'package:trab_front/core/network/api_endpoint.dart';
@@ -14,7 +13,7 @@ class UserDataSource {
     return _apiService.getDocumentData<UserInfoModel>(
       endpoint: ApiEndpoint.user(UserEndpoint.USER),
       converter: (response) {
-        return UserInfoModel.fromJson(response);
+        return UserInfoModel.fromJson(response.body);
       },
     );
   }

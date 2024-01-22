@@ -52,7 +52,7 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
             systemOverlayStyle: SystemUiOverlayStyle.light,
             titleColor: AppColors.body1,
             leadingColor: AppColors.body1,
-            onPressed: () {
+            onPressedLeading: () {
               ref
                   .read(floggingEndScreenControllerProvider.notifier)
                   .handlePressedAppBarButton(context: context);

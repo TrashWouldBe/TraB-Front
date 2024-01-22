@@ -11,6 +11,8 @@ import 'package:trab_front/feature/setting/presentation/viewmodel/setting_screen
 import 'package:trab_front/feature/setting/presentation/widget/customer_center.dart';
 import 'package:trab_front/feature/setting/presentation/widget/login.dart';
 import 'package:trab_front/feature/setting/presentation/widget/upper_view.dart';
+import 'package:trab_front/feature/trab/data/model/trab_model.dart';
+import 'package:trab_front/feature/trab/domain/trab_domain.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
@@ -30,19 +32,20 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(userControllerProvider.notifier).getUserInfo();
+      ref.read(settingScreenControllerProvider.notifier).init();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     UserInfoModel? userInfo = ref.watch(userControllerProvider).userInfo;
+    TrabModel? trab = ref.watch(trabControllerProvider).trab;
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           upperView(
-              name: AppStrings.myTrab,
+              name: trab?.trabName ?? AppStrings.myTrab,
               image: userInfo?.user_image,
               onPressedImage: () {
                 showActionSheet(

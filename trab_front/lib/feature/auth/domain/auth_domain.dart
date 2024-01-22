@@ -12,6 +12,7 @@ import 'package:trab_front/feature/auth/data/dataSource/auth_data_source.dart';
 import 'package:trab_front/feature/auth/data/model/auth_model.dart';
 import 'package:trab_front/feature/auth/domain/user_domain.dart';
 import 'package:trab_front/feature/auth/types.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 part 'auth_domain.g.dart';
 
@@ -40,7 +41,7 @@ class AuthController extends _$AuthController {
             .signInWithCustomToken(authModel.token);
       }
     } catch (error) {
-      print(error);
+      throw error;
     }
   }
 
@@ -57,9 +58,11 @@ class AuthController extends _$AuthController {
             await state.authDataSource.socialSignInWithGoogle(data: data);
         await firebase_auth.FirebaseAuth.instance
             .signInWithCustomToken(authModel.token);
+      } else {
+        throw Exception(AppStrings.googleSignInError);
       }
-    } catch (e) {
-      print(e);
+    } catch (error) {
+      throw error;
     }
   }
 
@@ -70,14 +73,13 @@ class AuthController extends _$AuthController {
         return KakaoSignInBody(
             accessToken: auth.accessToken, fcmToken: "fcm_token");
       } catch (error) {
-        print('카카오톡으로 로그인 실패 $error');
         if (error is PlatformException && error.code == 'CANCELED') {}
         try {
           OAuthToken auth = await UserApi.instance.loginWithKakaoTalk();
           return KakaoSignInBody(
               accessToken: auth.accessToken, fcmToken: "fcm_token");
         } catch (error) {
-          print('카카오계정으로 로그인 실패 $error');
+          throw error;
         }
       }
     } else {
@@ -86,7 +88,7 @@ class AuthController extends _$AuthController {
         return KakaoSignInBody(
             accessToken: auth.accessToken, fcmToken: "fcm_token");
       } catch (error) {
-        print('카카오계정으로 로그인 실패 $error');
+        throw error;
       }
     }
   }
@@ -122,9 +124,11 @@ class AuthController extends _$AuthController {
             await state.authDataSource.socialSignInWithApple(data: data);
         await firebase_auth.FirebaseAuth.instance
             .signInWithCustomToken(authModel.token);
+      } else {
+        throw Exception(AppStrings.appleSignInError);
       }
     } catch (error) {
-      print(error);
+      throw error;
     }
   }
 
