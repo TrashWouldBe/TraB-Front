@@ -96,7 +96,7 @@ Widget upperView(
               width: 4.w,
             ),
             Text(
-              "주인",
+              AppStrings.owner,
               style: AppTypography.subTitle_1
                   .copyWith(color: AppColors.textColor_2),
             ),
