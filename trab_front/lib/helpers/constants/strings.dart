@@ -19,6 +19,8 @@ class AppStrings {
 
   static String empty = "";
 
+  static String trab = "Trab";
+
   static String kiloMeter = "km";
 
   static String exampleFlogging = "마장동 트래비 간식사냥";
@@ -94,4 +96,6 @@ class AppStrings {
   static String start = "START!";
 
   static String initialTime = "0:00";
+
+  static String owner = "주인";
 }

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:clock/clock.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firbaseAuth;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:trab_front/core/local/key_value_storage_base.dart';
 import 'package:trab_front/core/local/path_provider_service.dart';
 import 'package:trab_front/main.dart';
-// Config
+
 import 'firebase_options.dart';
 
 class AppBootstrapper {
@@ -19,7 +18,6 @@ class AppBootstrapper {
   static Future<void> init({
     required void Function(Widget) runApp,
   }) async {
-    String? idToken;
     debugPrint = _prettifyDebugPrint;
     await KeyValueStorageBase.init();
     await PathProviderService.init();
@@ -32,15 +30,7 @@ class AppBootstrapper {
       DeviceOrientation.portraitDown,
     ]);
 
-    firbaseAuth.User? currentUser =
-        firbaseAuth.FirebaseAuth.instance.currentUser;
-    if (currentUser != null) {
-      idToken = await currentUser.getIdToken();
-    }
-
-    runApp(TraB(
-      idToken: idToken,
-    ));
+    runApp(const TraB());
   }
 
   static void _prettifyDebugPrint(String? message, {int? wrapWidth}) {
