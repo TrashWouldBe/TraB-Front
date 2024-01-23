@@ -7,8 +7,6 @@ import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/auth/domain/user_domain.dart';
 import 'package:trab_front/feature/common/widget/loading.dart';
-import 'package:trab_front/feature/trab/data/model/trab_model.dart';
-import 'package:trab_front/feature/trab/domain/trab_domain.dart';
 
 part 'setting_screen_view_model.g.dart';
 
@@ -29,11 +27,6 @@ class SettingScreenController extends _$SettingScreenController {
 
   void init() async {
     await ref.read(userControllerProvider.notifier).getUserInfo();
-    TrabModel? trabModel =
-        await ref.read(trabControllerProvider.notifier).getTrab();
-    if (trabModel == null) {
-      AppRouter.pushNamed(Routes.SetTrabNameScreenRoute);
-    }
   }
 
   Future<void> getImage(

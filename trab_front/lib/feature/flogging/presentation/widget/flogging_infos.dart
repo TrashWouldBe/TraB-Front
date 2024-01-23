@@ -182,28 +182,26 @@ Widget floggingEndInfo({
 }) {
   return Column(
     children: [
-      SizedBox(
-        height: 105.h,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              distance,
-              style: AppTypography.headline_2.copyWith(
-                color: AppColors.textColor_2,
-                letterSpacing: -0.41,
-              ),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            distance,
+            style: AppTypography.headline_2.copyWith(
+              color: AppColors.textColor_2,
+              letterSpacing: -0.41,
+              height: 1.1.h,
             ),
-            SizedBox(
-              width: 4.w,
-            ),
-            Text(
-              "km",
-              style: AppTypography.headline_2_1
-                  .copyWith(color: AppColors.textColor_2),
-            ),
-          ],
-        ),
+          ),
+          SizedBox(
+            width: 4.w,
+          ),
+          Text(
+            "km",
+            style: AppTypography.headline_2_1
+                .copyWith(color: AppColors.textColor_2),
+          ),
+        ],
       ),
       floggingInfo(snack: snack, calorie: "0", time: time, type: InfoType.end),
       SizedBox(

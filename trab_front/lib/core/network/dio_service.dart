@@ -35,7 +35,6 @@ class DioService {
         cacheOptions: cacheOptions,
       ),
     );
-
     return ResponseModel<R>.fromJson(response.data!);
   }
 

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:trab_front/helpers/typedefs.dart';
 
 import 'response_model.dart';
@@ -27,6 +28,12 @@ abstract class ApiInterface {
   Future<T> updateData<T>({
     required String endpoint,
     required JSON data,
+    required T Function(ResponseModel<JSON> response) converter,
+  });
+
+  Future<T> updateDataWithImage<T>({
+    required String endpoint,
+    required FormData data,
     required T Function(ResponseModel<JSON> response) converter,
   });
 

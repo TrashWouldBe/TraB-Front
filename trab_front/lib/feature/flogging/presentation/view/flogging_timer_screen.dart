@@ -1,6 +1,6 @@
 import 'dart:io';
+import 'dart:math';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -61,11 +61,15 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
             ),
             Positioned(
               bottom: 0.h,
-              left: 0,
-              right: 0,
+              left: 0.w,
+              right: 240.w,
               top: 0,
-              child: CustomNetworkImage(
-                imageUrl: AppGifs.runTrab,
+              child: Transform(
+                transform: Matrix4.rotationZ(-30 * pi / 180),
+                alignment: Alignment.center,
+                child: CustomNetworkImage(
+                  imageUrl: AppGifs.runTrab,
+                ),
               ),
             ),
             Column(

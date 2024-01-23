@@ -20,8 +20,7 @@ Future<void> main() async {
 
 // ignore: must_be_immutable
 class TraB extends ConsumerStatefulWidget {
-  TraB({super.key, required this.idToken});
-  String? idToken;
+  const TraB({super.key});
 
   @override
   ConsumerState<TraB> createState() => _TraBState();
@@ -45,14 +44,12 @@ class _TraBState extends ConsumerState<TraB> {
     final app = ScreenUtilInit(
       designSize: const Size(390, 844),
       useInheritedMediaQuery: true,
-      builder: (context, widget) => MaterialApp(
+      builder: (context, _) => MaterialApp(
         title: title,
         debugShowCheckedModeBanner: showDebugBanner,
         color: AppColors.primaryColor,
         theme: AppThemes.mainTheme,
-        initialRoute: this.widget.idToken != null
-            ? Routes.AppStartupScreenRoute
-            : Routes.LoginScreenRoute,
+        initialRoute: Routes.AppStartupScreenRoute,
         onGenerateRoute: AppRouter.generateRoute,
         navigatorKey: AppRouter.navigatorKey,
         localizationsDelegates: localizationsDelegates,
