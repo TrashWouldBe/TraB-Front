@@ -30,9 +30,8 @@ extension StringExt on String {
   /// An extension for validating String is a credit card expiry.
   bool get isValidCreditCardExpiry =>
       Regexes.creditCardExpiryRegex.hasMatch(this);
-
-  /// An extension for validating String is a valid OTP digit
-  bool get isValidOtpDigit => Regexes.otpDigitRegex.hasMatch(this);
+  String get removeSpecialCharacters =>
+      this.replaceAll(RegExp(r'[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]+'), '');
 
   /// An extension for converting String to Capitalcase.
   String get capitalize =>
