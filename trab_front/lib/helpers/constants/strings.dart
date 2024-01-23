@@ -94,4 +94,6 @@ class AppStrings {
   static String start = "START!";
 
   static String initialTime = "0:00";
+
+  static String owner = "주인";
 }
