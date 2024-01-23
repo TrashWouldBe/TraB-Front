@@ -51,8 +51,9 @@ class AuthController extends _$AuthController {
       if (googleUser != null) {
         GoogleSignInBody data = GoogleSignInBody(
             email: googleUser.email,
-            name: googleUser.displayName ?? "TraB",
-            profileImage: googleUser.photoUrl,
+            name: googleUser.displayName ?? AppStrings.trab,
+            profileImage: googleUser.photoUrl ??
+                "https://storage.googleapis.com/trab-image/%5Bobject%20Object%5D/profile-image/profile.png",
             fcmToken: "fcm_token");
         AuthModel authModel =
             await state.authDataSource.socialSignInWithGoogle(data: data);
@@ -84,7 +85,7 @@ class AuthController extends _$AuthController {
       }
     } else {
       try {
-        OAuthToken auth = await UserApi.instance.loginWithKakaoTalk();
+        OAuthToken auth = await UserApi.instance.loginWithKakaoAccount();
         return KakaoSignInBody(
             accessToken: auth.accessToken, fcmToken: "fcm_token");
       } catch (error) {

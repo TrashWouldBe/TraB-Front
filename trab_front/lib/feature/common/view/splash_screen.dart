@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,17 +26,27 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   void initRoute() async {
-    TrabModel? trabModel =
-        await ref.read(trabControllerProvider.notifier).getTrab();
-    if (trabModel == null) {
-      AppRouter.pushAndRemoveUntil(Routes.SetTrabNameScreenRoute);
+    String? idToken;
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      idToken = await currentUser.getIdToken();
+    }
+    if (idToken == null) {
+      AppRouter.pushNamed(Routes.LoginScreenRoute);
     } else {
-      AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
+      TrabModel? trabModel =
+          await ref.read(trabControllerProvider.notifier).getTrab();
+      if (trabModel == null) {
+        AppRouter.pushNamed(Routes.SetTrabNameScreenRoute);
+      } else {
+        AppRouter.pushNamed(Routes.HomeScreenRoute);
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(trabControllerProvider).trab;
     return Scaffold(
       body: Center(
         child: Image.asset(
