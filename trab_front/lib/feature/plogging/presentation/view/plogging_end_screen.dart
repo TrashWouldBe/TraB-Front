@@ -6,25 +6,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
-import 'package:trab_front/feature/flogging/presentation/types.dart';
-import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_end_view_model.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
-import 'package:trab_front/feature/flogging/presentation/widget/flogging_end_text_field.dart';
-import 'package:trab_front/feature/flogging/presentation/widget/flogging_infos.dart';
+import 'package:trab_front/feature/plogging/presentation/types.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_end_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/widget/plogging_end_text_field.dart';
+import 'package:trab_front/feature/plogging/presentation/widget/plogging_infos.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
-class FloggingEndScreen extends ConsumerStatefulWidget {
-  const FloggingEndScreen({super.key});
+class PloggingEndScreen extends ConsumerStatefulWidget {
+  const PloggingEndScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _FloggingEndScreenState();
+    return _PloggingEndScreenState();
   }
 }
 
-class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
+class _PloggingEndScreenState extends ConsumerState<PloggingEndScreen> {
   @override
   void initState() {
     // TODO: implement initState
@@ -35,9 +35,9 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<File> _snacks = ref.watch(floggingInfoControllerProvider).trabSnacks;
-    String _time = ref.watch(floggingInfoControllerProvider).time;
-    double _distance = ref.watch(floggingInfoControllerProvider).distance;
+    List<File> _snacks = ref.watch(ploggingInfoControllerProvider).trabSnacks;
+    String _time = ref.watch(ploggingInfoControllerProvider).time;
+    double _distance = ref.watch(ploggingInfoControllerProvider).distance;
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -54,7 +54,7 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
             leadingColor: AppColors.body1,
             onPressedLeading: () {
               ref
-                  .read(floggingEndScreenControllerProvider.notifier)
+                  .read(ploggingEndScreenControllerProvider.notifier)
                   .handlePressedAppBarButton(context: context);
             },
           ),
@@ -80,8 +80,8 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
                         SizedBox(
                           height: 34.h,
                         ),
-                        floggingEndTextField(),
-                        floggingEndInfo(
+                        ploggingEndTextField(),
+                        ploggingEndInfo(
                             snack: _snacks.length.toString(),
                             calorie: "0",
                             time: _time,
@@ -97,7 +97,7 @@ class _FloggingEndScreenState extends ConsumerState<FloggingEndScreen> {
                   containerButton(
                     title: AppStrings.snackSettlement,
                     onPressed: ref
-                        .read(floggingEndScreenControllerProvider.notifier)
+                        .read(ploggingEndScreenControllerProvider.notifier)
                         .handleCalculateSnackButton,
                   )
                 ],

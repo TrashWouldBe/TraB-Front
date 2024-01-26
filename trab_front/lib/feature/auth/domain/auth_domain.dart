@@ -144,8 +144,8 @@ class AuthController extends _$AuthController {
 
   void withdrawal() async {
     try {
-      await firebase_auth.FirebaseAuth.instance.signOut();
       await ref.read(userControllerProvider.notifier).deleteUser();
+      await firebase_auth.FirebaseAuth.instance.signOut();
       AppRouter.pushAndRemoveUntil(Routes.LoginScreenRoute);
     } catch (e) {
       print(e);

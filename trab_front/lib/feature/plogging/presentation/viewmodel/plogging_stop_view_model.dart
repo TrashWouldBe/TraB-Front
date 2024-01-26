@@ -3,34 +3,34 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
-import 'package:trab_front/feature/flogging/presentation/widget/flogging_stop_modal_info.dart';
-part 'flogging_stop_view_model.g.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/widget/plogging_stop_modal_info.dart';
+part 'plogging_stop_view_model.g.dart';
 
-class FloggingStopState {
-  FloggingStopState();
+class PloggingStopState {
+  PloggingStopState();
 }
 
 @riverpod
-class FloggingStopController extends _$FloggingStopController {
+class PloggingStopController extends _$PloggingStopController {
   @override
-  FloggingStopState build() {
-    return FloggingStopState();
+  PloggingStopState build() {
+    return PloggingStopState();
   }
 
   void handlePressedStartButton() {
     AppRouter.pop();
-    AppRouter.popAndPushNamed(Routes.FloggingTimerScreenRoute);
+    AppRouter.popAndPushNamed(Routes.PloggingTimerScreenRoute);
   }
 
   void handlePressedStopButton() {
-    AppRouter.pushAndRemoveUntil(Routes.FloggingEndScreenRoute);
+    AppRouter.pushAndRemoveUntil(Routes.PloggingEndScreenRoute);
   }
 
   void showTrabInfos({
     required BuildContext context,
   }) {
-    ref.read(floggingInfoControllerProvider.notifier).stopTimer();
+    ref.read(ploggingInfoControllerProvider.notifier).stopTimer();
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -44,14 +44,14 @@ class FloggingStopController extends _$FloggingStopController {
       builder: (BuildContext context) {
         return trabModalInfos(
           snack: ref
-              .read(floggingInfoControllerProvider)
+              .read(ploggingInfoControllerProvider)
               .trabSnacks
               .length
               .toString(),
           calorie: "0",
-          time: ref.read(floggingInfoControllerProvider).time,
+          time: ref.read(ploggingInfoControllerProvider).time,
           distance: ref
-              .read(floggingInfoControllerProvider)
+              .read(ploggingInfoControllerProvider)
               .distance
               .toStringAsFixed(2),
           onPressedStartButton: handlePressedStartButton,

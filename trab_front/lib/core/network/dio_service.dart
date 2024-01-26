@@ -87,7 +87,6 @@ class DioService {
     final response = await _dio.delete<JSON>(
       endpoint,
       data: data,
-      options: options,
     );
     return ResponseModel<R>.fromJson(response.data!);
   }
