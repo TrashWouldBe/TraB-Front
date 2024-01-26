@@ -101,7 +101,6 @@ class MapScreenController extends _$MapScreenController {
     }
     locationSubscription =
         location.onLocationChanged.listen((LocationData currentLocation) {
-      print("여기");
       LatLng newPosition =
           LatLng(currentLocation.latitude!, currentLocation.longitude!);
       if (state.lastPosition == null || state.lastPosition != newPosition) {
