@@ -3,11 +3,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 @immutable
 class AppStrings {
   const AppStrings._();
-  static String floggingTitle(index) {
+  static String ploggingTitle(index) {
     return index == 1 ? "지속가능한 걸음을 위한 준비물" : "지속가능한 걸음을 위한 Tip!";
   }
 
-  static String floggingBody(index) {
+  static String ploggingBody(index) {
     return index == 1
         ? "장갑과 봉투, 집게를 준비하면 더욱\n편리하게 플로깅 할 수 있어요!"
         : "분리수거용 봉지와 일반 쓰레기용\n봉지 두 개를 준비하면 더욱 좋아요!";
@@ -23,7 +23,7 @@ class AppStrings {
 
   static String kiloMeter = "km";
 
-  static String exampleFlogging = "마장동 트래비 간식사냥";
+  static String examplePlogging = "마장동 트래비 간식사냥";
 
   static String trabSnack = "트래비 간식";
 
@@ -33,7 +33,7 @@ class AppStrings {
 
   static String cameraExpain = "내가 주운 쓰레기를 촬영해\n분리배출 방법을 알아볼까요?";
 
-  static String floggingRecord = "플로깅 기록";
+  static String ploggingRecord = "플로깅 기록";
 
   static String myTrab = "마이 트래비";
 

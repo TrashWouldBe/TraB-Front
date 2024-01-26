@@ -5,7 +5,7 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-Widget floggingExplainContiner({required String title, required String body}) {
+Widget ploggingExplainContiner({required String title, required String body}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 41.w),
     child: Card(
@@ -21,7 +21,7 @@ Widget floggingExplainContiner({required String title, required String body}) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              AppSvgs.flogging,
+              AppSvgs.plogging,
               width: 52.w,
               height: 52.h,
               color: AppColors.subColor,
@@ -57,7 +57,7 @@ Widget floggingExplainContiner({required String title, required String body}) {
   );
 }
 
-Widget floggingExplainIndicator({required Color color}) {
+Widget ploggingExplainIndicator({required Color color}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 5.w),
     child: Container(

@@ -4,7 +4,7 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-Widget floggingRecordContainer() {
+Widget ploggingRecordContainer() {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 15.w),
     child: Container(
