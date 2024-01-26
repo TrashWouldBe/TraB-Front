@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_stop_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_stop_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 
 class FlogginStopScreen extends ConsumerStatefulWidget {
@@ -23,7 +23,7 @@ class _FlogginStopScreenState extends ConsumerState<FlogginStopScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ref
-          .read(floggingStopControllerProvider.notifier)
+          .read(ploggingStopControllerProvider.notifier)
           .showTrabInfos(context: context);
     });
   }

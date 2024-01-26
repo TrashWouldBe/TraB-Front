@@ -7,7 +7,7 @@ import 'package:trab_front/helpers/constants/app_images.dart';
 
 Widget timerBottomButtons(
     {required BuildContext context,
-    required bool isFlogging,
+    required bool isPlogging,
     required onPressedStartButton,
     required onPressedCameraButton}) {
   return Row(
@@ -15,13 +15,13 @@ Widget timerBottomButtons(
     children: [
       noPaddingButton(
           child: Image.asset(
-            isFlogging ? AppImages.stopButton : AppImages.restartbutton,
+            isPlogging ? AppImages.stopButton : AppImages.restartbutton,
             width: 79.w,
             height: 79.h,
           ),
           onPressed: () {
-            isFlogging
-                ? AppRouter.pushNamed(Routes.FloggingStopScreenRoute)
+            isPlogging
+                ? AppRouter.pushNamed(Routes.PloggingStopScreenRoute)
                 : onPressedStartButton();
           }),
       SizedBox(
