@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trab_front/feature/flogging/presentation/types.dart';
+import 'package:trab_front/feature/plogging/presentation/types.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
-Widget floggingTimerInfos({
+Widget ploggingTimerInfos({
   required snack,
   required calorie,
   required time,
@@ -26,7 +26,7 @@ Widget floggingTimerInfos({
         padding: EdgeInsets.symmetric(
           horizontal: 20.w,
         ),
-        child: floggingInfo(
+        child: ploggingInfo(
           calorie: calorie,
           snack: snack,
           time: time,
@@ -54,7 +54,7 @@ Widget floggingTimerInfos({
   );
 }
 
-Widget floggingInfo({
+Widget ploggingInfo({
   required snack,
   required calorie,
   required time,
@@ -173,7 +173,7 @@ Widget floggingInfo({
   );
 }
 
-Widget floggingEndInfo({
+Widget ploggingEndInfo({
   required String snack,
   required String calorie,
   required String time,
@@ -203,7 +203,7 @@ Widget floggingEndInfo({
           ),
         ],
       ),
-      floggingInfo(snack: snack, calorie: "0", time: time, type: InfoType.end),
+      ploggingInfo(snack: snack, calorie: "0", time: time, type: InfoType.end),
       SizedBox(
         height: 10.h,
       ),

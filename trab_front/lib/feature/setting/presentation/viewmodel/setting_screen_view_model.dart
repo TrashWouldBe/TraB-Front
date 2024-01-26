@@ -22,7 +22,7 @@ class SettingScreenController extends _$SettingScreenController {
   }
 
   void handleTapFlogginRecord() {
-    AppRouter.pushNamed(Routes.FloggingRecordScreenRoute);
+    AppRouter.pushNamed(Routes.PloggingRecordScreenRoute);
   }
 
   void init() async {

@@ -7,7 +7,7 @@ import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
-Widget floggingEndTextField() {
+Widget ploggingEndTextField() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -18,7 +18,7 @@ Widget floggingEndTextField() {
       TextField(
         style: AppTypography.body.copyWith(color: AppColors.textColor_2),
         decoration: InputDecoration(
-          hintText: AppStrings.exampleFlogging,
+          hintText: AppStrings.examplePlogging,
           hintStyle: AppTypography.body.copyWith(color: AppColors.grey1),
           suffixIcon: Padding(
             padding: EdgeInsets.only(top: 10.h),
@@ -27,7 +27,7 @@ Widget floggingEndTextField() {
               color: AppColors.grey1,
             ),
           ),
-          enabledBorder: UnderlineInputBorder(
+          enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: AppColors.grey1),
           ),
           suffixIconConstraints:

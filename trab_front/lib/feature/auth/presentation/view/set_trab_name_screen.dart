@@ -39,7 +39,7 @@ class _SetTrabNameScreenState extends ConsumerState<SetTrabNameScreen> {
         onTap: FocusManager.instance.primaryFocus?.unfocus,
         child: Scaffold(
           backgroundColor: Colors.white,
-          resizeToAvoidBottomInset: true,
+          resizeToAvoidBottomInset: false,
           appBar: CustomAppBar(
             canPop: false,
             canPush: true,
@@ -50,41 +50,38 @@ class _SetTrabNameScreenState extends ConsumerState<SetTrabNameScreen> {
                 .handlePressedTrailing(context: context),
           ),
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Stack(
-                children: [
-                  Image.asset(AppImages.setTrabNameBackground,
-                      fit: BoxFit.cover),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 240.h,
-                        ),
-                        SvgPicture.asset(AppSvgs.trabReverse,
-                            color: AppColors.primaryColor),
-                        SizedBox(
-                          height: 9.h,
-                        ),
-                        Text(
-                          AppStrings.pleaseSetTrabName,
-                          style: AppTypography.body_5
-                              .copyWith(color: AppColors.textColor_2),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        setTrabNameTextField(
-                            focusNode: focusNode,
-                            textEditingController: textEditingController),
-                      ],
-                    ),
+            child: Stack(
+              children: [
+                Image.asset(AppImages.setTrabNameBackground, fit: BoxFit.cover),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 240.h,
+                      ),
+                      SvgPicture.asset(AppSvgs.trabReverse,
+                          color: AppColors.primaryColor),
+                      SizedBox(
+                        height: 9.h,
+                      ),
+                      Text(
+                        AppStrings.pleaseSetTrabName,
+                        style: AppTypography.body_5
+                            .copyWith(color: AppColors.textColor_2),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      setTrabNameTextField(
+                          focusNode: focusNode,
+                          textEditingController: textEditingController),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

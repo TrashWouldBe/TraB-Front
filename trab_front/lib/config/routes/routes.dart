@@ -7,13 +7,13 @@ import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.d
 import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
 import 'package:trab_front/feature/common/view/splash_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/view/flogging_calculate_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/view/flogging_end_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/view/flogging_stop_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/view/flogging_timer_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_calculate_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_end_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_stop_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_timer_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
-import 'package:trab_front/feature/setting/presentation/view/flogging_record_screen.dart';
+import 'package:trab_front/feature/setting/presentation/view/plogging_record_screen.dart';
 
 @immutable
 class Routes {
@@ -35,19 +35,19 @@ class Routes {
   static const String CompleteSetTrabNameScreenRoute =
       '/auth/complete-set-trab-name';
 
-  static const String MapScreenRoute = '/flogging/map';
+  static const String MapScreenRoute = '/plogging/map';
 
-  static const String FloggingTimerScreenRoute = '/flogging/timer';
+  static const String PloggingTimerScreenRoute = '/plogging/timer';
 
-  static const String FloggingStopScreenRoute = '/flogging/stop';
+  static const String PloggingStopScreenRoute = '/plogging/stop';
 
-  static const String FloggingEndScreenRoute = '/flogging/end';
+  static const String PloggingEndScreenRoute = '/plogging/end';
 
-  static const String FloggingCalculateScreenRoute = '/flogging/calculate';
+  static const String PloggingCalculateScreenRoute = '/plogging/calculate';
 
   static const String HomeScreenRoute = '/home';
 
-  static const String FloggingRecordScreenRoute = '/setting/flogging-record';
+  static const String PloggingRecordScreenRoute = '/setting/plogging-record';
 
   static const String SortedTrashScreenRoute = '/camera/sorted-trash';
 
@@ -59,11 +59,11 @@ class Routes {
     MapScreenRoute: () => const MapScreen(),
     NotFoundScreenRoute: () => const SizedBox.shrink(),
     HomeScreenRoute: () => const HomeScreen(),
-    FloggingTimerScreenRoute: () => const FlogginTimerScreen(),
-    FloggingStopScreenRoute: () => const FlogginStopScreen(),
-    FloggingEndScreenRoute: () => const FloggingEndScreen(),
-    FloggingRecordScreenRoute: () => const FloggingRecordScreen(),
-    FloggingCalculateScreenRoute: () => const FloggingCalculateScreen(),
+    PloggingTimerScreenRoute: () => const FlogginTimerScreen(),
+    PloggingStopScreenRoute: () => const FlogginStopScreen(),
+    PloggingEndScreenRoute: () => const PloggingEndScreen(),
+    PloggingRecordScreenRoute: () => const PloggingRecordScreen(),
+    PloggingCalculateScreenRoute: () => const PloggingCalculateScreen(),
     SortedTrashScreenRoute: () => const SortedTrashScreen(),
     EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
     SetTrabNameScreenRoute: () => const SetTrabNameScreen(),

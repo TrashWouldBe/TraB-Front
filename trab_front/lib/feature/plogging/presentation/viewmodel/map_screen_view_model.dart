@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 part 'map_screen_view_model.g.dart';
 
@@ -69,7 +69,7 @@ class MapScreenController extends _$MapScreenController {
       }
     }
 
-    location.enableBackgroundMode(enable: true);
+    await location.enableBackgroundMode(enable: true);
 
     getInitialLocation();
   }
@@ -91,7 +91,7 @@ class MapScreenController extends _$MapScreenController {
     }
   }
 
-  //시뮬레이터로 시험해보기
+  //TODO: 시뮬레이터로 시험해보기
   void startLocationSubscription() async {
     if (locationSubscription != null) {
       if (locationSubscription!.isPaused) {
@@ -99,19 +99,16 @@ class MapScreenController extends _$MapScreenController {
         return;
       }
     }
-    await location.changeSettings(
-      distanceFilter: 10,
-      accuracy: LocationAccuracy.high,
-    );
     locationSubscription =
         location.onLocationChanged.listen((LocationData currentLocation) {
+      print("여기");
       LatLng newPosition =
           LatLng(currentLocation.latitude!, currentLocation.longitude!);
       if (state.lastPosition == null || state.lastPosition != newPosition) {
         state.lastPosition = newPosition;
 
         state.polylineCoordinates.add(newPosition);
-        ref.read(floggingInfoControllerProvider.notifier).calculateDistance(
+        ref.read(ploggingInfoControllerProvider.notifier).calculateDistance(
               lastPosition: state.lastPosition,
               newPosition: newPosition,
             );
@@ -120,7 +117,7 @@ class MapScreenController extends _$MapScreenController {
           polylineId: const PolylineId('poly'),
           visible: true,
           points: state.polylineCoordinates,
-          width: 10,
+          width: 5,
           color: AppColors.primaryColor,
         );
         state.polylines = {polyline};

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/map_screen_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/map_screen_view_model.dart';
 
 //TODO: 10초마다 받아와서 polylines에 저장 ㅠ
 

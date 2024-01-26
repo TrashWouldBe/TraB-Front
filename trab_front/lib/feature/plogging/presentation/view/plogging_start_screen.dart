@@ -5,27 +5,27 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:trab_front/feature/common/widget/no_padding_button.dart';
-import 'package:trab_front/feature/flogging/presentation/view/map_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_start_screen_view_model.dart';
-import 'package:trab_front/feature/flogging/presentation/widget/flogging_tips.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_start_screen_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/widget/plogging_tips.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
-class FloggingStartScreen extends ConsumerStatefulWidget {
-  const FloggingStartScreen({super.key});
+class PloggingStartScreen extends ConsumerStatefulWidget {
+  const PloggingStartScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _FloggingStartScreenState();
+    return _PloggingStartScreenState();
   }
 }
 
-class _FloggingStartScreenState extends ConsumerState<FloggingStartScreen> {
+class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
   @override
   Widget build(BuildContext context) {
     int _selectedPage =
-        ref.watch(floggingStartScreenControllerProvider).selectedPage;
+        ref.watch(ploggingStartScreenControllerProvider).selectedPage;
     return SafeArea(
       top: Platform.isAndroid ? true : false,
       child: Stack(
@@ -43,13 +43,13 @@ class _FloggingStartScreenState extends ConsumerState<FloggingStartScreen> {
                 child: PageView.builder(
                   itemCount: 2,
                   itemBuilder: (context, index) {
-                    return floggingExplainContiner(
-                      title: AppStrings.floggingTitle(index),
-                      body: AppStrings.floggingBody(index),
+                    return ploggingExplainContiner(
+                      title: AppStrings.ploggingTitle(index),
+                      body: AppStrings.ploggingBody(index),
                     );
                   },
                   onPageChanged: ref
-                      .read(floggingStartScreenControllerProvider.notifier)
+                      .read(ploggingStartScreenControllerProvider.notifier)
                       .onPageChanged,
                 ),
               ),
@@ -68,10 +68,10 @@ class _FloggingStartScreenState extends ConsumerState<FloggingStartScreen> {
                   itemCount: 2,
                   itemBuilder: (BuildContext context, int index) {
                     if (index == _selectedPage) {
-                      return floggingExplainIndicator(
+                      return ploggingExplainIndicator(
                           color: AppColors.accentColor);
                     } else {
-                      return floggingExplainIndicator(color: AppColors.body1);
+                      return ploggingExplainIndicator(color: AppColors.body1);
                     }
                   },
                 )),
@@ -85,7 +85,7 @@ class _FloggingStartScreenState extends ConsumerState<FloggingStartScreen> {
                 alignment: Alignment.center,
                 child: noPaddingButton(
                   onPressed: ref
-                      .read(floggingStartScreenControllerProvider.notifier)
+                      .read(ploggingStartScreenControllerProvider.notifier)
                       .handleTapStartButton,
                   child: Container(
                     width: 126.w,
