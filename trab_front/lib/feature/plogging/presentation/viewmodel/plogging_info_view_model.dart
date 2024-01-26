@@ -4,47 +4,47 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/map_screen_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/map_screen_view_model.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/string_extension.dart';
-part 'flogging_info_view_model.g.dart';
+part 'plogging_info_view_model.g.dart';
 
 //TODO: 객체화
-class FloggingInfoState {
+class PloggingInfoState {
   int calories;
   String time;
   double distance;
-  bool isFlogging;
+  bool isPlogging;
   List<File> trabSnacks;
-  FloggingInfoState(
+  PloggingInfoState(
       {required this.trabSnacks,
       required this.distance,
       required this.calories,
       required this.time,
-      required this.isFlogging});
+      required this.isPlogging});
 }
 
 @Riverpod(keepAlive: true)
-class FloggingInfoController extends _$FloggingInfoController {
+class PloggingInfoController extends _$PloggingInfoController {
   @override
-  FloggingInfoState build() {
-    return FloggingInfoState(
+  PloggingInfoState build() {
+    return PloggingInfoState(
       trabSnacks: [],
       calories: 0,
       time: AppStrings.initialTime,
       distance: 0,
-      isFlogging: true,
+      isPlogging: true,
     );
   }
 
   Timer? timer;
 
   void setState() {
-    state = FloggingInfoState(
+    state = PloggingInfoState(
         distance: state.distance,
         trabSnacks: state.trabSnacks,
         calories: state.calories,
-        isFlogging: state.isFlogging,
+        isPlogging: state.isPlogging,
         time: state.time);
   }
 
@@ -58,8 +58,8 @@ class FloggingInfoController extends _$FloggingInfoController {
   }
 
   void startTimer() {
-    if (!state.isFlogging) {
-      state.isFlogging = true;
+    if (!state.isPlogging) {
+      state.isPlogging = true;
       ref
           .read(mapScreenControllerProvider.notifier)
           .startLocationSubscription();
@@ -74,7 +74,7 @@ class FloggingInfoController extends _$FloggingInfoController {
   void stopTimer() {
     if (timer != null && timer!.isActive) {
       timer!.cancel();
-      state.isFlogging = false;
+      state.isPlogging = false;
       ref
           .read(mapScreenControllerProvider.notifier)
           .cancleLocationSubscription();
@@ -89,7 +89,7 @@ class FloggingInfoController extends _$FloggingInfoController {
     state.distance = 0;
     state.calories = 0;
     state.trabSnacks = [];
-    state.isFlogging = false;
+    state.isPlogging = false;
     ref.read(mapScreenControllerProvider.notifier).clearPolylines();
     setState();
   }

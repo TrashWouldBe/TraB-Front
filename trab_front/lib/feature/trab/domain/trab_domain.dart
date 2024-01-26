@@ -8,9 +8,9 @@ import 'package:trab_front/helpers/typedefs.dart';
 part 'trab_domain.g.dart';
 
 class TrabState {
-  TrabDataSource userDataSource;
+  TrabDataSource trabDataSource;
   TrabModel? trab;
-  TrabState({required this.userDataSource, this.trab});
+  TrabState({required this.trabDataSource, this.trab});
 }
 
 @riverpod
@@ -18,17 +18,17 @@ class TrabController extends _$TrabController {
   @override
   TrabState build() {
     return TrabState(
-      userDataSource: TrabDataSource(apiService: ref.watch(apiServiceProvider)),
+      trabDataSource: TrabDataSource(apiService: ref.watch(apiServiceProvider)),
     );
   }
 
   void setState() {
-    state = TrabState(userDataSource: state.userDataSource, trab: state.trab);
+    state = TrabState(trabDataSource: state.trabDataSource, trab: state.trab);
   }
 
   Future<TrabModel?> getTrab() async {
     try {
-      TrabModel? userInfo = await state.userDataSource.getTrab();
+      TrabModel? userInfo = await state.trabDataSource.getTrab();
       state.trab = userInfo;
       setState();
       return userInfo;
@@ -40,7 +40,7 @@ class TrabController extends _$TrabController {
 
   Future<TrabModel?> postTrab({required JSON data}) async {
     try {
-      TrabModel? userInfo = await state.userDataSource.postTrab(data: data);
+      TrabModel? userInfo = await state.trabDataSource.postTrab(data: data);
       state.trab = userInfo;
       setState();
       return userInfo;

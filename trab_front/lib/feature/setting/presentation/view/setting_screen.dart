@@ -71,7 +71,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 24.w),
               child: Text(
-                AppStrings.floggingRecord,
+                AppStrings.ploggingRecord,
                 style: AppTypography.mainCaption_1
                     .copyWith(color: AppColors.textColor_2),
               ),
