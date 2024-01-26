@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:trab_front/feature/common/widget/image.dart';
 import 'package:trab_front/feature/plogging/presentation/types.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/plogging_infos.dart';
@@ -36,10 +35,10 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String _time = ref.watch(ploggingInfoControllerProvider).time;
-    List<File> _snacks = ref.watch(ploggingInfoControllerProvider).trabSnacks;
-    bool _isPlogging = ref.watch(ploggingInfoControllerProvider).isPlogging;
-    double _distance = ref.watch(ploggingInfoControllerProvider).distance;
+    String time = ref.watch(ploggingInfoControllerProvider).time;
+    List<File> snacks = ref.watch(ploggingInfoControllerProvider).trabSnacks;
+    bool isPlogging = ref.watch(ploggingInfoControllerProvider).isPlogging;
+    double distance = ref.watch(ploggingInfoControllerProvider).distance;
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -63,14 +62,12 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
             Positioned(
               bottom: 0.h,
               left: 0.w,
-              right: 240.w,
+              right: 250.w,
               top: 0,
               child: Transform(
                 transform: Matrix4.rotationZ(-30 * pi / 180),
                 alignment: Alignment.center,
-                child: CustomNetworkImage(
-                  imageUrl: AppGifs.runTrab,
-                ),
+                child: Image.asset(AppGifs.runTrab),
               ),
             ),
             Column(
@@ -79,10 +76,10 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                   height: 40.h,
                 ),
                 ploggingTimerInfos(
-                  snack: _snacks.length.toString(),
+                  snack: snacks.length.toString(),
                   calorie: "0",
-                  time: _time,
-                  distance: _distance.toStringAsFixed(2),
+                  time: time,
+                  distance: distance.toStringAsFixed(2),
                   type: InfoType.timer,
                 ),
                 SizedBox(
@@ -90,7 +87,7 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                 ),
                 timerBottomButtons(
                   context: context,
-                  isPlogging: _isPlogging,
+                  isPlogging: isPlogging,
                   onPressedStartButton: ref
                       .read(ploggingInfoControllerProvider.notifier)
                       .startTimer,
