@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/feature/camera/presentation/view/camera_screen.dart';
-import 'package:trab_front/feature/flogging/presentation/view/flogging_start_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_start_screen.dart';
 import 'package:trab_front/feature/home/presentation/viewmodel/home_screen_view_model.dart';
 import 'package:trab_front/feature/setting/presentation/view/setting_screen.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
@@ -34,7 +34,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             border: const Border(top: BorderSide(color: AppColors.grey1)),
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(AppSvgs.flogging,
+                icon: SvgPicture.asset(AppSvgs.plogging,
                     width: 26.w,
                     height: 26.h,
                     color: _selectedIndex == 0 ? AppColors.accentColor : null),
@@ -64,7 +64,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           body: IndexedStack(
             index: _selectedIndex,
             children: const [
-              FloggingStartScreen(),
+              PloggingStartScreen(),
               CameraScreen(),
               SettingScreen()
             ],

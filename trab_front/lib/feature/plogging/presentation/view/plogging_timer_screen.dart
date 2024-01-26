@@ -6,11 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:trab_front/feature/common/widget/image.dart';
-import 'package:trab_front/feature/flogging/presentation/types.dart';
-import 'package:trab_front/feature/flogging/presentation/viewmodel/flogging_info_view_model.dart';
-import 'package:trab_front/feature/flogging/presentation/widget/flogging_infos.dart';
-import 'package:trab_front/feature/flogging/presentation/widget/timer_bottom_buttons.dart';
+import 'package:trab_front/feature/plogging/presentation/types.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
+import 'package:trab_front/feature/plogging/presentation/widget/plogging_infos.dart';
+import 'package:trab_front/feature/plogging/presentation/widget/timer_bottom_buttons.dart';
+
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_gifs.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
@@ -29,16 +29,16 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(floggingInfoControllerProvider.notifier).startTimer();
+      ref.read(ploggingInfoControllerProvider.notifier).startTimer();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    String _time = ref.watch(floggingInfoControllerProvider).time;
-    List<File> _snacks = ref.watch(floggingInfoControllerProvider).trabSnacks;
-    bool _isFlogging = ref.watch(floggingInfoControllerProvider).isFlogging;
-    double _distance = ref.watch(floggingInfoControllerProvider).distance;
+    String time = ref.watch(ploggingInfoControllerProvider).time;
+    List<File> snacks = ref.watch(ploggingInfoControllerProvider).trabSnacks;
+    bool isPlogging = ref.watch(ploggingInfoControllerProvider).isPlogging;
+    double distance = ref.watch(ploggingInfoControllerProvider).distance;
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -62,14 +62,12 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
             Positioned(
               bottom: 0.h,
               left: 0.w,
-              right: 240.w,
+              right: 250.w,
               top: 0,
               child: Transform(
                 transform: Matrix4.rotationZ(-30 * pi / 180),
                 alignment: Alignment.center,
-                child: CustomNetworkImage(
-                  imageUrl: AppGifs.runTrab,
-                ),
+                child: Image.asset(AppGifs.runTrab),
               ),
             ),
             Column(
@@ -77,11 +75,11 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                 SizedBox(
                   height: 40.h,
                 ),
-                floggingTimerInfos(
-                  snack: _snacks.length.toString(),
+                ploggingTimerInfos(
+                  snack: snacks.length.toString(),
                   calorie: "0",
-                  time: _time,
-                  distance: _distance.toStringAsFixed(2),
+                  time: time,
+                  distance: distance.toStringAsFixed(2),
                   type: InfoType.timer,
                 ),
                 SizedBox(
@@ -89,12 +87,12 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                 ),
                 timerBottomButtons(
                   context: context,
-                  isFlogging: _isFlogging,
+                  isPlogging: isPlogging,
                   onPressedStartButton: ref
-                      .read(floggingInfoControllerProvider.notifier)
+                      .read(ploggingInfoControllerProvider.notifier)
                       .startTimer,
                   onPressedCameraButton: () async => await ref
-                      .read(floggingInfoControllerProvider.notifier)
+                      .read(ploggingInfoControllerProvider.notifier)
                       .getImage(imageSource: ImageSource.camera),
                 ),
               ],
