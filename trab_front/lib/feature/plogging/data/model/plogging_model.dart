@@ -9,9 +9,20 @@ part 'plogging_model.g.dart';
 @freezed
 class PloggingModel with _$PloggingModel {
   const factory PloggingModel({
-    required String user_email,
-    String? user_image,
+    required int ploggingId,
+    required String runDate,
+    required String runName,
+    required double runRange,
+    required String runTime,
+    required int trabSnack,
+    required int calorie,
   }) = _PloggingModel;
 
   factory PloggingModel.fromJson(JSON json) => _$PloggingModelFromJson(json);
+
+  static List<PloggingModel> fromJsonList(List<dynamic> jsonList) {
+    return jsonList
+        .map((json) => PloggingModel.fromJson(json as JSON))
+        .toList();
+  }
 }

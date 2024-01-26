@@ -2,15 +2,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/feature/all_providers.dart';
 import 'package:trab_front/feature/plogging/data/dataSource/plogging_data_source.dart';
 import 'package:trab_front/feature/plogging/data/model/plogging_model.dart';
-
-import 'package:trab_front/feature/trab/data/model/trab_model.dart';
-
 part 'plogging_domain.g.dart';
 
 class PloggingState {
   PloggingDataSource ploggingDataSource;
-  PloggingModel? plogging;
-  PloggingState({required this.ploggingDataSource});
+  List<PloggingModel> ploggingList;
+  PloggingState({required this.ploggingDataSource, required this.ploggingList});
 }
 
 @riverpod
@@ -20,19 +17,23 @@ class PloggingController extends _$PloggingController {
     return PloggingState(
       ploggingDataSource:
           PloggingDataSource(apiService: ref.watch(apiServiceProvider)),
+      ploggingList: [],
     );
   }
 
-  Future<TrabModel?> getPloggingList() async {
+  void setState() {
+    state = PloggingState(
+      ploggingDataSource: state.ploggingDataSource,
+      ploggingList: state.ploggingList,
+    );
+  }
+
+  Future<void> getPloggingList() async {
     try {
-      print("여기");
-      await state.ploggingDataSource.getPloggingList();
-      // state.trab = userInfo;
-      // setState();
-      // return userInfo;
+      state.ploggingList = await state.ploggingDataSource.getPloggingList();
+      setState();
     } catch (error) {
       print(error);
     }
-    return null;
   }
 }

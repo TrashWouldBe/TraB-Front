@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_this
 
 import 'package:path/path.dart' as p;
+import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
 import '../constants/app_utils.dart' show Regexes;
 
@@ -53,7 +54,7 @@ extension StringExt on String {
     int seconds = int.tryParse(parts[1]) ?? 0;
 
     Duration duration = Duration(minutes: minutes, seconds: seconds);
-    Duration nextDuration = duration + Duration(seconds: 1);
+    Duration nextDuration = duration + const Duration(seconds: 1);
 
     String newMinutes = (nextDuration.inMinutes % 60).toString();
     String newSeconds =
@@ -61,4 +62,7 @@ extension StringExt on String {
 
     return "$newMinutes:$newSeconds";
   }
+
+  String get getDateUpperString =>
+      DateTime.parse('20$this').getCurrentDateFormatted().toUpperCase();
 }

@@ -1,5 +1,6 @@
 import 'package:trab_front/core/network/api_endpoint.dart';
 import 'package:trab_front/core/network/api_service.dart';
+import 'package:trab_front/feature/plogging/data/model/plogging_model.dart';
 
 class PloggingDataSource {
   final ApiService _apiService;
@@ -7,12 +8,11 @@ class PloggingDataSource {
   PloggingDataSource({required ApiService apiService})
       : _apiService = apiService;
 
-  Future<void> getPloggingList() async {
-    return _apiService.getDocumentData<void>(
+  Future<List<PloggingModel>> getPloggingList() async {
+    return _apiService.getDocumentData<List<PloggingModel>>(
       endpoint: ApiEndpoint.plogging(PloggingEndPoint.LIST),
       converter: (response) {
-        print(response);
-        // return PloggingModel.fromJson(response.body);
+        return PloggingModel.fromJsonList(response.body);
       },
     );
   }

@@ -27,6 +27,8 @@ class AppStrings {
 
   static String trabSnack = "트래비 간식";
 
+  static String snack = "간식";
+
   static String calorie = "칼로리";
 
   static String time = "시간";
