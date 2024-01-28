@@ -9,6 +9,7 @@ import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.
 import 'package:trab_front/feature/common/view/splash_screen.dart';
 import 'package:trab_front/feature/mytrab/presentation/view/mytrab_furniture_screen.dart';
 import 'package:trab_front/feature/mytrab/presentation/view/mytrab_snack_screen.dart';
+import 'package:trab_front/feature/onBoarding/presentation/view/trab_onboarding_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_calculate_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_end_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_stop_screen.dart';
@@ -27,6 +28,8 @@ class Routes {
   static const String fallbackRoute = NotFoundScreenRoute;
 
   static const String AppStartupScreenRoute = '/';
+
+  static const String TrabOnBoardingScreenRoute = '/trab-onboarding';
 
   static const String NotFoundScreenRoute = '/route-not-found-screen';
 
@@ -76,6 +79,7 @@ class Routes {
     CompleteSetTrabNameScreenRoute: () => const CompleteSetTrabNameScreen(),
     MyTrabFurnitureScreenRoute: () => const MyTrabFurnitureScreen(),
     MyTrabSnackScreenRoute: () => const MyTrabSnackScreen(),
+    TrabOnBoardingScreenRoute: () => const TrabOnBoardingScreen(),
   };
 
   static Widget Function() getRoute(String? routeName) {

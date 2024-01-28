@@ -15,6 +15,14 @@ class AppTypography {
     decoration: TextDecoration.none,
   );
 
+  static final onBoarding_head_1 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 32.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
   static final headline_1_2 = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 48.sp,

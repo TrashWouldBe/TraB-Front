@@ -39,7 +39,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       if (trabModel == null) {
         AppRouter.pushNamed(Routes.SetTrabNameScreenRoute);
       } else {
-        AppRouter.pushNamed(Routes.HomeScreenRoute);
+        AppRouter.pushNamed(Routes.TrabOnBoardingScreenRoute);
       }
     }
   }

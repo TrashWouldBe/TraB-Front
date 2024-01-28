@@ -17,6 +17,7 @@ class AppSvgs {
   static String plogging = "$basePath/plogging.svg";
   static String edit = "$basePath/edit.svg";
   static String trabReverse = "$basePath/trab_reverse.svg";
+  static String onBoardingTrab = "$basePath/onboarding_trab.svg";
 
   static String myTrabHomeBg = "$basePath/my_trab_home_bg.svg";
   static String furnitureIcon = "$basePath/furniture_icon.svg";
