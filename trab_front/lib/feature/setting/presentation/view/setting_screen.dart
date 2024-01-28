@@ -11,8 +11,8 @@ import 'package:trab_front/feature/setting/presentation/viewmodel/setting_screen
 import 'package:trab_front/feature/setting/presentation/widget/customer_center.dart';
 import 'package:trab_front/feature/setting/presentation/widget/login.dart';
 import 'package:trab_front/feature/setting/presentation/widget/upper_view.dart';
-import 'package:trab_front/feature/trab/data/model/trab_model.dart';
-import 'package:trab_front/feature/trab/domain/trab_domain.dart';
+import 'package:trab_front/feature/myTrab/data/model/trab_model.dart';
+import 'package:trab_front/feature/myTrab/domain/trab_domain.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';

@@ -7,6 +7,8 @@ import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.d
 import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
 import 'package:trab_front/feature/common/view/splash_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/mytrab_furniture_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/mytrab_snack_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_calculate_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_end_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_stop_screen.dart';
@@ -53,6 +55,10 @@ class Routes {
 
   static const String EattingSnackTrabScreenRoute = '/camera/eatting-trab';
 
+  static const String MyTrabFurnitureScreenRoute = '/mytrab/furniture';
+
+  static const String MyTrabSnackScreenRoute = '/mytrab/snack';
+
   static final Map<String, Widget Function()> _routesMap = {
     AppStartupScreenRoute: () => const SplashScreen(),
     LoginScreenRoute: () => const LogInScreen(),
@@ -68,6 +74,8 @@ class Routes {
     EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
     SetTrabNameScreenRoute: () => const SetTrabNameScreen(),
     CompleteSetTrabNameScreenRoute: () => const CompleteSetTrabNameScreen(),
+    MyTrabFurnitureScreenRoute: () => const MyTrabFurnitureScreen(),
+    MyTrabSnackScreenRoute: () => const MyTrabSnackScreen(),
   };
 
   static Widget Function() getRoute(String? routeName) {

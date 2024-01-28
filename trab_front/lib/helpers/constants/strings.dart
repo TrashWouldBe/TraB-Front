@@ -100,4 +100,10 @@ class AppStrings {
   static String initialTime = "0:00";
 
   static String owner = "주인";
+
+  static String furnitureT = "가구";
+
+  static String snackT = "간식";
+
+  static String trabHouseT = "의 트래비 하우스";
 }

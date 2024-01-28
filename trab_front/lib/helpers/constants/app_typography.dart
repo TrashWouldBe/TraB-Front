@@ -126,4 +126,21 @@ class AppTypography {
     color: Colors.black,
     decoration: TextDecoration.none,
   );
+
+  //mytrab
+  static final iconTxt = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final semibold = TextStyle(
+    fontFamily: "Pretendard Variable",
+    fontSize: 15.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
 }

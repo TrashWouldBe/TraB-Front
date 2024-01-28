@@ -1,6 +1,6 @@
 import 'package:trab_front/core/network/api_endpoint.dart';
 import 'package:trab_front/core/network/api_service.dart';
-import 'package:trab_front/feature/trab/data/model/trab_model.dart';
+import 'package:trab_front/feature/myTrab/data/model/trab_model.dart';
 import 'package:trab_front/helpers/typedefs.dart';
 
 class TrabDataSource {

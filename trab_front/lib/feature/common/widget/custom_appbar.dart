@@ -67,7 +67,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             if (canPush ?? false)
               noPaddingButton(
                 child: SvgPicture.asset(
-                  AppSvgs.rightArrow,
+                  AppSvgs.rightArraw,
                   color: trailingColor ?? AppColors.grey1,
                 ),
                 onPressed: onPressedTrailing ?? () => AppRouter.pop(),
