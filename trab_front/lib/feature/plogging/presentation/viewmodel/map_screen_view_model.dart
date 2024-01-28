@@ -42,6 +42,7 @@ class MapScreenController extends _$MapScreenController {
     state = MapScreenState(
       mapController: state.mapController,
       polylines: state.polylines,
+      lastPosition: state.lastPosition,
       currentLocation: state.currentLocation,
       polylineCoordinates: state.polylineCoordinates,
     );
@@ -99,32 +100,36 @@ class MapScreenController extends _$MapScreenController {
         return;
       }
     }
-    locationSubscription =
-        location.onLocationChanged.listen((LocationData currentLocation) {
-      print("여기");
-      LatLng newPosition =
-          LatLng(currentLocation.latitude!, currentLocation.longitude!);
-      if (state.lastPosition == null || state.lastPosition != newPosition) {
-        state.lastPosition = newPosition;
 
-        state.polylineCoordinates.add(newPosition);
+    bool changeSettings = await location.changeSettings(
+      accuracy: LocationAccuracy.high,
+      interval: 1000,
+      distanceFilter: 0,
+    );
+
+    if (changeSettings) {
+      locationSubscription =
+          location.onLocationChanged.listen((LocationData currentLocation) {
+        LatLng newPosition =
+            LatLng(currentLocation.latitude!, currentLocation.longitude!);
         ref.read(ploggingInfoControllerProvider.notifier).calculateDistance(
               lastPosition: state.lastPosition,
               newPosition: newPosition,
             );
-
+        state.polylineCoordinates.add(newPosition);
+        state.lastPosition = newPosition;
         Polyline polyline = Polyline(
           polylineId: const PolylineId('poly'),
           visible: true,
           points: state.polylineCoordinates,
-          width: 5,
+          width: 7,
           color: AppColors.primaryColor,
         );
         state.polylines = {polyline};
 
         setState();
-      }
-    });
+      });
+    }
   }
 
   void clearPolylines() {
