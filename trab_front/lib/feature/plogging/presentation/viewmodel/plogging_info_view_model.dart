@@ -105,9 +105,7 @@ class PloggingInfoController extends _$PloggingInfoController {
         newPosition.latitude,
         newPosition.longitude,
       );
-
-      double distanceInKilometers = distanceInMeters / 1000;
-      state.distance += distanceInKilometers;
+      state.distance += distanceInMeters / 1000;
       setState();
     }
   }
