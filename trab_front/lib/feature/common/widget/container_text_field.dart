@@ -6,6 +6,7 @@ import 'package:trab_front/helpers/constants/app_typography.dart';
 Widget containerTextField({
   String hintText = "홍길동",
   FocusNode? focusNode,
+  String? initialValue = "",
   TextInputType keyboardType = TextInputType.text,
   required TextEditingController textEditingController,
 }) {
@@ -29,6 +30,7 @@ Widget containerTextField({
           : [],
     ),
     child: TextField(
+      focusNode: focusNode,
       controller: textEditingController,
       style: AppTypography.caption_2.copyWith(color: AppColors.textColor_2),
       decoration: InputDecoration(

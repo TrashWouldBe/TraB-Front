@@ -6,6 +6,7 @@ import 'package:trab_front/feature/common/widget/page_indicator.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 Widget trabOnboardingPage({required int selectedPage}) {
   return Column(
@@ -151,14 +152,14 @@ Widget userInfoInputPage(
               height: 22.h,
             ),
             containerTextField(
-                hintText: "이름",
+                hintText: AppStrings.name,
                 textEditingController: textEditingControllers[0],
                 focusNode: focusNodes[0]),
             SizedBox(
               height: 16.h,
             ),
             containerTextField(
-                hintText: "몸무게",
+                hintText: AppStrings.weight,
                 keyboardType: TextInputType.number,
                 textEditingController: textEditingControllers[1],
                 focusNode: focusNodes[1]),
@@ -168,7 +169,7 @@ Widget userInfoInputPage(
             Padding(
               padding: EdgeInsets.only(left: 30.spMin),
               child: Text(
-                "*몸무게는 정확한 칼로리계산을 위해 사용됩니다.",
+                AppStrings.reasonOfCheckWeight,
                 style: AppTypography.caption_3,
               ),
             ),

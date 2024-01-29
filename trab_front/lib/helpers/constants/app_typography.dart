@@ -135,6 +135,14 @@ class AppTypography {
     decoration: TextDecoration.none,
   );
 
+  static final mainCaption_3 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
   static final subTitle_1 = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 20.sp,

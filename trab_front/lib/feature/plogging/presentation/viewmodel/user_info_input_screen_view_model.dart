@@ -8,30 +8,31 @@ import 'package:trab_front/feature/auth/types.dart';
 import 'package:trab_front/feature/common/widget/loading.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
-part 'trab_onboarding_screen_view_model.g.dart';
+part 'user_info_input_screen_view_model.g.dart';
 
-class TrabOnBoardingScreenState {
-  PageController pageController;
+class UserInfoInputScreenState {
   List<FocusNode> focusNode;
   List<TextEditingController> textEditingController;
-  int selectedPage;
-  TrabOnBoardingScreenState(
-      {required this.pageController,
-      required this.focusNode,
-      required this.textEditingController,
-      required this.selectedPage});
+  UserInfoInputScreenState({
+    required this.focusNode,
+    required this.textEditingController,
+  });
 }
 
 @riverpod
-class TrabOnBoardingScreenController extends _$TrabOnBoardingScreenController {
+class UserInfoInputScreenController extends _$UserInfoInputScreenController {
   @override
-  TrabOnBoardingScreenState build() {
-    return TrabOnBoardingScreenState(
-      selectedPage: 0,
-      pageController: PageController(initialPage: 0),
+  UserInfoInputScreenState build() {
+    return UserInfoInputScreenState(
       focusNode: List.generate(2, (_) => FocusNode()),
       textEditingController: List.generate(2, (_) => TextEditingController()),
     );
+  }
+
+  void setState() {
+    state = UserInfoInputScreenState(
+        focusNode: state.focusNode,
+        textEditingController: state.textEditingController);
   }
 
   void init() {
@@ -55,36 +56,17 @@ class TrabOnBoardingScreenController extends _$TrabOnBoardingScreenController {
     );
   }
 
-  void setState() {
-    state = TrabOnBoardingScreenState(
-        selectedPage: state.selectedPage,
-        pageController: state.pageController,
-        focusNode: state.focusNode,
-        textEditingController: state.textEditingController);
-  }
-
-  void handlePageChanged({required int index}) {
-    state.selectedPage = index;
-    setState();
-  }
-
-  void handlePressedTrailing({required BuildContext context}) async {
-    if (state.pageController.page == 2) {
-      showLoading(context: context);
-      await ref.read(userControllerProvider.notifier).postUserInfo(
-              data: UserInfo(
+  void handlePressedContainerButton({required BuildContext context}) async {
+    showLoading(context: context);
+    await ref.read(userControllerProvider.notifier).postUserInfo(
+          data: UserInfo(
             name: state.textEditingController[0].text == AppStrings.empty
                 ? null
                 : state.textEditingController[0].text,
             weight: int.tryParse(state.textEditingController[1].text),
-          ));
-      closeLoading(context: context);
-      AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
-      return;
-    } else {
-      state.pageController.jumpToPage(state.pageController.page!.round() + 1);
-      state.selectedPage = state.pageController.page!.round();
-      setState();
-    }
+          ),
+        );
+    closeLoading(context: context);
+    AppRouter.pushAndRemoveUntil(Routes.PloggingCountDownScreenRoute);
   }
 }
