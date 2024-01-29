@@ -43,3 +43,13 @@ class AppleSignInBody with _$AppleSignInBody {
   factory AppleSignInBody.fromJson(JSON json) =>
       _$AppleSignInBodyFromJson(json);
 }
+
+@freezed
+class UserInfo with _$UserInfo {
+  const factory UserInfo({
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'weight') int? weight,
+  }) = _UserInfo;
+
+  factory UserInfo.fromJson(JSON json) => _$UserInfoFromJson(json);
+}

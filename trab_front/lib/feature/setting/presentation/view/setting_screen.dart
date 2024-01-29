@@ -45,7 +45,7 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
         children: [
           upperView(
               name: trab?.trabName ?? AppStrings.myTrab,
-              image: userInfo?.user_image,
+              image: userInfo?.image,
               onPressedImage: () {
                 showActionSheet(
                     gallary: () async => await ref
