@@ -85,7 +85,7 @@ class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
                 timerBottomButtons(
                   context: context,
                   isPlogging: isPlogging,
-                  onPressedStartButton: ref
+                  onPressedStartButton: () async => ref
                       .read(ploggingInfoControllerProvider.notifier)
                       .startTimer,
                   onPressedCameraButton: () async => await ref

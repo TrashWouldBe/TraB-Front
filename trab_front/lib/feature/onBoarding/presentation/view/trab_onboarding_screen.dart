@@ -16,6 +16,15 @@ class TrabOnBoardingScreen extends ConsumerStatefulWidget {
 
 class _TrabOnBoardingScreenState extends ConsumerState<TrabOnBoardingScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(trabOnBoardingScreenControllerProvider.notifier).init();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     int selectedIndex =
         ref.watch(trabOnBoardingScreenControllerProvider).selectedPage;

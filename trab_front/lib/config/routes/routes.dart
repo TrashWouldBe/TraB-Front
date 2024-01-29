@@ -17,6 +17,7 @@ import 'package:trab_front/feature/plogging/presentation/view/plogging_stop_scre
 import 'package:trab_front/feature/plogging/presentation/view/plogging_timer_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/user_info_input_screen.dart';
 import 'package:trab_front/feature/setting/presentation/view/plogging_record_screen.dart';
 
 @immutable
@@ -41,7 +42,7 @@ class Routes {
   static const String CompleteSetTrabNameScreenRoute =
       '/auth/complete-set-trab-name';
 
-  static const String PloggingCountScreenRoute = '/plogging/count';
+  static const String PloggingCountDownScreenRoute = '/plogging/count';
 
   static const String MapScreenRoute = '/plogging/map';
 
@@ -52,6 +53,8 @@ class Routes {
   static const String PloggingEndScreenRoute = '/plogging/end';
 
   static const String PloggingCalculateScreenRoute = '/plogging/calculate';
+
+  static const String UserInfoInputScreenRoute = '/plogging/user-info-input';
 
   static const String HomeScreenRoute = '/home';
 
@@ -73,7 +76,7 @@ class Routes {
     HomeScreenRoute: () => const HomeScreen(),
     PloggingTimerScreenRoute: () => const PloggingTimerScreen(),
     PloggingStopScreenRoute: () => const PloggingStopScreen(),
-    PloggingCountScreenRoute: () => const PloggingCountDownScreen(),
+    PloggingCountDownScreenRoute: () => const PloggingCountDownScreen(),
     PloggingEndScreenRoute: () => const PloggingEndScreen(),
     PloggingRecordScreenRoute: () => const PloggingRecordScreen(),
     PloggingCalculateScreenRoute: () => const PloggingCalculateScreen(),
@@ -84,6 +87,7 @@ class Routes {
     MyTrabFurnitureScreenRoute: () => const MyTrabFurnitureScreen(),
     MyTrabSnackScreenRoute: () => const MyTrabSnackScreen(),
     TrabOnBoardingScreenRoute: () => const TrabOnBoardingScreen(),
+    UserInfoInputScreenRoute: () => const UserInfoInputScreen()
   };
 
   static Widget Function() getRoute(String? routeName) {
