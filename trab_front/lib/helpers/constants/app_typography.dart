@@ -15,6 +15,14 @@ class AppTypography {
     decoration: TextDecoration.none,
   );
 
+  static final onBoarding_head_1 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 32.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
   static final headline_1_2 = TextStyle(
     fontFamily: "Pretendard",
     fontSize: 48.sp,
@@ -51,6 +59,22 @@ class AppTypography {
     fontFamily: "Pretendard",
     fontSize: 13.sp,
     fontWeight: FontWeight.w500,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final caption_2 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final caption_3 = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w400,
     color: Colors.black,
     decoration: TextDecoration.none,
   );
@@ -123,6 +147,23 @@ class AppTypography {
     fontFamily: "Pretendard",
     fontSize: 15.sp,
     fontWeight: FontWeight.w500,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  //mytrab
+  static final iconTxt = TextStyle(
+    fontFamily: "Pretendard",
+    fontSize: 10.sp,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+    decoration: TextDecoration.none,
+  );
+
+  static final semibold = TextStyle(
+    fontFamily: "Pretendard Variable",
+    fontSize: 15.sp,
+    fontWeight: FontWeight.w600,
     color: Colors.black,
     decoration: TextDecoration.none,
   );

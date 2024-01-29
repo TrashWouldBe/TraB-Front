@@ -15,22 +15,19 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_gifs.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 
-class FlogginTimerScreen extends ConsumerStatefulWidget {
-  const FlogginTimerScreen({super.key});
+class PloggingTimerScreen extends ConsumerStatefulWidget {
+  const PloggingTimerScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _FlogginTimerScreenState();
+    return _PloggingTimerScreenState();
   }
 }
 
-class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
+class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(ploggingInfoControllerProvider.notifier).startTimer();
-    });
   }
 
   @override

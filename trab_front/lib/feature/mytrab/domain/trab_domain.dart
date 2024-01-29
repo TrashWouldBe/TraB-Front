@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/feature/all_providers.dart';
 
-import 'package:trab_front/feature/trab/data/dataSource/trab_data_source.dart';
-import 'package:trab_front/feature/trab/data/model/trab_model.dart';
+import 'package:trab_front/feature/myTrab/data/dataSource/trab_data_source.dart';
+import 'package:trab_front/feature/myTrab/data/model/trab_model.dart';
 import 'package:trab_front/helpers/typedefs.dart';
 
 part 'trab_domain.g.dart';

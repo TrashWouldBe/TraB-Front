@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
+import 'package:trab_front/feature/camera/domain/image_domin.dart';
 
 part 'camera_screen_view_model.g.dart';
 
@@ -30,6 +31,9 @@ class CameraScreenController extends _$CameraScreenController {
     if (image != null) {
       File img = File(image.path);
       state.image = img;
+      await ref
+          .read(imageControllerProvider.notifier)
+          .postImage(file: img.path);
       setState();
     }
   }

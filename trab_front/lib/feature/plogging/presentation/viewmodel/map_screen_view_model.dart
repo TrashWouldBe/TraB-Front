@@ -12,18 +12,16 @@ class MapScreenState {
   Set<Polyline> polylines;
   LatLng currentLocation;
   List<LatLng> polylineCoordinates;
-  LatLng? lastPosition;
 
   MapScreenState({
     required this.mapController,
     required this.polylines,
     required this.currentLocation,
     required this.polylineCoordinates,
-    this.lastPosition,
   });
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class MapScreenController extends _$MapScreenController {
   @override
   MapScreenState build() {
@@ -91,7 +89,6 @@ class MapScreenController extends _$MapScreenController {
     }
   }
 
-  //TODO: 시뮬레이터로 시험해보기
   void startLocationSubscription() async {
     if (locationSubscription != null) {
       if (locationSubscription!.isPaused) {
@@ -103,12 +100,12 @@ class MapScreenController extends _$MapScreenController {
         location.onLocationChanged.listen((LocationData currentLocation) {
       LatLng newPosition =
           LatLng(currentLocation.latitude!, currentLocation.longitude!);
-      if (state.lastPosition == null || state.lastPosition != newPosition) {
-        state.lastPosition = newPosition;
+      if (state.currentLocation != newPosition) {
+        state.currentLocation = newPosition;
 
         state.polylineCoordinates.add(newPosition);
         ref.read(ploggingInfoControllerProvider.notifier).calculateDistance(
-              lastPosition: state.lastPosition,
+              lastPosition: state.currentLocation,
               newPosition: newPosition,
             );
 

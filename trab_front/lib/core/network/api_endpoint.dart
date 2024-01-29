@@ -32,13 +32,21 @@ class ApiEndpoint {
     }
   }
 
-  static String plogging(PloggingEndPoint endPoint) {
+  static String plogging(PloggingEndpoint endPoint) {
     const path = '/plogging';
     switch (endPoint) {
-      case PloggingEndPoint.PLOGGING:
+      case PloggingEndpoint.PLOGGING:
         return '$path';
-      case PloggingEndPoint.LIST:
+      case PloggingEndpoint.LIST:
         return '$path/list';
+    }
+  }
+
+  static String image(ImageEndPoint endPoint) {
+    const path = '/image';
+    switch (endPoint) {
+      case ImageEndPoint.Image:
+        return '$path';
     }
   }
 
@@ -62,7 +70,11 @@ enum UserEndpoint {
   IMAGE,
 }
 
-enum PloggingEndPoint {
+enum ImageEndPoint {
+  Image,
+}
+
+enum PloggingEndpoint {
   PLOGGING,
   LIST,
 }
