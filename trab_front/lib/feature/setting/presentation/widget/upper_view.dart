@@ -92,14 +92,6 @@ Widget upperView(
               name,
               style: AppTypography.subTitle_1.copyWith(color: AppColors.grey1),
             ),
-            SizedBox(
-              width: 4.w,
-            ),
-            Text(
-              AppStrings.owner,
-              style: AppTypography.subTitle_1
-                  .copyWith(color: AppColors.textColor_2),
-            ),
           ],
         ),
         SizedBox(
