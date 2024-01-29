@@ -11,6 +11,7 @@ import 'package:trab_front/feature/mytrab/presentation/view/mytrab_furniture_scr
 import 'package:trab_front/feature/mytrab/presentation/view/mytrab_snack_screen.dart';
 import 'package:trab_front/feature/onBoarding/presentation/view/trab_onboarding_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_calculate_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_count_down_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_end_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_stop_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_timer_screen.dart';
@@ -40,6 +41,8 @@ class Routes {
   static const String CompleteSetTrabNameScreenRoute =
       '/auth/complete-set-trab-name';
 
+  static const String PloggingCountScreenRoute = '/plogging/count';
+
   static const String MapScreenRoute = '/plogging/map';
 
   static const String PloggingTimerScreenRoute = '/plogging/timer';
@@ -68,8 +71,9 @@ class Routes {
     MapScreenRoute: () => const MapScreen(),
     NotFoundScreenRoute: () => const SizedBox.shrink(),
     HomeScreenRoute: () => const HomeScreen(),
-    PloggingTimerScreenRoute: () => const FlogginTimerScreen(),
-    PloggingStopScreenRoute: () => const FlogginStopScreen(),
+    PloggingTimerScreenRoute: () => const PloggingTimerScreen(),
+    PloggingStopScreenRoute: () => const PloggingStopScreen(),
+    PloggingCountScreenRoute: () => const PloggingCountDownScreen(),
     PloggingEndScreenRoute: () => const PloggingEndScreen(),
     PloggingRecordScreenRoute: () => const PloggingRecordScreen(),
     PloggingCalculateScreenRoute: () => const PloggingCalculateScreen(),

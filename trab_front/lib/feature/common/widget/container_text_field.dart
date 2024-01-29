@@ -29,6 +29,7 @@ Widget containerTextField({
           : [],
     ),
     child: TextField(
+      controller: textEditingController,
       style: AppTypography.caption_2.copyWith(color: AppColors.textColor_2),
       decoration: InputDecoration(
         border: InputBorder.none,

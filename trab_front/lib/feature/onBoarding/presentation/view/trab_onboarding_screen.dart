@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:trab_front/feature/auth/types.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/feature/onBoarding/presentation/viewmodel/trab_onboarding_screen_view_model.dart';
 import 'package:trab_front/feature/onBoarding/presentation/widget/trab_onboarding_pages.dart';
@@ -16,12 +15,6 @@ class TrabOnBoardingScreen extends ConsumerStatefulWidget {
 }
 
 class _TrabOnBoardingScreenState extends ConsumerState<TrabOnBoardingScreen> {
-  @override
-  void initState() {
-    super.initState();
-    ref.read(trabOnBoardingScreenControllerProvider.notifier).init();
-  }
-
   @override
   Widget build(BuildContext context) {
     int selectedIndex =
@@ -49,12 +42,6 @@ class _TrabOnBoardingScreenState extends ConsumerState<TrabOnBoardingScreen> {
                 .read(trabOnBoardingScreenControllerProvider.notifier)
                 .handlePressedTrailing(
                   context: context,
-                  data: UserInfo(
-                    name: textEditingControllers[0].text == ''
-                        ? null
-                        : textEditingControllers[0].text,
-                    weight: int.tryParse(textEditingControllers[1].text),
-                  ),
                 ),
           ),
           body: SafeArea(

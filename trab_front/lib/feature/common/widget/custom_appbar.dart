@@ -40,6 +40,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: backgroundColor ?? AppColors.body1,
       toolbarHeight: 50.h,
+      scrolledUnderElevation: 0,
       systemOverlayStyle: systemOverlayStyle ?? SystemUiOverlayStyle.dark,
       leadingWidth: double.infinity,
       leading: Padding(
