@@ -20,7 +20,6 @@ class PloggingStopController extends _$PloggingStopController {
 
   void handlePressedStartButton() {
     AppRouter.pop();
-    ref.read(ploggingInfoControllerProvider.notifier).startTimer();
     AppRouter.popAndPushNamed(Routes.PloggingTimerScreenRoute);
   }
 

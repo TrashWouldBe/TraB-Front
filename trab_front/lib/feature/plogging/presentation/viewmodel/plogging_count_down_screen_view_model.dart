@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
-import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 
 part 'plogging_count_down_screen_view_model.g.dart';
 
@@ -30,7 +29,7 @@ class PloggingCountDownScreenController
     Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
-        if (state.count == 0) {
+        if (state.count == 1) {
           timer.cancel();
           navigateToNextScreen();
         } else {
@@ -43,7 +42,6 @@ class PloggingCountDownScreenController
 
   void navigateToNextScreen() {
     state.count = 3;
-    ref.read(ploggingInfoControllerProvider.notifier).startTimer();
     AppRouter.pushAndRemoveUntil(Routes.PloggingTimerScreenRoute);
   }
 }
