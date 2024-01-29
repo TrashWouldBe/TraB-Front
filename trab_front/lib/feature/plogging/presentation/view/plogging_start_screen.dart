@@ -25,7 +25,7 @@ class PloggingStartScreen extends ConsumerStatefulWidget {
 class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
   @override
   Widget build(BuildContext context) {
-    int _selectedPage =
+    int selectedPage =
         ref.watch(ploggingStartScreenControllerProvider).selectedPage;
     return SafeArea(
       top: Platform.isAndroid ? true : false,
@@ -63,7 +63,7 @@ class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
             right: 0,
             child: Align(
               alignment: Alignment.center,
-              child: pageIndicator(selectedPage: _selectedPage, itemCount: 2),
+              child: pageIndicator(selectedPage: selectedPage, itemCount: 2),
             ),
           ),
           Positioned(
