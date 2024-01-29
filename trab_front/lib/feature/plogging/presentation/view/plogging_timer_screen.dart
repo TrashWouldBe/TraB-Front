@@ -28,6 +28,9 @@ class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(ploggingInfoControllerProvider.notifier).startTimer();
+    });
   }
 
   @override
@@ -85,7 +88,7 @@ class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
                 timerBottomButtons(
                   context: context,
                   isPlogging: isPlogging,
-                  onPressedStartButton: () async => ref
+                  onPressedStartButton: ref
                       .read(ploggingInfoControllerProvider.notifier)
                       .startTimer,
                   onPressedCameraButton: () async => await ref
