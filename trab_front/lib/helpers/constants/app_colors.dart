@@ -18,6 +18,7 @@ class AppColors {
   static const Color greenGrey2 = Color(0xffE4E4E4);
   static const Color shadowColor = Color(0x19000000);
   static Color bgColor_2 = const Color(0xffC2E6C2).withOpacity(0.8);
+  static const Color bgColor_4 = Color(0xFFCDEBCE);
 
   static const Color darkPrimaryColor = Color(0xff005A13);
   static const Color deepDarkPrimaryColor = Color(0xff00440E);

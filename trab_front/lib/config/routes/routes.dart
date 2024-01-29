@@ -7,12 +7,17 @@ import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.d
 import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
 import 'package:trab_front/feature/common/view/splash_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/mytrab_furniture_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/mytrab_snack_screen.dart';
+import 'package:trab_front/feature/onBoarding/presentation/view/trab_onboarding_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_calculate_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_count_down_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_end_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_stop_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_timer_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/user_info_input_screen.dart';
 import 'package:trab_front/feature/setting/presentation/view/plogging_record_screen.dart';
 
 @immutable
@@ -26,6 +31,8 @@ class Routes {
 
   static const String AppStartupScreenRoute = '/';
 
+  static const String TrabOnBoardingScreenRoute = '/trab-onboarding';
+
   static const String NotFoundScreenRoute = '/route-not-found-screen';
 
   static const String LoginScreenRoute = '/auth/login';
@@ -34,6 +41,8 @@ class Routes {
 
   static const String CompleteSetTrabNameScreenRoute =
       '/auth/complete-set-trab-name';
+
+  static const String PloggingCountDownScreenRoute = '/plogging/count';
 
   static const String MapScreenRoute = '/plogging/map';
 
@@ -45,6 +54,8 @@ class Routes {
 
   static const String PloggingCalculateScreenRoute = '/plogging/calculate';
 
+  static const String UserInfoInputScreenRoute = '/plogging/user-info-input';
+
   static const String HomeScreenRoute = '/home';
 
   static const String PloggingRecordScreenRoute = '/setting/plogging-record';
@@ -53,14 +64,19 @@ class Routes {
 
   static const String EattingSnackTrabScreenRoute = '/camera/eatting-trab';
 
+  static const String MyTrabFurnitureScreenRoute = '/mytrab/furniture';
+
+  static const String MyTrabSnackScreenRoute = '/mytrab/snack';
+
   static final Map<String, Widget Function()> _routesMap = {
     AppStartupScreenRoute: () => const SplashScreen(),
     LoginScreenRoute: () => const LogInScreen(),
     MapScreenRoute: () => const MapScreen(),
     NotFoundScreenRoute: () => const SizedBox.shrink(),
     HomeScreenRoute: () => const HomeScreen(),
-    PloggingTimerScreenRoute: () => const FlogginTimerScreen(),
-    PloggingStopScreenRoute: () => const FlogginStopScreen(),
+    PloggingTimerScreenRoute: () => const PloggingTimerScreen(),
+    PloggingStopScreenRoute: () => const PloggingStopScreen(),
+    PloggingCountDownScreenRoute: () => const PloggingCountDownScreen(),
     PloggingEndScreenRoute: () => const PloggingEndScreen(),
     PloggingRecordScreenRoute: () => const PloggingRecordScreen(),
     PloggingCalculateScreenRoute: () => const PloggingCalculateScreen(),
@@ -68,6 +84,10 @@ class Routes {
     EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
     SetTrabNameScreenRoute: () => const SetTrabNameScreen(),
     CompleteSetTrabNameScreenRoute: () => const CompleteSetTrabNameScreen(),
+    MyTrabFurnitureScreenRoute: () => const MyTrabFurnitureScreen(),
+    MyTrabSnackScreenRoute: () => const MyTrabSnackScreen(),
+    TrabOnBoardingScreenRoute: () => const TrabOnBoardingScreen(),
+    UserInfoInputScreenRoute: () => const UserInfoInputScreen()
   };
 
   static Widget Function() getRoute(String? routeName) {
