@@ -9,8 +9,10 @@ part 'user_info_model.g.dart';
 @freezed
 class UserInfoModel with _$UserInfoModel {
   const factory UserInfoModel({
-    required String user_email,
-    String? user_image,
+    required String email,
+    String? name,
+    int? weight,
+    String? image,
   }) = _UserInfoModel;
 
   factory UserInfoModel.fromJson(JSON json) => _$UserInfoModelFromJson(json);

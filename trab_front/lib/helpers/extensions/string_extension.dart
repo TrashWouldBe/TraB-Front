@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_this
 
 import 'package:path/path.dart' as p;
+import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
 import '../constants/app_utils.dart' show Regexes;
@@ -32,7 +33,7 @@ extension StringExt on String {
   bool get isValidCreditCardExpiry =>
       Regexes.creditCardExpiryRegex.hasMatch(this);
   String get removeSpecialCharacters =>
-      this.replaceAll(RegExp(r'[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]+'), '');
+      this.replaceAll(RegExp(r'[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]+'), AppStrings.empty);
 
   /// An extension for converting String to Capitalcase.
   String get capitalize =>

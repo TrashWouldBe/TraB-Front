@@ -56,14 +56,3 @@ Widget ploggingExplainContiner({required String title, required String body}) {
     ),
   );
 }
-
-Widget ploggingExplainIndicator({required Color color}) {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 5.w),
-    child: Container(
-      width: 10.w,
-      height: 10.h,
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-    ),
-  );
-}

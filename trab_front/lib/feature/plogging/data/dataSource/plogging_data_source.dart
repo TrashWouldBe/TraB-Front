@@ -10,7 +10,7 @@ class PloggingDataSource {
 
   Future<List<PloggingModel>> getPloggingList() async {
     return _apiService.getDocumentData<List<PloggingModel>>(
-      endpoint: ApiEndpoint.plogging(PloggingEndPoint.LIST),
+      endpoint: ApiEndpoint.plogging(PloggingEndpoint.LIST),
       converter: (response) {
         return PloggingModel.fromJsonList(response.body);
       },

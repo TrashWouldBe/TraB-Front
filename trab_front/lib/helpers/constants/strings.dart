@@ -19,6 +19,16 @@ class AppStrings {
 
   static String empty = "";
 
+  static String name = "이름";
+
+  static String weight = "몸무게";
+
+  static String startPlogging = "플로깅 시작";
+
+  static String noWeightPlogging = "칼로리 계산 안하고 플로깅 할래요.";
+
+  static String reasonOfCheckWeight = "*몸무게는 정확한 칼로리계산을 위해 사용됩니다.";
+
   static String trab = "Trab";
 
   static String kiloMeter = "km";
@@ -100,4 +110,10 @@ class AppStrings {
   static String initialTime = "0:00";
 
   static String owner = "주인";
+
+  static String furnitureT = "가구";
+
+  static String snackT = "간식";
+
+  static String trabHouseT = "의 트래비 하우스";
 }

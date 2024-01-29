@@ -6,16 +6,16 @@ import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_stop_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 
-class FlogginStopScreen extends ConsumerStatefulWidget {
-  const FlogginStopScreen({super.key});
+class PloggingStopScreen extends ConsumerStatefulWidget {
+  const PloggingStopScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _FlogginStopScreenState();
+    return _PloggingStopScreenState();
   }
 }
 
-class _FlogginStopScreenState extends ConsumerState<FlogginStopScreen> {
+class _PloggingStopScreenState extends ConsumerState<PloggingStopScreen> {
   @override
   void initState() {
     // TODO: implement initState
