@@ -10,13 +10,13 @@ import 'package:trab_front/feature/common/view/splash_screen.dart';
 import 'package:trab_front/feature/mytrab/presentation/view/mytrab_furniture_screen.dart';
 import 'package:trab_front/feature/mytrab/presentation/view/mytrab_snack_screen.dart';
 import 'package:trab_front/feature/onBoarding/presentation/view/trab_onboarding_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_calculate_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_count_down_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_end_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_stop_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_timer_screen.dart';
-import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
-import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/user_info_input_screen.dart';
 import 'package:trab_front/feature/setting/presentation/view/plogging_record_screen.dart';
 

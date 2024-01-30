@@ -62,9 +62,19 @@ class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
             left: 0,
             right: 0,
             child: Align(
-              alignment: Alignment.center,
-              child: pageIndicator(selectedPage: selectedPage, itemCount: 2),
-            ),
+                alignment: Alignment.center,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 2,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index == selectedPage) {
+                      return pageIndicator(selectedPage: index, itemCount: 2);
+                    } else {
+                      return pageIndicator(selectedPage: index, itemCount: 2);
+                    }
+                  },
+                )),
           ),
           Positioned(
             top: 400.h,
