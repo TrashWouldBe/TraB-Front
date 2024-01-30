@@ -96,31 +96,35 @@ class MapScreenController extends _$MapScreenController {
         return;
       }
     }
-    locationSubscription =
-        location.onLocationChanged.listen((LocationData currentLocation) {
-      LatLng newPosition =
-          LatLng(currentLocation.latitude!, currentLocation.longitude!);
-      if (state.currentLocation != newPosition) {
-        state.currentLocation = newPosition;
 
-        state.polylineCoordinates.add(newPosition);
+    bool changeSettings = await location.changeSettings(
+      accuracy: LocationAccuracy.high,
+      interval: 1000,
+      distanceFilter: 0,
+    );
+
+    if (changeSettings) {
+      locationSubscription =
+          location.onLocationChanged.listen((LocationData currentLocation) {
+        LatLng newPosition =
+            LatLng(currentLocation.latitude!, currentLocation.longitude!);
         ref.read(ploggingInfoControllerProvider.notifier).calculateDistance(
               lastPosition: state.currentLocation,
               newPosition: newPosition,
             );
-
+        state.polylineCoordinates.add(newPosition);
         Polyline polyline = Polyline(
           polylineId: const PolylineId('poly'),
           visible: true,
           points: state.polylineCoordinates,
-          width: 5,
+          width: 7,
           color: AppColors.primaryColor,
         );
         state.polylines = {polyline};
 
         setState();
-      }
-    });
+      });
+    }
   }
 
   void clearPolylines() {
