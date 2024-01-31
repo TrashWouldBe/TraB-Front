@@ -34,15 +34,15 @@ class SetTrabNameScreenController extends _$SetTrabNameScreenController {
   }
 
   void handlePressedTrailing({required BuildContext context}) async {
-    showLoading(context: context);
+    Loading.show();
     TrabModel? trabModel = await ref
         .read(trabControllerProvider.notifier)
         .postTrab(data: {"name": state.textEditingController.text});
     if (trabModel != null) {
-      closeLoading(context: context);
-      AppRouter.pushAndRemoveUntil(Routes.CompleteSetTrabNameScreenRoute);
+      Loading.close();
+      AppRouter.pushNamed(Routes.CompleteSetTrabNameScreenRoute);
     } else {
-      closeLoading(context: context);
+      Loading.close();
     }
   }
 }

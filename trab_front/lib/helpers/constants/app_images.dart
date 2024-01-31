@@ -14,10 +14,12 @@ class AppImages {
   static String cameraButton = "$basePath/camera_button.png";
   static String restartbutton = "$basePath/restart_button.png";
   static String trab = "$basePath/trab.png";
+  static String trabLogo = "$basePath/trab_logo.png";
   static String amazedTrab = "$basePath/amazed_trab.png";
   static String endButton = "$basePath/end_button.png";
   static String setTrabNameBackground =
       "$basePath/set_trab_name_background.png";
   static String nameSettingCompleteBackggound =
       "$basePath/name_setting_complete_background.png";
+  static String myTrabDefault = "$basePath/my_trab_default.png";
 }

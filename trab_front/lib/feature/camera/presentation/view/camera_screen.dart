@@ -24,7 +24,7 @@ class CameraScreen extends ConsumerStatefulWidget {
 class _CameraScreenState extends ConsumerState<CameraScreen> {
   @override
   Widget build(BuildContext context) {
-    File? image = ref.watch(cameraScreenControllerProvider).image;
+    File? _image = ref.watch(cameraScreenControllerProvider).image;
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 25.w),

@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:trab_front/feature/mytrab/presentation/viewmodel/mytrab_view_model.dart';
-import 'package:trab_front/feature/mytrab/presentation/widget/custom_bubble_text.dart';
+import 'package:trab_front/feature/common/widget/custom_bubble_text.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/house_name_widget.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/iconbtn.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 class MyTrabScreen extends ConsumerStatefulWidget {
   const MyTrabScreen({super.key});
@@ -19,16 +22,19 @@ class MyTrabScreen extends ConsumerStatefulWidget {
 }
 
 class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
-  final TextEditingController _nameController = TextEditingController();
-
   @override
-  void dispose() {
-    _nameController.dispose();
-    super.dispose();
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(myTrabScreenControllerProvider.notifier).init();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    String trabSay = ref.watch(myTrabScreenControllerProvider).trabSay;
+    TextEditingController textEditingController =
+        ref.watch(myTrabScreenControllerProvider).textEditingController;
     return Container(
       color: AppColors.lightPrimaryColor,
       child: Stack(
@@ -61,7 +67,7 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
                 onTap: ref
                     .read(myTrabScreenControllerProvider.notifier)
                     .handleTapFurniture,
-                text: "가구",
+                text: AppStrings.furnitureT,
                 icon: AppSvgs.furnitureIcon),
           ),
           Positioned(
@@ -71,7 +77,7 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
                 onTap: ref
                     .read(myTrabScreenControllerProvider.notifier)
                     .handleTapSnack,
-                text: "간식",
+                text: AppStrings.snack,
                 icon: AppSvgs.snackIcon),
           ),
 
@@ -79,15 +85,31 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
           Positioned(
             top: 244.h,
             child: houseNameWidget(
-              controller: _nameController,
+              // onTapOutside: ref.read(trabControllerProvider.notifier).postTrab(data: data),
+              controller: textEditingController,
             ),
           ),
 
           //버블 텍스트
           Positioned(
             top: 605.h,
-            child: customBubbleText(ref),
-          )
+            child: customBubbleText(
+              dir: "top",
+              trabSay: trabSay,
+              onTap:
+                  ref.read(myTrabScreenControllerProvider.notifier).getTrabSay,
+            ),
+          ),
+          Positioned(
+            top: 332.h,
+            left: 0,
+            right: 0,
+            bottom: 158.h,
+            child: SizedBox(
+                width: 148.w,
+                height: 221.w,
+                child: Image.asset(AppImages.myTrabDefault)),
+          ),
         ],
       ),
     );

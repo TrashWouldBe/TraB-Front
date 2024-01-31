@@ -1,22 +1,23 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:trab_front/feature/auth/presentation/view/complete_set_trab_name_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/complete_set_trab_name_screen.dart';
 import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
-import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/set_trab_name_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
 import 'package:trab_front/feature/common/view/splash_screen.dart';
 import 'package:trab_front/feature/mytrab/presentation/view/mytrab_furniture_screen.dart';
 import 'package:trab_front/feature/mytrab/presentation/view/mytrab_snack_screen.dart';
 import 'package:trab_front/feature/onBoarding/presentation/view/trab_onboarding_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_mytrab_snack_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_calculate_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_count_down_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_end_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_stop_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_timer_screen.dart';
-import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
-import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/user_info_input_screen.dart';
 import 'package:trab_front/feature/setting/presentation/view/plogging_record_screen.dart';
 
@@ -37,8 +38,6 @@ class Routes {
 
   static const String LoginScreenRoute = '/auth/login';
 
-  static const String SetTrabNameScreenRoute = '/auth/set-trab-name';
-
   static const String CompleteSetTrabNameScreenRoute =
       '/auth/complete-set-trab-name';
 
@@ -56,6 +55,8 @@ class Routes {
 
   static const String UserInfoInputScreenRoute = '/plogging/user-info-input';
 
+  static const String PloggingMyTrabSnackScreenRoute = '/plogging/mytrab-snack';
+
   static const String HomeScreenRoute = '/home';
 
   static const String PloggingRecordScreenRoute = '/setting/plogging-record';
@@ -68,6 +69,7 @@ class Routes {
 
   static const String MyTrabSnackScreenRoute = '/mytrab/snack';
 
+  static const String SetTrabNameScreenRoute = '/mytrab/set-trab-name';
   static final Map<String, Widget Function()> _routesMap = {
     AppStartupScreenRoute: () => const SplashScreen(),
     LoginScreenRoute: () => const LogInScreen(),
@@ -80,6 +82,7 @@ class Routes {
     PloggingEndScreenRoute: () => const PloggingEndScreen(),
     PloggingRecordScreenRoute: () => const PloggingRecordScreen(),
     PloggingCalculateScreenRoute: () => const PloggingCalculateScreen(),
+    PloggingMyTrabSnackScreenRoute: () => const PloggingMyTrabSnackScreen(),
     SortedTrashScreenRoute: () => const SortedTrashScreen(),
     EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
     SetTrabNameScreenRoute: () => const SetTrabNameScreen(),

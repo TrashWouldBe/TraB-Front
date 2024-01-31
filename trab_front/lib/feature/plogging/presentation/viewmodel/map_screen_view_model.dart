@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:geolocator/geolocator.dart' as geo;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:trab_front/feature/common/widget/loading.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+
 part 'map_screen_view_model.g.dart';
 
 class MapScreenState {
@@ -28,7 +31,8 @@ class MapScreenController extends _$MapScreenController {
     return MapScreenState(
       mapController: null,
       polylines: {},
-      currentLocation: const LatLng(37.555922776159356, 127.04933257899165),
+      currentLocation:
+          const LatLng(37.555922776159356, 127.04933257899165), //한양대학교
       polylineCoordinates: [],
     );
   }
@@ -51,6 +55,7 @@ class MapScreenController extends _$MapScreenController {
     bool serviceEnabled;
     PermissionStatus permissionGranted;
 
+    // 위치 서비스 활성화
     serviceEnabled = await location.serviceEnabled();
     if (!serviceEnabled) {
       serviceEnabled = await location.requestService();
@@ -67,15 +72,15 @@ class MapScreenController extends _$MapScreenController {
       }
     }
 
-    await location.enableBackgroundMode(enable: true);
-
+    // 초기 위치 설정
     getInitialLocation();
+
+    // 백그라운드 모드 활성화
+    await location.enableBackgroundMode(enable: true);
   }
 
   void getInitialLocation() async {
-    Location location = Location();
-    final currentLocation = await location.getLocation();
-
+    final currentLocation = await geo.Geolocator.getCurrentPosition();
     if (state.mapController != null) {
       state.mapController!.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -96,31 +101,39 @@ class MapScreenController extends _$MapScreenController {
         return;
       }
     }
-    locationSubscription =
-        location.onLocationChanged.listen((LocationData currentLocation) {
-      LatLng newPosition =
-          LatLng(currentLocation.latitude!, currentLocation.longitude!);
-      if (state.currentLocation != newPosition) {
-        state.currentLocation = newPosition;
 
-        state.polylineCoordinates.add(newPosition);
+    Loading.show();
+
+    bool changeSettings = await location.changeSettings(
+      accuracy: LocationAccuracy.high,
+      interval: 1000,
+      distanceFilter: 10,
+    );
+
+    if (changeSettings) {
+      locationSubscription =
+          location.onLocationChanged.listen((LocationData currentLocation) {
+        LatLng newPosition =
+            LatLng(currentLocation.latitude!, currentLocation.longitude!);
         ref.read(ploggingInfoControllerProvider.notifier).calculateDistance(
               lastPosition: state.currentLocation,
               newPosition: newPosition,
             );
-
+        state.polylineCoordinates.add(newPosition);
         Polyline polyline = Polyline(
           polylineId: const PolylineId('poly'),
           visible: true,
           points: state.polylineCoordinates,
-          width: 5,
+          width: 7,
           color: AppColors.primaryColor,
         );
         state.polylines = {polyline};
 
         setState();
-      }
-    });
+      });
+    }
+
+    Loading.close();
   }
 
   void clearPolylines() {

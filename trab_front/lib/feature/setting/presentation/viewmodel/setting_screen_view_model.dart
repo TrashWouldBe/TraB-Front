@@ -25,13 +25,8 @@ class SettingScreenController extends _$SettingScreenController {
     AppRouter.pushNamed(Routes.PloggingRecordScreenRoute);
   }
 
-  void init() async {
-    await ref.read(userControllerProvider.notifier).getUserInfo();
-  }
-
-  Future<void> getImage(
-      {required ImageSource imageSource, required context}) async {
-    showLoading(context: context);
+  Future<void> getImage({required ImageSource imageSource}) async {
+    Loading.show();
     final image = await ImagePicker().pickImage(source: imageSource);
     if (image != null) {
       File img = File(image.path);
@@ -40,7 +35,7 @@ class SettingScreenController extends _$SettingScreenController {
           .patchUserImage(file: img.path);
     }
 
-    closeLoading(context: context);
-    Navigator.pop(context);
+    Loading.close();
+    AppRouter.pop();
   }
 }

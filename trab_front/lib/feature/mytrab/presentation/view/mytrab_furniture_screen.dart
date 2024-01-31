@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
+import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/furniture_item.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/noti_arrange_furn.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/noti_want_to_purchase.dart';
@@ -22,12 +23,22 @@ class MyTrabFurnitureScreen extends ConsumerStatefulWidget {
 
 class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(trabControllerProvider.notifier).getTrabFunitureList();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.subColor,
       appBar: CustomAppBar(
         title: "가구 둘러보기",
         titleColor: AppColors.body1,
+        leadingColor: AppColors.body1,
         backgroundColor: AppColors.subColor,
       ),
       body: Column(

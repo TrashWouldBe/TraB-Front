@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/classified_photo_widget.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/total_count_container.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/trab_snack_info_container.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 class MyTrabSnackScreen extends ConsumerStatefulWidget {
   const MyTrabSnackScreen({super.key});
@@ -19,11 +21,20 @@ class MyTrabSnackScreen extends ConsumerStatefulWidget {
 
 class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(trabControllerProvider.notifier).getTrabSnackTrashList();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "내가 주운 트래비 간식",
+          AppStrings.myTrabSnacks,
           style:
               AppTypography.headline_3.copyWith(color: AppColors.textColor_1),
         ),
@@ -61,7 +72,7 @@ class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
                 itemCount: 8,
                 itemBuilder: (context, index) {
                   return classifiedPhotoWidget(
-                      item: "vinyl", img: AppImages.appleLogin);
+                      index: index, item: "vinyl", img: AppImages.appleLogin);
                 },
               ),
             )

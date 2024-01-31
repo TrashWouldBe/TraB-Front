@@ -55,6 +55,18 @@ class ApiEndpoint {
     switch (endpoint) {
       case TrabEndpoint.TRAB:
         return '$path';
+      case TrabEndpoint.FUNITURE:
+        return '$path/furniture';
+      case TrabEndpoint.FUNITURE_LIST:
+        return '$path/furniture/list';
+      case TrabEndpoint.FUNITURE_INFO:
+        return '$path/furniture/info';
+      case TrabEndpoint.FUNITURE_ARRANGED:
+        return '$path/furniture/arranged';
+      case TrabEndpoint.SNACK:
+        return '$path/snack';
+      case TrabEndpoint.SNACK_TRASH_LIST:
+        return '$path/snack/trashList';
     }
   }
 }
@@ -81,4 +93,10 @@ enum PloggingEndpoint {
 
 enum TrabEndpoint {
   TRAB,
+  FUNITURE,
+  FUNITURE_LIST,
+  FUNITURE_INFO,
+  FUNITURE_ARRANGED,
+  SNACK,
+  SNACK_TRASH_LIST,
 }

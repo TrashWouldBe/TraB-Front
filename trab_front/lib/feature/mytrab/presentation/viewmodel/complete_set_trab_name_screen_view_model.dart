@@ -17,6 +17,6 @@ class CompleteSetTrabNameScreenController
   }
 
   void handlePressedContainerButton() {
-    AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
+    AppRouter.pushNamed(Routes.HomeScreenRoute);
   }
 }

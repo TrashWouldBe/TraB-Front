@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:trab_front/config/routes/app_router.dart';
 
-void showLoading({required BuildContext context}) {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (context) => const Center(child: CircularProgressIndicator()),
-  );
-}
+@immutable
+class Loading {
+  const Loading._();
+  static void show() {
+    showDialog(
+      context: AppRouter.navigatorKey.currentContext!,
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
+  }
 
-void closeLoading({required BuildContext context}) {
-  Navigator.pop(context);
+  static void close() {
+    AppRouter.pop();
+  }
 }
