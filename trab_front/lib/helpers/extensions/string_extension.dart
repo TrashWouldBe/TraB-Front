@@ -64,6 +64,22 @@ extension StringExt on String {
     return "$newMinutes:$newSeconds";
   }
 
+  int getMinutes() {
+    List<String> parts = this.split(':');
+
+    int minutes = int.tryParse(parts[0]) ?? 0;
+
+    return minutes;
+  }
+
+  int getSeconds() {
+    List<String> parts = this.split(':');
+
+    int seconds = int.tryParse(parts[1]) ?? 0;
+
+    return seconds;
+  }
+
   String get getDateUpperString =>
       DateTime.parse('20$this').getCurrentDateFormatted().toUpperCase();
 }

@@ -75,9 +75,9 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                       width: 183.w,
                       height: 45.h,
                     ),
-                    onPressed: () => ref
+                    onPressed: ref
                         .read(loginScreenControllerProvider.notifier)
-                        .socialSignInWithKakao(context: context),
+                        .socialSignInWithKakao,
                   ),
                   SizedBox(
                     height: 13.h,
@@ -88,9 +88,9 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                       width: 183.w,
                       height: 45.h,
                     ),
-                    onPressed: () => ref
+                    onPressed: ref
                         .read(loginScreenControllerProvider.notifier)
-                        .socialSignInWithGoogle(context: context),
+                        .socialSignInWithGoogle,
                   ),
                   SizedBox(
                     height: 13.h,
@@ -101,9 +101,9 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                       width: 183.w,
                       height: 45.h,
                     ),
-                    onPressed: () => ref
+                    onPressed: ref
                         .read(loginScreenControllerProvider.notifier)
-                        .socialSignInWithApple(context: context),
+                        .socialSignInWithApple,
                   )
                 ],
               ),

@@ -53,6 +53,21 @@ class DioService {
     return ResponseModel<R>.fromJson(response.data!);
   }
 
+  Future<ResponseModel<R>> postWithImage<R>({
+    required String endpoint,
+    FormData? data,
+    Options? options,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    final response = await _dio.post<JSON>(
+      endpoint,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+    );
+    return ResponseModel<R>.fromJson(response.data!);
+  }
+
   Future<ResponseModel<R>> patch<R>({
     required String endpoint,
     JSON? data,

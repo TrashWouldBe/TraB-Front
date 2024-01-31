@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +6,7 @@ import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/feature/plogging/presentation/types.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/map_screen_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_end_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/plogging_end_text_field.dart';
@@ -26,22 +25,14 @@ class PloggingEndScreen extends ConsumerStatefulWidget {
 
 class _PloggingEndScreenState extends ConsumerState<PloggingEndScreen> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
-  }
-
-  @override
   Widget build(BuildContext context) {
-    List<File> _snacks = ref.watch(ploggingInfoControllerProvider).trabSnacks;
-    String _time = ref.watch(ploggingInfoControllerProvider).time;
-    double _distance = ref.watch(ploggingInfoControllerProvider).distance;
+    PloggingInfo ploggingInfo =
+        ref.watch(ploggingInfoControllerProvider).ploggingInfo;
+    TextEditingController textEditingController =
+        ref.watch(ploggingEndScreenControllerProvider).textEditingController;
+    MapScreen mapScreen = ref.watch(mapScreenControllerProvider).mapScreen;
     return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: PopScope(
         canPop: false,
         child: Scaffold(
@@ -52,11 +43,9 @@ class _PloggingEndScreenState extends ConsumerState<PloggingEndScreen> {
             systemOverlayStyle: SystemUiOverlayStyle.light,
             titleColor: AppColors.body1,
             leadingColor: AppColors.body1,
-            onPressedLeading: () {
-              ref
-                  .read(ploggingEndScreenControllerProvider.notifier)
-                  .handlePressedAppBarButton(context: context);
-            },
+            onPressedLeading: () => ref
+                .read(ploggingEndScreenControllerProvider.notifier)
+                .handlePressedAppBarButton(context: context),
           ),
           body: Padding(
             padding: EdgeInsets.only(top: 20.h),
@@ -70,7 +59,8 @@ class _PloggingEndScreenState extends ConsumerState<PloggingEndScreen> {
                   ),
                 ),
               ),
-              child: Column(
+              child: ListView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 34.w),
@@ -80,17 +70,14 @@ class _PloggingEndScreenState extends ConsumerState<PloggingEndScreen> {
                         SizedBox(
                           height: 34.h,
                         ),
-                        ploggingEndTextField(),
+                        ploggingEndTextField(
+                            textEditingController: textEditingController),
                         ploggingEndInfo(
-                            snack: _snacks.length.toString(),
-                            calorie: "0",
-                            time: _time,
-                            distance: _distance.toStringAsFixed(2),
-                            type: InfoType.end),
+                            ploggingInfo: ploggingInfo, type: InfoType.end),
                       ],
                     ),
                   ),
-                  SizedBox(height: 300.h, child: const MapScreen()),
+                  SizedBox(height: 300.h, child: mapScreen),
                   SizedBox(
                     height: 28.h,
                   ),
