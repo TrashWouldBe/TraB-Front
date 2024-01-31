@@ -7,4 +7,5 @@ class AppGifs {
   const AppGifs._();
 
   static String runTrab = "$basePath/run_trab.gif";
+  static String eatTrab = "$basePath/eat_trab.gif";
 }

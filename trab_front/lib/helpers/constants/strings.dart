@@ -45,6 +45,8 @@ class AppStrings {
 
   static String cameraExpain = "내가 주운 쓰레기를 촬영해\n분리배출 방법을 알아볼까요?";
 
+  static String seeMyTrabSnacks = "내가 주운 트래비 간식 보러가기";
+
   static String ploggingRecord = "플로깅 기록";
 
   static String myTrab = "마이 트래비";
@@ -114,6 +116,8 @@ class AppStrings {
   static String furnitureT = "가구";
 
   static String snackT = "간식";
+
+  static String end = "종료하기";
 
   static String trabHouseT = "의 트래비 하우스";
 }

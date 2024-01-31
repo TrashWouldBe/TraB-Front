@@ -7,7 +7,9 @@ import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/no_padding_button.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_gifs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 class PloggingCalculateScreen extends ConsumerStatefulWidget {
   const PloggingCalculateScreen({super.key});
@@ -30,15 +32,23 @@ class _PloggingCalculateScreenState
           child: Column(
             children: [
               SizedBox(
-                height: 530.h,
+                height: 98.h,
               ),
-              containerButton(title: "내가 주운 트래비 간식 보러가기"),
+              SizedBox(
+                height: 366.h,
+                width: 306.w,
+                child: Image.asset(AppGifs.eatTrab),
+              ),
+              SizedBox(
+                height: 63.h,
+              ),
+              containerButton(title: AppStrings.seeMyTrabSnacks),
               SizedBox(
                 height: 20.h,
               ),
               noPaddingButton(
                 child: Text(
-                  "종료하기",
+                  AppStrings.end,
                   style: AppTypography.body.copyWith(color: AppColors.grey1),
                 ),
                 onPressed: () {

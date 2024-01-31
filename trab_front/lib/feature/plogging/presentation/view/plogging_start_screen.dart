@@ -68,11 +68,7 @@ class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
                   shrinkWrap: true,
                   itemCount: 2,
                   itemBuilder: (BuildContext context, int index) {
-                    if (index == selectedPage) {
-                      return pageIndicator(selectedPage: index, itemCount: 2);
-                    } else {
-                      return pageIndicator(selectedPage: index, itemCount: 2);
-                    }
+                    return pageIndicator(selectedPage: index, itemCount: 2);
                   },
                 )),
           ),
