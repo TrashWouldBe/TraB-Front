@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/classified_photo_widget.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/total_count_container.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/trab_snack_info_container.dart';
@@ -19,6 +20,15 @@ class MyTrabSnackScreen extends ConsumerStatefulWidget {
 }
 
 class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(trabControllerProvider.notifier).getTrabSnackTrashList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

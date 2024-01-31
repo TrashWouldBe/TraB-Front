@@ -21,4 +21,5 @@ class AppImages {
       "$basePath/set_trab_name_background.png";
   static String nameSettingCompleteBackggound =
       "$basePath/name_setting_complete_background.png";
+  static String myTrabDefault = "$basePath/my_trab_default.png";
 }

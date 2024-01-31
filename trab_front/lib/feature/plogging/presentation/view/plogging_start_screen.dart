@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/common/widget/no_padding_button.dart';
 import 'package:trab_front/feature/common/widget/page_indicator.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
-import 'package:trab_front/feature/plogging/presentation/viewmodel/map_screen_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_start_screen_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/plogging_tips.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
@@ -28,7 +27,7 @@ class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
   Widget build(BuildContext context) {
     int selectedPage =
         ref.watch(ploggingStartScreenControllerProvider).selectedPage;
-    MapScreen mapScreen = ref.watch(mapScreenControllerProvider).mapScreen;
+    MapScreen mapScreen = ref.read(mapScreenProvider);
     return SafeArea(
       top: Platform.isAndroid ? true : false,
       child: Stack(

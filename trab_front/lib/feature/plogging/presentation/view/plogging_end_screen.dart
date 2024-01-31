@@ -6,7 +6,6 @@ import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/feature/plogging/presentation/types.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
-import 'package:trab_front/feature/plogging/presentation/viewmodel/map_screen_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_end_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/plogging_end_text_field.dart';
@@ -30,7 +29,7 @@ class _PloggingEndScreenState extends ConsumerState<PloggingEndScreen> {
         ref.watch(ploggingInfoControllerProvider).ploggingInfo;
     TextEditingController textEditingController =
         ref.watch(ploggingEndScreenControllerProvider).textEditingController;
-    MapScreen mapScreen = ref.watch(mapScreenControllerProvider).mapScreen;
+    MapScreen mapScreen = ref.watch(mapScreenProvider);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: PopScope(

@@ -32,3 +32,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     );
   }
 }
+
+final mapScreenProvider = Provider<MapScreen>((ref) {
+  return const MapScreen();
+});

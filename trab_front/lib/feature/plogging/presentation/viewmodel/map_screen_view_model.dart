@@ -5,9 +5,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/feature/common/widget/loading.dart';
-import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+
 part 'map_screen_view_model.g.dart';
 
 class MapScreenState {
@@ -15,14 +15,12 @@ class MapScreenState {
   Set<Polyline> polylines;
   LatLng currentLocation;
   List<LatLng> polylineCoordinates;
-  MapScreen mapScreen;
 
   MapScreenState({
     required this.mapController,
     required this.polylines,
     required this.currentLocation,
     required this.polylineCoordinates,
-    required this.mapScreen,
   });
 }
 
@@ -31,7 +29,6 @@ class MapScreenController extends _$MapScreenController {
   @override
   MapScreenState build() {
     return MapScreenState(
-      mapScreen: const MapScreen(),
       mapController: null,
       polylines: {},
       currentLocation:
@@ -45,7 +42,6 @@ class MapScreenController extends _$MapScreenController {
 
   void setState() {
     state = MapScreenState(
-      mapScreen: state.mapScreen,
       mapController: state.mapController,
       polylines: state.polylines,
       currentLocation: state.currentLocation,
@@ -54,7 +50,6 @@ class MapScreenController extends _$MapScreenController {
   }
 
   void onMapCreated(GoogleMapController controller) async {
-    Loading.show();
     state.mapController = controller;
 
     bool serviceEnabled;
@@ -82,13 +77,10 @@ class MapScreenController extends _$MapScreenController {
 
     // 백그라운드 모드 활성화
     await location.enableBackgroundMode(enable: true);
-
-    Loading.close();
   }
 
   void getInitialLocation() async {
     final currentLocation = await geo.Geolocator.getCurrentPosition();
-
     if (state.mapController != null) {
       state.mapController!.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(

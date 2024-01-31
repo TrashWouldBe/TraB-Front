@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trab_front/helpers/constants/app_colors.dart';
+import 'package:trab_front/helpers/constants/app_gifs.dart';
 
 Widget trabContainer() {
   return Container(
@@ -8,8 +10,8 @@ Widget trabContainer() {
     decoration: ShapeDecoration(
       color: Colors.white,
       shape: RoundedRectangleBorder(
-        side: BorderSide(width: 2, color: Color(0xFF73C27A)),
-        borderRadius: BorderRadius.circular(40),
+        side: BorderSide(width: 2.w, color: AppColors.subColor),
+        borderRadius: BorderRadius.circular(40.r),
       ),
       shadows: const [
         BoxShadow(
@@ -41,8 +43,11 @@ Widget trabContainer() {
           blurRadius: 39,
           offset: Offset(0, 139),
           spreadRadius: 0,
-        )
+        ),
       ],
+    ),
+    child: Image.asset(
+      AppGifs.jumpTrab,
     ),
   );
 }

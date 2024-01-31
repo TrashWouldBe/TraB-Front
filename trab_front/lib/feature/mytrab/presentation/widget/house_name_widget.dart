@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,7 +8,8 @@ import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
-SizedBox houseNameWidget({required TextEditingController controller}) {
+SizedBox houseNameWidget(
+    {required TextEditingController controller, onTapOutside}) {
   return SizedBox(
     width: 390.w,
     child: Row(
@@ -40,10 +43,15 @@ SizedBox houseNameWidget({required TextEditingController controller}) {
                     controller: controller,
                     onTapOutside: (_) {
                       FocusManager.instance.primaryFocus?.unfocus();
+                      onTapOutside();
                     },
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(bottom: 18.h, top: 18.h),
+                      contentPadding: Platform.isAndroid
+                          ? EdgeInsets.only(bottom: 18.h, top: 18.h)
+                          : EdgeInsets.only(
+                              bottom: 19.w,
+                            ),
                       border: InputBorder.none,
                       prefixIcon: Padding(
                         padding: EdgeInsets.symmetric(
