@@ -27,11 +27,12 @@ class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
   Widget build(BuildContext context) {
     int selectedPage =
         ref.watch(ploggingStartScreenControllerProvider).selectedPage;
+    MapScreen mapScreen = ref.read(mapScreenProvider);
     return SafeArea(
       top: Platform.isAndroid ? true : false,
       child: Stack(
         children: [
-          const MapScreen(),
+          mapScreen,
           Positioned(
             top: -350.h,
             bottom: 0,

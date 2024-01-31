@@ -1,17 +1,20 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trab_front/feature/mytrab/presentation/viewmodel/mytrab_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-Widget customBubbleText(WidgetRef ref) {
-  String trabSay = ref.watch(myTrabScreenControllerProvider).trabSay;
-
+/*
+  dir: top, bottom
+*/
+Widget customBubbleText({
+  required String trabSay,
+  required onTap,
+  String dir = "bottom",
+}) {
   return GestureDetector(
     behavior: HitTestBehavior.translucent,
-    onTap: ref.read(myTrabScreenControllerProvider.notifier).getTrabSay,
+    onTap: onTap,
     child: SizedBox(
       width: 390.w,
       child: Row(
@@ -20,28 +23,26 @@ Widget customBubbleText(WidgetRef ref) {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 40,
+              if (dir == "top")
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 40.w,
+                  ),
+                  child: CustomPaint(
+                    size: Size(30.14.w, 12.24.h),
+                    painter: TrianglePainter(),
+                  ),
                 ),
-                child: CustomPaint(
-                  size: Size(30.14.w, 12.24.h),
-                  painter: TrianglePainter(),
-                ),
-              ),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 8.h),
                 alignment: Alignment.center,
                 height: 41.66.h,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: BorderRadius.circular(100.r),
                     color: AppColors.accentColor),
                 child: AnimatedTextKit(
                   key: ValueKey(trabSay),
-                  onTap: ref
-                      .read(myTrabScreenControllerProvider.notifier)
-                      .getTrabSay,
+                  onTap: onTap,
                   repeatForever: false,
                   totalRepeatCount: 1,
                   animatedTexts: [
@@ -52,7 +53,15 @@ Widget customBubbleText(WidgetRef ref) {
                     )
                   ],
                 ),
-              )
+              ),
+              if (dir == "bottom")
+                Padding(
+                  padding: EdgeInsets.only(left: 150.w),
+                  child: CustomPaint(
+                    size: Size(22.w, 10.h),
+                    painter: SlantedTrianglePainter(),
+                  ),
+                ),
             ],
           ),
           const Spacer()
@@ -82,4 +91,24 @@ class TrianglePainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
+}
+
+class SlantedTrianglePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = AppColors.accentColor
+      ..style = PaintingStyle.fill;
+
+    final path = Path()
+      ..moveTo(size.width, 0)
+      ..lineTo(0, size.height)
+      ..lineTo(3.w, 0)
+      ..close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

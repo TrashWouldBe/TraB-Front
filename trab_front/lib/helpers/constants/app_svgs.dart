@@ -14,6 +14,7 @@ class AppSvgs {
   static String leftArrow = "$basePath/left_arrow.svg";
   static String rightCursor = "$basePath/right_cursor.svg";
   static String rightArraw = "$basePath/right_arrow.svg";
+
   static String plogging = "$basePath/plogging.svg";
   static String edit = "$basePath/edit.svg";
   static String trabReverse = "$basePath/trab_reverse.svg";

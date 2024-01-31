@@ -25,6 +25,13 @@ abstract class ApiInterface {
     required T Function(ResponseModel<JSON> response) converter,
   });
 
+  Future<T> setDataWithImage<T>({
+    required String endpoint,
+    required FormData data,
+    Map<String, dynamic> queryParams,
+    required T Function(ResponseModel<JSON> response) converter,
+  });
+
   Future<T> updateData<T>({
     required String endpoint,
     required JSON data,

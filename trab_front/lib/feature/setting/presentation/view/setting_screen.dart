@@ -26,14 +26,6 @@ class SettingScreen extends ConsumerStatefulWidget {
 
 class _SettingScreenState extends ConsumerState<SettingScreen> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(settingScreenControllerProvider.notifier).init();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     UserInfoModel? userInfo = ref.watch(userControllerProvider).userInfo;
     return SafeArea(
@@ -49,13 +41,11 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
                         .read(settingScreenControllerProvider.notifier)
                         .getImage(
                           imageSource: ImageSource.gallery,
-                          context: context,
                         ),
                     camera: () async => await ref
                         .read(settingScreenControllerProvider.notifier)
                         .getImage(
                           imageSource: ImageSource.camera,
-                          context: context,
                         ),
                     context: context);
               }),

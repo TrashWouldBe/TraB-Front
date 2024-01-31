@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -35,10 +34,9 @@ class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String time = ref.watch(ploggingInfoControllerProvider).time;
-    List<File> snacks = ref.watch(ploggingInfoControllerProvider).trabSnacks;
+    PloggingInfo ploggingInfo =
+        ref.watch(ploggingInfoControllerProvider).ploggingInfo;
     bool isPlogging = ref.watch(ploggingInfoControllerProvider).isPlogging;
-    double distance = ref.watch(ploggingInfoControllerProvider).distance;
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -76,10 +74,7 @@ class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
                   height: 40.h,
                 ),
                 ploggingTimerInfos(
-                  snack: snacks.length.toString(),
-                  calorie: "0",
-                  time: time,
-                  distance: distance.toStringAsFixed(2),
+                  ploggingInfo: ploggingInfo,
                   type: InfoType.timer,
                 ),
                 SizedBox(
