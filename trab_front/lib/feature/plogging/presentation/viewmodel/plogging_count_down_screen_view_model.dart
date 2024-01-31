@@ -42,6 +42,6 @@ class PloggingCountDownScreenController
 
   void navigateToNextScreen() {
     state.count = 3;
-    AppRouter.pushAndRemoveUntil(Routes.PloggingTimerScreenRoute);
+    AppRouter.pushNamed(Routes.PloggingTimerScreenRoute);
   }
 }

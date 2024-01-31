@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/viewmodel/map_screen_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_stop_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 
@@ -18,7 +19,6 @@ class PloggingStopScreen extends ConsumerStatefulWidget {
 class _PloggingStopScreenState extends ConsumerState<PloggingStopScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -30,6 +30,7 @@ class _PloggingStopScreenState extends ConsumerState<PloggingStopScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MapScreen mapScreen = ref.watch(mapScreenControllerProvider).mapScreen;
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
@@ -45,7 +46,7 @@ class _PloggingStopScreenState extends ConsumerState<PloggingStopScreen> {
             topLeft: Radius.circular(50.r),
             topRight: Radius.circular(50.r),
           ),
-          child: const MapScreen(),
+          child: mapScreen,
         ),
       ),
     );

@@ -50,6 +50,16 @@ class MyTrabScreenController extends _$MyTrabScreenController {
     setState();
   }
 
+  void getTrabEattingSay() {
+    final int randomSay = Random().nextInt(2);
+    if (randomSay == 0) {
+      state.trabSay = "너무 맛있어요!";
+    } else if (randomSay == 1) {
+      state.trabSay = "너무 고마워요!";
+    }
+    setState();
+  }
+
   void handleTapFurniture() {
     AppRouter.pushNamed(Routes.MyTrabFurnitureScreenRoute);
   }

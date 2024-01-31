@@ -47,6 +47,8 @@ class AppStrings {
 
   static String seeMyTrabSnacks = "내가 주운 트래비 간식 보러가기";
 
+  static String myTrabSnacks = "내가 주운 트래비 간식";
+
   static String ploggingRecord = "플로깅 기록";
 
   static String myTrab = "마이 트래비";

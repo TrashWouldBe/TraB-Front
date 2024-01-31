@@ -17,7 +17,6 @@ class TrabOnBoardingScreen extends ConsumerStatefulWidget {
 class _TrabOnBoardingScreenState extends ConsumerState<TrabOnBoardingScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(trabOnBoardingScreenControllerProvider.notifier).init();
@@ -47,11 +46,9 @@ class _TrabOnBoardingScreenState extends ConsumerState<TrabOnBoardingScreen> {
             backgroundColor: AppColors.backgroundColor,
             trailingColor:
                 selectedIndex == 2 ? AppColors.primaryColor : AppColors.grey1,
-            onPressedTrailing: () => ref
+            onPressedTrailing: ref
                 .read(trabOnBoardingScreenControllerProvider.notifier)
-                .handlePressedTrailing(
-                  context: context,
-                ),
+                .handlePressedTrailing,
           ),
           body: SafeArea(
             child: PageView.builder(

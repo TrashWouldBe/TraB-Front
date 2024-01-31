@@ -3,11 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/feature/mytrab/presentation/viewmodel/mytrab_view_model.dart';
-import 'package:trab_front/feature/mytrab/presentation/widget/custom_bubble_text.dart';
+import 'package:trab_front/feature/common/widget/custom_bubble_text.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/house_name_widget.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/iconbtn.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
 class MyTrabScreen extends ConsumerStatefulWidget {
   const MyTrabScreen({super.key});
@@ -29,6 +30,7 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String trabSay = ref.watch(myTrabScreenControllerProvider).trabSay;
     return Container(
       color: AppColors.lightPrimaryColor,
       child: Stack(
@@ -61,7 +63,7 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
                 onTap: ref
                     .read(myTrabScreenControllerProvider.notifier)
                     .handleTapFurniture,
-                text: "가구",
+                text: AppStrings.furnitureT,
                 icon: AppSvgs.furnitureIcon),
           ),
           Positioned(
@@ -71,7 +73,7 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
                 onTap: ref
                     .read(myTrabScreenControllerProvider.notifier)
                     .handleTapSnack,
-                text: "간식",
+                text: AppStrings.snack,
                 icon: AppSvgs.snackIcon),
           ),
 
@@ -86,7 +88,11 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
           //버블 텍스트
           Positioned(
             top: 605.h,
-            child: customBubbleText(ref),
+            child: customBubbleText(
+              trabSay: trabSay,
+              onTap:
+                  ref.read(myTrabScreenControllerProvider.notifier).getTrabSay,
+            ),
           )
         ],
       ),

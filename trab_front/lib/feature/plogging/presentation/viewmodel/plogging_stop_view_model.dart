@@ -5,6 +5,7 @@ import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/plogging_stop_modal_info.dart';
+
 part 'plogging_stop_view_model.g.dart';
 
 class PloggingStopState {
@@ -24,7 +25,7 @@ class PloggingStopController extends _$PloggingStopController {
   }
 
   void handlePressedStopButton() {
-    AppRouter.pushAndRemoveUntil(Routes.PloggingEndScreenRoute);
+    AppRouter.pushNamed(Routes.PloggingEndScreenRoute);
   }
 
   void showTrabInfos({
@@ -43,17 +44,7 @@ class PloggingStopController extends _$PloggingStopController {
       ),
       builder: (BuildContext context) {
         return trabModalInfos(
-          snack: ref
-              .read(ploggingInfoControllerProvider)
-              .trabSnacks
-              .length
-              .toString(),
-          calorie: "0",
-          time: ref.read(ploggingInfoControllerProvider).time,
-          distance: ref
-              .read(ploggingInfoControllerProvider)
-              .distance
-              .toStringAsFixed(2),
+          ploggingInfo: ref.read(ploggingInfoControllerProvider).ploggingInfo,
           onPressedStartButton: handlePressedStartButton,
           onPressedStopButton: handlePressedStopButton,
         );

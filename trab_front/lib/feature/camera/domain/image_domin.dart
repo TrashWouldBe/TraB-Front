@@ -27,14 +27,16 @@ class ImageController extends _$ImageController {
     );
   }
 
-  Future<void> postImage({required file}) async {
+  Future<void> postImage({required String file}) async {
     try {
-      FormData formData = FormData.fromMap({
-        'image': await MultipartFile.fromFile(
-          file,
-          filename: 'image.png',
-        )
-      });
+      FormData formData = FormData.fromMap(
+        {
+          'image': await MultipartFile.fromFile(
+            file,
+            filename: 'image.png',
+          )
+        },
+      );
       await state.imageDataSource.postImage(data: formData);
     } catch (error) {
       print(error);

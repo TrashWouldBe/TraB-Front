@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/common/widget/no_padding_button.dart';
+import 'package:trab_front/feature/plogging/presentation/types.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
@@ -8,10 +9,7 @@ import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/dateTime_extension.dart';
 
 Widget trabModalInfos({
-  required snack,
-  required calorie,
-  required time,
-  required distance,
+  required PloggingInfo ploggingInfo,
   required onPressedStartButton,
   required onPressedStopButton,
 }) {
@@ -42,7 +40,7 @@ Widget trabModalInfos({
                   child: Column(
                     children: [
                       Text(
-                        snack,
+                        ploggingInfo.images.length.toString(),
                         textAlign: TextAlign.center,
                         style: AppTypography.body
                             .copyWith(color: AppColors.textColor_2),
@@ -70,7 +68,7 @@ Widget trabModalInfos({
                   child: Column(
                     children: [
                       Text(
-                        calorie,
+                        ploggingInfo.calorie.toString(),
                         textAlign: TextAlign.center,
                         style: AppTypography.body
                             .copyWith(color: AppColors.textColor_2),
@@ -98,7 +96,7 @@ Widget trabModalInfos({
                   child: Column(
                     children: [
                       Text(
-                        time,
+                        ploggingInfo.runTime,
                         textAlign: TextAlign.center,
                         style: AppTypography.body
                             .copyWith(color: AppColors.textColor_2),
@@ -126,7 +124,7 @@ Widget trabModalInfos({
             height: 10.h,
           ),
           Text(
-            distance,
+            ploggingInfo.runRange.toStringAsFixed(2),
             style: AppTypography.headline_2.copyWith(
               color: AppColors.textColor_2,
               height: 0.h,

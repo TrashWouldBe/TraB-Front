@@ -54,10 +54,11 @@ class UserInfoInputScreenController extends _$UserInfoInputScreenController {
         },
       ),
     );
+    setState();
   }
 
-  void handlePressedContainerButton({required BuildContext context}) async {
-    showLoading(context: context);
+  void handlePressedContainerButton() async {
+    Loading.show();
     await ref.read(userControllerProvider.notifier).postUserInfo(
           data: UserInfo(
             name: state.textEditingController[0].text == AppStrings.empty
@@ -66,7 +67,7 @@ class UserInfoInputScreenController extends _$UserInfoInputScreenController {
             weight: int.tryParse(state.textEditingController[1].text),
           ),
         );
-    closeLoading(context: context);
-    AppRouter.pushAndRemoveUntil(Routes.PloggingCountDownScreenRoute);
+    Loading.close();
+    AppRouter.pushNamed(Routes.PloggingCountDownScreenRoute);
   }
 }

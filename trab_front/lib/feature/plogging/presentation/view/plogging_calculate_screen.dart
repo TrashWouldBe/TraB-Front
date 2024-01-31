@@ -32,7 +32,7 @@ class _PloggingCalculateScreenState
           child: Column(
             children: [
               SizedBox(
-                height: 98.h,
+                height: 150.h,
               ),
               SizedBox(
                 height: 366.h,
@@ -42,7 +42,12 @@ class _PloggingCalculateScreenState
               SizedBox(
                 height: 63.h,
               ),
-              containerButton(title: AppStrings.seeMyTrabSnacks),
+              containerButton(
+                title: AppStrings.seeMyTrabSnacks,
+                onPressed: () {
+                  AppRouter.pushNamed(Routes.PloggingMyTrabSnackScreenRoute);
+                },
+              ),
               SizedBox(
                 height: 20.h,
               ),
@@ -53,7 +58,7 @@ class _PloggingCalculateScreenState
                 ),
                 onPressed: () {
                   ref.read(ploggingInfoControllerProvider.notifier).endTimer();
-                  AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
+                  AppRouter.pushNamed(Routes.HomeScreenRoute);
                 },
               ),
             ],

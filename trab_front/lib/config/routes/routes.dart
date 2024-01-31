@@ -12,6 +12,7 @@ import 'package:trab_front/feature/mytrab/presentation/view/mytrab_snack_screen.
 import 'package:trab_front/feature/onBoarding/presentation/view/trab_onboarding_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/home/presentation/view/home_screen.dart';
+import 'package:trab_front/feature/plogging/presentation/view/plogging_mytrab_snack_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_calculate_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_count_down_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_end_screen.dart';
@@ -56,6 +57,8 @@ class Routes {
 
   static const String UserInfoInputScreenRoute = '/plogging/user-info-input';
 
+  static const String PloggingMyTrabSnackScreenRoute = '/plogging/mytrab-snack';
+
   static const String HomeScreenRoute = '/home';
 
   static const String PloggingRecordScreenRoute = '/setting/plogging-record';
@@ -80,6 +83,7 @@ class Routes {
     PloggingEndScreenRoute: () => const PloggingEndScreen(),
     PloggingRecordScreenRoute: () => const PloggingRecordScreen(),
     PloggingCalculateScreenRoute: () => const PloggingCalculateScreen(),
+    PloggingMyTrabSnackScreenRoute: () => const PloggingMyTrabSnackScreen(),
     SortedTrashScreenRoute: () => const SortedTrashScreen(),
     EattingSnackTrabScreenRoute: () => const EattingSnackTrabScreen(),
     SetTrabNameScreenRoute: () => const SetTrabNameScreen(),

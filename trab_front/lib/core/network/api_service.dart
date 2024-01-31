@@ -112,6 +112,35 @@ class ApiService implements ApiInterface {
   }
 
   @override
+  Future<T> setDataWithImage<T>({
+    required String endpoint,
+    required FormData data,
+    Map<String, dynamic> queryParams = const {},
+    required T Function(ResponseModel<JSON> response) converter,
+  }) async {
+    ResponseModel<JSON> response;
+
+    try {
+      // Entire map of response
+      response = await _dioService.postWithImage<JSON>(
+        endpoint: endpoint,
+        data: data,
+        queryParameters: queryParams,
+        options: Options(),
+      );
+    } on Exception catch (ex) {
+      throw CustomException.fromDioException(ex);
+    }
+
+    try {
+      // Returning the serialized object
+      return converter(response);
+    } on Exception catch (ex) {
+      throw CustomException.fromParsingException(ex);
+    }
+  }
+
+  @override
   Future<T> updateData<T>({
     required String endpoint,
     required JSON data,

@@ -22,7 +22,6 @@ class UserInfoInputScreen extends ConsumerStatefulWidget {
 class _UserInfoInputScreenState extends ConsumerState<UserInfoInputScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(userInfoInputScreenControllerProvider.notifier).init();
@@ -110,9 +109,9 @@ class _UserInfoInputScreenState extends ConsumerState<UserInfoInputScreen> {
                 ),
                 Center(
                   child: containerButton(
-                      onPressed: () => ref
+                      onPressed: ref
                           .read(userInfoInputScreenControllerProvider.notifier)
-                          .handlePressedContainerButton(context: context),
+                          .handlePressedContainerButton,
                       title: isButtonEnabled
                           ? AppStrings.startPlogging
                           : AppStrings.noWeightPlogging,

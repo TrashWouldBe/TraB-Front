@@ -14,7 +14,7 @@ class UserState {
   UserState({required this.userDataSource, this.userInfo});
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class UserController extends _$UserController {
   @override
   UserState build() {
