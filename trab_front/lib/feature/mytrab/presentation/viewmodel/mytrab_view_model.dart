@@ -1,13 +1,18 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
+import 'package:trab_front/feature/myTrab/data/model/trab_model.dart';
+import 'package:trab_front/feature/myTrab/domain/trab_domain.dart';
 
 part 'mytrab_view_model.g.dart';
 
 class MyTrabScreenState {
-  MyTrabScreenState({required this.trabSay});
+  MyTrabScreenState(
+      {required this.trabSay, required this.textEditingController});
+  TextEditingController textEditingController;
   String trabSay;
 }
 
@@ -15,11 +20,25 @@ class MyTrabScreenState {
 class MyTrabScreenController extends _$MyTrabScreenController {
   @override
   MyTrabScreenState build() {
-    return MyTrabScreenState(trabSay: "안녕하세요!");
+    return MyTrabScreenState(
+        trabSay: "안녕하세요!", textEditingController: TextEditingController());
   }
 
   void setState() {
-    state = MyTrabScreenState(trabSay: state.trabSay);
+    state = MyTrabScreenState(
+        trabSay: state.trabSay,
+        textEditingController: state.textEditingController);
+  }
+
+  void init() async {
+    TrabModel? trabModel =
+        await ref.read(trabControllerProvider.notifier).getTrab();
+    if (trabModel == null) {
+      AppRouter.pushNamed(Routes.SetTrabNameScreenRoute);
+    } else {
+      state.textEditingController.text = trabModel.trabName;
+      setState();
+    }
   }
 
   void getTrabSay() {
@@ -67,4 +86,6 @@ class MyTrabScreenController extends _$MyTrabScreenController {
   void handleTapSnack() {
     AppRouter.pushNamed(Routes.MyTrabSnackScreenRoute);
   }
+
+  void handleTapTrab() {}
 }

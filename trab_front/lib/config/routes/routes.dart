@@ -1,9 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:trab_front/feature/auth/presentation/view/complete_set_trab_name_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/complete_set_trab_name_screen.dart';
 import 'package:trab_front/feature/auth/presentation/view/login_screen.dart';
-import 'package:trab_front/feature/auth/presentation/view/set_trab_name_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/set_trab_name_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/eatting_snack_trab_screen.dart';
 import 'package:trab_front/feature/camera/presentation/view/sorted_trash_screen.dart';
 import 'package:trab_front/feature/common/view/splash_screen.dart';
@@ -38,8 +38,6 @@ class Routes {
 
   static const String LoginScreenRoute = '/auth/login';
 
-  static const String SetTrabNameScreenRoute = '/auth/set-trab-name';
-
   static const String CompleteSetTrabNameScreenRoute =
       '/auth/complete-set-trab-name';
 
@@ -71,6 +69,7 @@ class Routes {
 
   static const String MyTrabSnackScreenRoute = '/mytrab/snack';
 
+  static const String SetTrabNameScreenRoute = '/mytrab/set-trab-name';
   static final Map<String, Widget Function()> _routesMap = {
     AppStartupScreenRoute: () => const SplashScreen(),
     LoginScreenRoute: () => const LogInScreen(),

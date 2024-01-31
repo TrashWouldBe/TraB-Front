@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:trab_front/feature/auth/presentation/viewmodel/set_trab_name_view_model.dart';
+import 'package:trab_front/feature/mytrab/presentation/viewmodel/set_trab_name_view_model.dart';
 import 'package:trab_front/feature/auth/presentation/widget/set_trab_name_text_field.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
