@@ -53,6 +53,17 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       AppRouter.pushNamed(Routes.TrabOnBoardingScreenRoute);
     } else {
       AppRouter.pushNamed(Routes.HomeScreenRoute);
+      await ref.read(userControllerProvider.notifier).getUserInfo();
+      UserInfoModel? userInfo = ref.read(userControllerProvider).userInfo;
+      if (userInfo == null) {
+        AppRouter.pushNamed(Routes.LoginScreenRoute);
+      } else {
+        if (userInfo.name == null && userInfo.weight == null) {
+          AppRouter.pushNamed(Routes.TrabOnBoardingScreenRoute);
+        } else {
+          AppRouter.pushNamed(Routes.HomeScreenRoute);
+        }
+      }
     }
   }
 
