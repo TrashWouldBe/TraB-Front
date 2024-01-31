@@ -7,12 +7,13 @@ class ImageDataSource {
 
   ImageDataSource({required ApiService apiService}) : _apiService = apiService;
 
-  Future<String> postImage({required FormData data}) async {
-    return _apiService.updateDataWithImage(
+  Future<void> postImage({required FormData data}) async {
+    return _apiService.setDataWithImage(
       endpoint: ApiEndpoint.image(ImageEndPoint.Image),
       data: data,
       converter: (response) {
-        return response.body;
+        print(response);
+        // return response.body;
       },
     );
   }

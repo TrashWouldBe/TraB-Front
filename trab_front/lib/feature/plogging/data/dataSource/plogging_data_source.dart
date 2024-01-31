@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:trab_front/core/network/api_endpoint.dart';
 import 'package:trab_front/core/network/api_service.dart';
 import 'package:trab_front/feature/plogging/data/model/plogging_model.dart';
@@ -14,6 +15,14 @@ class PloggingDataSource {
       converter: (response) {
         return PloggingModel.fromJsonList(response.body);
       },
+    );
+  }
+
+  Future<void> postPlogging({required FormData data}) async {
+    return _apiService.setDataWithImage<void>(
+      endpoint: ApiEndpoint.plogging(PloggingEndpoint.PLOGGING),
+      data: data,
+      converter: (response) {},
     );
   }
 }

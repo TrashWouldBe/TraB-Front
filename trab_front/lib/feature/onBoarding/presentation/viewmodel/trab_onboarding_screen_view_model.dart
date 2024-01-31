@@ -68,9 +68,9 @@ class TrabOnBoardingScreenController extends _$TrabOnBoardingScreenController {
     setState();
   }
 
-  void handlePressedTrailing({required BuildContext context}) async {
+  void handlePressedTrailing() async {
     if (state.pageController.page == 2) {
-      showLoading(context: context);
+      Loading.show();
       await ref.read(userControllerProvider.notifier).postUserInfo(
               data: UserInfo(
             name: state.textEditingController[0].text == AppStrings.empty
@@ -78,8 +78,8 @@ class TrabOnBoardingScreenController extends _$TrabOnBoardingScreenController {
                 : state.textEditingController[0].text,
             weight: int.tryParse(state.textEditingController[1].text),
           ));
-      closeLoading(context: context);
-      AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
+      Loading.close();
+      AppRouter.pushNamed(Routes.HomeScreenRoute);
       return;
     } else {
       state.pageController.jumpToPage(state.pageController.page!.round() + 1);

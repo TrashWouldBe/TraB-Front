@@ -7,7 +7,9 @@ import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
-Widget ploggingEndTextField() {
+Widget ploggingEndTextField({
+  required TextEditingController textEditingController,
+}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -16,6 +18,7 @@ Widget ploggingEndTextField() {
         style: AppTypography.subTitle_1.copyWith(color: AppColors.textColor_1),
       ),
       TextField(
+        controller: textEditingController,
         style: AppTypography.body.copyWith(color: AppColors.textColor_2),
         decoration: InputDecoration(
           hintText: AppStrings.examplePlogging,

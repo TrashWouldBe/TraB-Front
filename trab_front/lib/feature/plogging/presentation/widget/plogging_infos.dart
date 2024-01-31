@@ -7,10 +7,7 @@ import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
 Widget ploggingTimerInfos({
-  required snack,
-  required calorie,
-  required time,
-  required distance,
+  required PloggingInfo ploggingInfo,
   required InfoType type,
 }) {
   return Column(
@@ -26,10 +23,8 @@ Widget ploggingTimerInfos({
         padding: EdgeInsets.symmetric(
           horizontal: 20.w,
         ),
-        child: ploggingInfo(
-          calorie: calorie,
-          snack: snack,
-          time: time,
+        child: ploggingInfoWidget(
+          ploggingInfo: ploggingInfo,
           type: type,
         ),
       ),
@@ -37,7 +32,7 @@ Widget ploggingTimerInfos({
         height: 10.h,
       ),
       Text(
-        distance,
+        ploggingInfo.runRange.toStringAsFixed(2),
         style: AppTypography.headline_1.copyWith(
           color: AppColors.body1,
           height: 0.h,
@@ -54,10 +49,8 @@ Widget ploggingTimerInfos({
   );
 }
 
-Widget ploggingInfo({
-  required snack,
-  required calorie,
-  required time,
+Widget ploggingInfoWidget({
+  required PloggingInfo ploggingInfo,
   required InfoType type,
 }) {
   return Row(
@@ -73,7 +66,7 @@ Widget ploggingInfo({
               SizedBox(
                 width: 99.w,
                 child: Text(
-                  snack,
+                  ploggingInfo.images.length.toString(),
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -108,7 +101,7 @@ Widget ploggingInfo({
             SizedBox(
               width: 99.w,
               child: Text(
-                calorie,
+                ploggingInfo.calorie.toString(),
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -142,7 +135,7 @@ Widget ploggingInfo({
             SizedBox(
               width: 99.w,
               child: Text(
-                time,
+                ploggingInfo.runTime,
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -174,10 +167,7 @@ Widget ploggingInfo({
 }
 
 Widget ploggingEndInfo({
-  required String snack,
-  required String calorie,
-  required String time,
-  required String distance,
+  required PloggingInfo ploggingInfo,
   required InfoType type,
 }) {
   return Column(
@@ -186,7 +176,7 @@ Widget ploggingEndInfo({
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            distance,
+            ploggingInfo.runRange.toStringAsFixed(2),
             style: AppTypography.headline_2.copyWith(
               color: AppColors.textColor_2,
               letterSpacing: -0.41,
@@ -197,13 +187,13 @@ Widget ploggingEndInfo({
             width: 4.w,
           ),
           Text(
-            "km",
+            AppStrings.kiloMeter,
             style: AppTypography.headline_2_1
                 .copyWith(color: AppColors.textColor_2),
           ),
         ],
       ),
-      ploggingInfo(snack: snack, calorie: "0", time: time, type: InfoType.end),
+      ploggingInfoWidget(ploggingInfo: ploggingInfo, type: InfoType.end),
       SizedBox(
         height: 10.h,
       ),

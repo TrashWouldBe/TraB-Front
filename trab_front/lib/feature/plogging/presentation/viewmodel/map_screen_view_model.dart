@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:geolocator/geolocator.dart' as geo;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:trab_front/feature/common/widget/loading.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 part 'map_screen_view_model.g.dart';
@@ -12,12 +15,14 @@ class MapScreenState {
   Set<Polyline> polylines;
   LatLng currentLocation;
   List<LatLng> polylineCoordinates;
+  MapScreen mapScreen;
 
   MapScreenState({
     required this.mapController,
     required this.polylines,
     required this.currentLocation,
     required this.polylineCoordinates,
+    required this.mapScreen,
   });
 }
 
@@ -26,9 +31,11 @@ class MapScreenController extends _$MapScreenController {
   @override
   MapScreenState build() {
     return MapScreenState(
+      mapScreen: const MapScreen(),
       mapController: null,
       polylines: {},
-      currentLocation: const LatLng(37.555922776159356, 127.04933257899165),
+      currentLocation:
+          const LatLng(37.555922776159356, 127.04933257899165), //한양대학교
       polylineCoordinates: [],
     );
   }
@@ -38,6 +45,7 @@ class MapScreenController extends _$MapScreenController {
 
   void setState() {
     state = MapScreenState(
+      mapScreen: state.mapScreen,
       mapController: state.mapController,
       polylines: state.polylines,
       currentLocation: state.currentLocation,
@@ -46,11 +54,13 @@ class MapScreenController extends _$MapScreenController {
   }
 
   void onMapCreated(GoogleMapController controller) async {
+    Loading.show();
     state.mapController = controller;
 
     bool serviceEnabled;
     PermissionStatus permissionGranted;
 
+    // 위치 서비스 활성화
     serviceEnabled = await location.serviceEnabled();
     if (!serviceEnabled) {
       serviceEnabled = await location.requestService();
@@ -67,14 +77,17 @@ class MapScreenController extends _$MapScreenController {
       }
     }
 
+    // 초기 위치 설정
+    getInitialLocation();
+
+    // 백그라운드 모드 활성화
     await location.enableBackgroundMode(enable: true);
 
-    getInitialLocation();
+    Loading.close();
   }
 
   void getInitialLocation() async {
-    Location location = Location();
-    final currentLocation = await location.getLocation();
+    final currentLocation = await geo.Geolocator.getCurrentPosition();
 
     if (state.mapController != null) {
       state.mapController!.animateCamera(CameraUpdate.newCameraPosition(
@@ -97,10 +110,12 @@ class MapScreenController extends _$MapScreenController {
       }
     }
 
+    Loading.show();
+
     bool changeSettings = await location.changeSettings(
       accuracy: LocationAccuracy.high,
       interval: 1000,
-      distanceFilter: 0,
+      distanceFilter: 10,
     );
 
     if (changeSettings) {
@@ -125,6 +140,8 @@ class MapScreenController extends _$MapScreenController {
         setState();
       });
     }
+
+    Loading.close();
   }
 
   void clearPolylines() {

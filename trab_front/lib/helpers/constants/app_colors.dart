@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   const AppColors._();
 
+  static const Color backgroundColor = Color(0xffF9FBF9);
   static const Color primaryColor = Color(0xff49B75A);
   static const Color lightPrimaryColor = Color(0xff73C27A);
   static const Color textColor_1 = Color(0xff005A13);
@@ -19,10 +20,10 @@ class AppColors {
   static const Color shadowColor = Color(0x19000000);
   static Color bgColor_2 = const Color(0xffC2E6C2).withOpacity(0.8);
   static const Color bgColor_4 = Color(0xFFCDEBCE);
+  static const Color captionTitle = Color(0xff666666);
 
   static const Color darkPrimaryColor = Color(0xff005A13);
   static const Color deepDarkPrimaryColor = Color(0xff00440E);
-  static const Color backgroundColor = Color(0xffFFFFFF);
   static const Color redColor = Color(0xFFed0000);
   static const Color lightSkeletonColor = Color(0xffC0C0C0);
 }
