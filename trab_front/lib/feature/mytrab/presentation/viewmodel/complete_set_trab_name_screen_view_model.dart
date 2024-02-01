@@ -17,6 +17,6 @@ class CompleteSetTrabNameScreenController
   }
 
   void handlePressedContainerButton() {
-    AppRouter.pushNamed(Routes.HomeScreenRoute);
+    AppRouter.popUntil(Routes.HomeScreenRoute);
   }
 }
