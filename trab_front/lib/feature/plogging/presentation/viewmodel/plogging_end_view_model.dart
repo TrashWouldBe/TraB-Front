@@ -38,7 +38,7 @@ class PloggingEndScreenController extends _$PloggingEndScreenController {
           onPressed: () {
             Navigator.of(context).pop();
             ref.read(ploggingInfoControllerProvider.notifier).endTimer();
-            AppRouter.pushNamed(Routes.HomeScreenRoute);
+            AppRouter.popUntil(Routes.HomeScreenRoute);
           },
           child: Text(
             AppStrings.notDo,

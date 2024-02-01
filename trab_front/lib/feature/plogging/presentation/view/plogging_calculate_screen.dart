@@ -58,7 +58,7 @@ class _PloggingCalculateScreenState
                 ),
                 onPressed: () {
                   ref.read(ploggingInfoControllerProvider.notifier).endTimer();
-                  AppRouter.pushNamed(Routes.HomeScreenRoute);
+                  AppRouter.popUntil(Routes.HomeScreenRoute);
                 },
               ),
             ],
