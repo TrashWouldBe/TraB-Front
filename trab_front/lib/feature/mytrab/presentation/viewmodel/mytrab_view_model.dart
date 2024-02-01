@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MyTrabScreenController extends _$MyTrabScreenController {
         trabSay: "안녕하세요!", textEditingController: TextEditingController());
   }
 
+  Timer? _debounce;
   void setState() {
     state = MyTrabScreenState(
         trabSay: state.trabSay,
@@ -39,6 +41,10 @@ class MyTrabScreenController extends _$MyTrabScreenController {
       state.textEditingController.text = trabModel.trabName;
       setState();
     }
+  }
+
+  void dispose() {
+    _debounce?.cancel();
   }
 
   void getTrabSay() {
@@ -88,4 +94,21 @@ class MyTrabScreenController extends _$MyTrabScreenController {
   }
 
   void handleTapTrab() {}
+
+  void handleSearch() {
+    ref.read(trabControllerProvider.notifier).postTrab(
+      data: {"name": state.textEditingController.text},
+    );
+  }
+
+  void handleSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      ref.read(trabControllerProvider.notifier).postTrab(
+        data: {
+          "name": query,
+        },
+      );
+    });
+  }
 }

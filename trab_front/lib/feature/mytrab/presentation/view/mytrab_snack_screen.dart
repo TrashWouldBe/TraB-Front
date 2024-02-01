@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/classified_photo_widget.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/total_count_container.dart';
@@ -32,20 +33,25 @@ class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppStrings.myTrabSnacks,
-          style:
-              AppTypography.headline_3.copyWith(color: AppColors.textColor_1),
+      appBar: CustomAppBar(
+        title: AppStrings.myTrabSnacks,
+        titleColor: AppColors.textColor_1,
+        canPop: true,
+        leadingColor: AppColors.grey1,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.h),
+          child: Container(
+            height: 1.h,
+            color: AppColors.greenGrey2,
+          ),
         ),
-        surfaceTintColor: Colors.transparent,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 23.w),
         child: Column(
           children: [
-            const Divider(
-              color: AppColors.greenGrey2,
+            SizedBox(
+              height: 5.h,
             ),
             totalCountContainer(
                 totalCount: 0,
@@ -65,6 +71,10 @@ class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
               glassAmount: 0,
               foodAmount: 0,
               paperAmount: 0,
+            ),
+            Container(
+              height: 1.h,
+              color: AppColors.greenGrey2,
             ),
             Expanded(
               child: ListView.builder(

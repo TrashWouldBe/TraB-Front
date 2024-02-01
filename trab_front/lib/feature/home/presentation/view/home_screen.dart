@@ -28,6 +28,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return PopScope(
       canPop: false,
       child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: AppColors.backgroundColor,
           bottomNavigationBar: CupertinoTabBar(
             height: 56.h,
