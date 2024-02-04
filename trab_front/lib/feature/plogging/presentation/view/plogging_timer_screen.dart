@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:trab_front/feature/plogging/presentation/types.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/plogging_infos.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/timer_bottom_buttons.dart';
@@ -37,6 +38,7 @@ class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
     PloggingInfo ploggingInfo =
         ref.watch(ploggingInfoControllerProvider).ploggingInfo;
     bool isPlogging = ref.watch(ploggingInfoControllerProvider).isPlogging;
+    ref.read(mapScreenProvider);
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -88,7 +90,7 @@ class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
                       .startTimer,
                   onPressedCameraButton: () async => await ref
                       .read(ploggingInfoControllerProvider.notifier)
-                      .getImage(imageSource: ImageSource.camera),
+                      .getImage(imageSource: ImageSource.gallery),
                 ),
               ],
             ),

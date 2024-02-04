@@ -1,11 +1,13 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:gif/gif.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
-import 'package:trab_front/feature/myTrab/data/model/trab_model.dart';
-import 'package:trab_front/feature/myTrab/domain/trab_domain.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_model.dart';
+import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
 
 part 'mytrab_view_model.g.dart';
 
@@ -24,6 +26,8 @@ class MyTrabScreenController extends _$MyTrabScreenController {
         trabSay: "안녕하세요!", textEditingController: TextEditingController());
   }
 
+  Timer? _debounce;
+
   void setState() {
     state = MyTrabScreenState(
         trabSay: state.trabSay,
@@ -39,6 +43,10 @@ class MyTrabScreenController extends _$MyTrabScreenController {
       state.textEditingController.text = trabModel.trabName;
       setState();
     }
+  }
+
+  void dispose() {
+    _debounce?.cancel();
   }
 
   void getTrabSay() {
@@ -66,7 +74,19 @@ class MyTrabScreenController extends _$MyTrabScreenController {
     } else {
       state.trabSay = "오늘도 행복한 하루 보내세요!";
     }
+
     setState();
+  }
+
+  void handleTabTrab({required GifController gifController}) {
+    gifController.repeat(
+      min: 0,
+      max: 1,
+    );
+    Future.delayed(const Duration(milliseconds: 1100), () {
+      gifController.reset();
+    });
+    getTrabSay();
   }
 
   void getTrabEattingSay() {
@@ -87,5 +107,20 @@ class MyTrabScreenController extends _$MyTrabScreenController {
     AppRouter.pushNamed(Routes.MyTrabSnackScreenRoute);
   }
 
-  void handleTapTrab() {}
+  void handleSearch() {
+    ref.read(trabControllerProvider.notifier).postTrab(
+      data: {"name": state.textEditingController.text},
+    );
+  }
+
+  void handleSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      ref.read(trabControllerProvider.notifier).patchTrab(
+        data: {
+          "name": query,
+        },
+      );
+    });
+  }
 }

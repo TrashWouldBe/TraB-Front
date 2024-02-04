@@ -56,6 +56,7 @@ class PloggingInfoController extends _$PloggingInfoController {
       state.ploggingInfo = state.ploggingInfo.copyWith(
         images: [...state.ploggingInfo.images, img],
       );
+
       setState();
     }
     startTimer();

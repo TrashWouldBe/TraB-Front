@@ -1,7 +1,7 @@
 import 'package:trab_front/core/network/api_endpoint.dart';
 import 'package:trab_front/core/network/api_service.dart';
-import 'package:trab_front/feature/myTrab/data/model/trab_model.dart';
-import 'package:trab_front/feature/mytrab/data/model/trab_funiture_model.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_model.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_furniture_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_trash_list_model.dart';
 import 'package:trab_front/helpers/typedefs.dart';
@@ -36,11 +36,25 @@ class TrabDataSource {
     );
   }
 
-  Future<List<TrabFunitureModel>> getTrabFunitureList() async {
-    return _apiService.getDocumentData<List<TrabFunitureModel>>(
-      endpoint: ApiEndpoint.trab(TrabEndpoint.FUNITURE_LIST),
+  Future<TrabModel?> patchTrab(
+      {required JSON data, required int? trabId}) async {
+    return _apiService.updateData<TrabModel?>(
+      endpoint: ApiEndpoint.trab(TrabEndpoint.TRAB),
+      queryParams: {
+        "trab_id": trabId,
+      },
+      data: data,
       converter: (response) {
-        return TrabFunitureModel.fromJsonList(response.body);
+        return TrabModel.fromJson(response.body);
+      },
+    );
+  }
+
+  Future<List<TrabFurnitureModel>> getTrabFunitureList() async {
+    return _apiService.getDocumentData<List<TrabFurnitureModel>>(
+      endpoint: ApiEndpoint.trab(TrabEndpoint.FURNITURE_LIST),
+      converter: (response) {
+        return TrabFurnitureModel.fromJsonList(response.body);
       },
     );
   }
@@ -52,21 +66,21 @@ class TrabDataSource {
   //   );
   // }
 
-  Future<List<TrabFunitureModel>> getTrabFunitureArranged() async {
-    return _apiService.getDocumentData<List<TrabFunitureModel>>(
-      endpoint: ApiEndpoint.trab(TrabEndpoint.FUNITURE_ARRANGED),
+  Future<List<TrabFurnitureModel>> getTrabFurnitureArranged() async {
+    return _apiService.getDocumentData<List<TrabFurnitureModel>>(
+      endpoint: ApiEndpoint.trab(TrabEndpoint.FURNITURE_ARRANGED),
       converter: (response) {
-        return TrabFunitureModel.fromJsonList(response.body);
+        return TrabFurnitureModel.fromJsonList(response.body);
       },
     );
   }
 
-  Future<TrabFunitureModel> patchTrabFuniture({required JSON data}) async {
-    return _apiService.setData<TrabFunitureModel>(
-      endpoint: ApiEndpoint.trab(TrabEndpoint.FUNITURE),
+  Future<TrabFurnitureModel> patchTrabFurniture({required JSON data}) async {
+    return _apiService.setData<TrabFurnitureModel>(
+      endpoint: ApiEndpoint.trab(TrabEndpoint.FURNITURE),
       data: data,
       converter: (response) {
-        return TrabFunitureModel.fromJson(response.body);
+        return TrabFurnitureModel.fromJson(response.body);
       },
     );
   }

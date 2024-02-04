@@ -4,7 +4,7 @@ import 'package:geolocator/geolocator.dart' as geo;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:trab_front/feature/common/widget/loading.dart';
+
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 
@@ -52,10 +52,30 @@ class MapScreenController extends _$MapScreenController {
   void onMapCreated(GoogleMapController controller) async {
     state.mapController = controller;
 
+    // 초기 위치 설정
+    getInitialLocation();
+  }
+
+  void getInitialLocation() async {
+    final currentLocation = await geo.Geolocator.getCurrentPosition();
+    if (state.mapController != null) {
+      state.mapController!.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(currentLocation.latitude!, currentLocation.longitude!),
+          zoom: 17.0,
+        ),
+      ));
+      state.currentLocation =
+          LatLng(currentLocation.latitude, currentLocation.longitude);
+      setState();
+    }
+  }
+
+  // 위치 서비스 활성화
+  Future<void> checkLocationService() async {
     bool serviceEnabled;
     PermissionStatus permissionGranted;
 
-    // 위치 서비스 활성화
     serviceEnabled = await location.serviceEnabled();
     if (!serviceEnabled) {
       serviceEnabled = await location.requestService();
@@ -71,27 +91,6 @@ class MapScreenController extends _$MapScreenController {
         return;
       }
     }
-
-    // 초기 위치 설정
-    getInitialLocation();
-
-    // 백그라운드 모드 활성화
-    await location.enableBackgroundMode(enable: true);
-  }
-
-  void getInitialLocation() async {
-    final currentLocation = await geo.Geolocator.getCurrentPosition();
-    if (state.mapController != null) {
-      state.mapController!.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: LatLng(currentLocation.latitude!, currentLocation.longitude!),
-          zoom: 17.0,
-        ),
-      ));
-      state.currentLocation =
-          LatLng(currentLocation.latitude!, currentLocation.longitude!);
-      setState();
-    }
   }
 
   void startLocationSubscription() async {
@@ -102,7 +101,10 @@ class MapScreenController extends _$MapScreenController {
       }
     }
 
-    Loading.show();
+    await checkLocationService();
+
+    // 백그라운드 모드 활성화
+    await location.enableBackgroundMode(enable: true);
 
     bool changeSettings = await location.changeSettings(
       accuracy: LocationAccuracy.high,
@@ -132,8 +134,6 @@ class MapScreenController extends _$MapScreenController {
         setState();
       });
     }
-
-    Loading.close();
   }
 
   void clearPolylines() {

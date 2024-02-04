@@ -6,7 +6,10 @@ import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
 //TODO: onPress Event
-Widget customerCenter() {
+Widget customerCenter(
+    {required Function() onPressedMethod,
+    required Function() onPressedInvidualQuery,
+    required Function() onPressedTermsOfUse}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -25,19 +28,23 @@ Widget customerCenter() {
         padding: EdgeInsets.only(bottom: 14.h),
         child: SizedBox(
           height: 22.h,
-          child: rightButton(text: AppStrings.method),
+          child:
+              rightButton(text: AppStrings.method, onPressed: onPressedMethod),
         ),
       ),
       Padding(
         padding: EdgeInsets.only(bottom: 14.h),
         child: SizedBox(
           height: 22.h,
-          child: rightButton(text: AppStrings.invidualQuery),
+          child: rightButton(
+              text: AppStrings.invidualQuery,
+              onPressed: onPressedInvidualQuery),
         ),
       ),
       SizedBox(
         height: 22.h,
-        child: rightButton(text: AppStrings.termsOfUse),
+        child: rightButton(
+            text: AppStrings.termsOfUse, onPressed: onPressedTermsOfUse),
       ),
       SizedBox(
         height: 30.h,

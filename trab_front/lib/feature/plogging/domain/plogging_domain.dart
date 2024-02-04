@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/feature/all_providers.dart';
+import 'package:trab_front/feature/camera/data/model/image_model.dart';
 import 'package:trab_front/feature/plogging/data/dataSource/plogging_data_source.dart';
 import 'package:trab_front/feature/plogging/data/model/plogging_model.dart';
 import 'package:trab_front/feature/plogging/presentation/types.dart';
@@ -9,10 +10,14 @@ part 'plogging_domain.g.dart';
 class PloggingState {
   PloggingDataSource ploggingDataSource;
   List<PloggingModel> ploggingList;
-  PloggingState({required this.ploggingDataSource, required this.ploggingList});
+  List<ImageModel> ploggingSnacks;
+  PloggingState(
+      {required this.ploggingDataSource,
+      required this.ploggingList,
+      required this.ploggingSnacks});
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class PloggingController extends _$PloggingController {
   @override
   PloggingState build() {
@@ -20,6 +25,7 @@ class PloggingController extends _$PloggingController {
       ploggingDataSource:
           PloggingDataSource(apiService: ref.watch(apiServiceProvider)),
       ploggingList: [],
+      ploggingSnacks: [],
     );
   }
 
@@ -27,6 +33,7 @@ class PloggingController extends _$PloggingController {
     state = PloggingState(
       ploggingDataSource: state.ploggingDataSource,
       ploggingList: state.ploggingList,
+      ploggingSnacks: state.ploggingSnacks,
     );
   }
 
@@ -42,7 +49,9 @@ class PloggingController extends _$PloggingController {
   Future<void> postPlogging({required PloggingInfo ploggingInfo}) async {
     try {
       FormData data = await ploggingInfo.toFormData();
-      await state.ploggingDataSource.postPlogging(data: data);
+      state.ploggingSnacks =
+          await state.ploggingDataSource.postPlogging(data: data);
+      setState();
     } catch (error) {
       print(error);
     }

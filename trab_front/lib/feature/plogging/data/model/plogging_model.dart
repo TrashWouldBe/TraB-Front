@@ -15,7 +15,6 @@ class PloggingModel with _$PloggingModel {
     required double runRange,
     required String runTime,
     required int trabSnack,
-    required int calorie,
   }) = _PloggingModel;
 
   factory PloggingModel.fromJson(JSON json) => _$PloggingModelFromJson(json);

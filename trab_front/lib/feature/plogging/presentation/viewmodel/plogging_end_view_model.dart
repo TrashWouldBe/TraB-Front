@@ -14,18 +14,14 @@ import 'package:trab_front/helpers/constants/strings.dart';
 part 'plogging_end_view_model.g.dart';
 
 class PloggingEndScreenState {
-  TextEditingController textEditingController;
-
-  PloggingEndScreenState({required this.textEditingController});
+  PloggingEndScreenState();
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 class PloggingEndScreenController extends _$PloggingEndScreenController {
   @override
   PloggingEndScreenState build() {
-    return PloggingEndScreenState(
-      textEditingController: TextEditingController(),
-    );
+    return PloggingEndScreenState();
   }
 
   void handlePressedAppBarButton({required BuildContext context}) async {
@@ -38,7 +34,7 @@ class PloggingEndScreenController extends _$PloggingEndScreenController {
           onPressed: () {
             Navigator.of(context).pop();
             ref.read(ploggingInfoControllerProvider.notifier).endTimer();
-            AppRouter.pushNamed(Routes.HomeScreenRoute);
+            AppRouter.popUntil(Routes.HomeScreenRoute);
           },
           child: Text(
             AppStrings.notDo,
@@ -58,14 +54,15 @@ class PloggingEndScreenController extends _$PloggingEndScreenController {
     );
   }
 
-  void handleCalculateSnackButton() {
+  void handleCalculateSnackButton({required String runName}) async {
     Loading.show();
-    ref.read(ploggingInfoControllerProvider.notifier).endTimer();
+
     PloggingInfo ploggingInfo =
         ref.read(ploggingInfoControllerProvider).ploggingInfo.copyWith(
-              runName: state.textEditingController.text,
+              runName: runName,
             );
-    ref
+    ref.read(ploggingInfoControllerProvider.notifier).endTimer();
+    await ref
         .read(ploggingControllerProvider.notifier)
         .postPlogging(ploggingInfo: ploggingInfo);
     Loading.close();

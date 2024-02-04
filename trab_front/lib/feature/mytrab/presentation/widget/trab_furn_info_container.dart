@@ -5,16 +5,15 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-Widget trabFurnInfoContainer({
-  required int plasticAmount,
-  required int vinylAmount,
-  required int canAmount,
-  required int wasteAmount,
-  required int styrofoamAmount,
-  required int glassAmount,
-  required int foodAmount,
-  required int paperAmount
-}) {
+Widget trabFurnInfoContainer(
+    {required int plasticAmount,
+    required int vinylAmount,
+    required int canAmount,
+    required int wasteAmount,
+    required int styrofoamAmount,
+    required int glassAmount,
+    required int foodAmount,
+    required int paperAmount}) {
   return Container(
     margin: EdgeInsets.symmetric(vertical: 16.h),
     child: Column(
@@ -29,7 +28,9 @@ Widget trabFurnInfoContainer({
             eachItemContainer(wasteAmount, AppSvgs.waste),
           ],
         ),
-        SizedBox(height: 8.h,),
+        SizedBox(
+          height: 8.h,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -49,8 +50,8 @@ Container eachItemContainer(int amount, String svg) {
     width: 69.w,
     height: 39.h,
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(100),
-      color: AppColors.body1
+      borderRadius: BorderRadius.circular(100.r),
+      color: AppColors.body1,
     ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -65,7 +66,7 @@ Container eachItemContainer(int amount, String svg) {
           amount.toString(),
           style: AppTypography.body.copyWith(
             fontWeight: FontWeight.w400,
-            color: AppColors.primaryColor
+            color: AppColors.primaryColor,
           ),
         )
       ],
