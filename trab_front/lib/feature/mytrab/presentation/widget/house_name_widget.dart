@@ -9,7 +9,8 @@ import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
 SizedBox houseNameWidget(
-    {required TextEditingController controller, onTapOutside}) {
+    {required TextEditingController controller,
+    required Function(String) onSearchChanged}) {
   return SizedBox(
     width: 390.w,
     child: Row(
@@ -41,10 +42,7 @@ SizedBox houseNameWidget(
                 child: IntrinsicWidth(
                   child: TextField(
                     controller: controller,
-                    onTapOutside: (_) {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      onTapOutside();
-                    },
+                    onChanged: onSearchChanged,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       contentPadding: Platform.isAndroid

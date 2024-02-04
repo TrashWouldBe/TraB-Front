@@ -79,7 +79,7 @@ class TrabOnBoardingScreenController extends _$TrabOnBoardingScreenController {
             weight: int.tryParse(state.textEditingController[1].text),
           ));
       Loading.close();
-      AppRouter.pushNamed(Routes.HomeScreenRoute);
+      AppRouter.popUntil(Routes.HomeScreenRoute);
       return;
     } else {
       state.pageController.jumpToPage(state.pageController.page!.round() + 1);

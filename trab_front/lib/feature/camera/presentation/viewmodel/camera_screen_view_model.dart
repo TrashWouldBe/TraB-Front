@@ -4,37 +4,36 @@ import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
+import 'package:trab_front/feature/camera/data/model/image_model.dart';
 import 'package:trab_front/feature/camera/domain/image_domin.dart';
 import 'package:trab_front/feature/common/widget/loading.dart';
 
 part 'camera_screen_view_model.g.dart';
 
 class CameraScreenState {
-  File? image;
-  CameraScreenState({required this.image});
+  ImageModel? imageModel;
+  CameraScreenState({required this.imageModel});
 }
 
 @riverpod
 class CameraScreenController extends _$CameraScreenController {
   @override
   CameraScreenState build() {
-    return CameraScreenState(image: null);
+    return CameraScreenState(imageModel: null);
   }
 
   void setState() {
-    state = CameraScreenState(image: state.image);
+    state = CameraScreenState(imageModel: state.imageModel);
   }
 
   Future<void> getImage({required ImageSource imageSource}) async {
-    state.image = null;
     setState();
     final image = await ImagePicker().pickImage(source: imageSource);
     if (image != null) {
       File img = File(image.path);
-      state.image = img;
-      // await ref
-      //     .read(imageControllerProvider.notifier)
-      //     .postImage(file: img.path);
+      state.imageModel = await ref
+          .read(imageControllerProvider.notifier)
+          .postImage(file: img.path);
       setState();
     }
   }
@@ -43,7 +42,7 @@ class CameraScreenController extends _$CameraScreenController {
     Loading.show();
     await getImage(imageSource: ImageSource.gallery);
     Loading.close();
-    if (state.image != null) {
+    if (state.imageModel != null) {
       AppRouter.pushNamed(Routes.SortedTrashScreenRoute);
     }
   }
