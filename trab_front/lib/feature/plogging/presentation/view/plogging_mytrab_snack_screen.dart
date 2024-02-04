@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
+import 'package:trab_front/feature/camera/data/model/image_model.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/classified_photo_widget.dart';
+import 'package:trab_front/feature/plogging/domain/plogging_domain.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
-import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 import 'package:trab_front/helpers/extensions/datetime_extension.dart';
@@ -24,6 +25,8 @@ class _PloggingMyTrabSnackScreenState
     extends ConsumerState<PloggingMyTrabSnackScreen> {
   @override
   Widget build(BuildContext context) {
+    List<ImageModel> ploggingSnacks =
+        ref.watch(ploggingControllerProvider).ploggingSnacks;
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -84,10 +87,13 @@ class _PloggingMyTrabSnackScreenState
               Expanded(
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
-                  itemCount: 8,
+                  itemCount: ploggingSnacks.length,
                   itemBuilder: (context, index) {
                     return classifiedPhotoWidget(
-                        item: "vinyl", img: AppImages.appleLogin, index: index);
+                      item: ploggingSnacks[index].trashEnumType,
+                      img: ploggingSnacks[index].imageUrl,
+                      index: index,
+                    );
                   },
                 ),
               ),

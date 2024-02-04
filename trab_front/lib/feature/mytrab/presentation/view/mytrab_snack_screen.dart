@@ -10,6 +10,7 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
+import 'package:trab_front/helpers/enums/trash_type.dart';
 
 class MyTrabSnackScreen extends ConsumerStatefulWidget {
   const MyTrabSnackScreen({super.key});
@@ -82,7 +83,9 @@ class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
                 itemCount: 8,
                 itemBuilder: (context, index) {
                   return classifiedPhotoWidget(
-                      index: index, item: "vinyl", img: AppImages.appleLogin);
+                      index: index,
+                      item: TrashType.styrofoam,
+                      img: AppImages.appleLogin);
                 },
               ),
             )

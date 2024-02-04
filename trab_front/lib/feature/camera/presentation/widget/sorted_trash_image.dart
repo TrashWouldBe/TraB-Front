@@ -1,11 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trab_front/feature/common/widget/image.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-Widget sortedTrashImage({required File image, required String text}) {
+Widget sortedTrashImage({required String imageUrl, required String text}) {
   return Center(
     child: Stack(
       children: [
@@ -19,8 +18,8 @@ Widget sortedTrashImage({required File image, required String text}) {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20.r),
-            child: Image.file(
-              image,
+            child: CustomNetworkImage(
+              imageUrl: imageUrl,
               fit: BoxFit.cover,
             ),
           ),

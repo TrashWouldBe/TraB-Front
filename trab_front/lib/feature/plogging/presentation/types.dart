@@ -20,20 +20,23 @@ class PloggingInfo with _$PloggingInfo {
 
 extension PloggingInfoExtension on PloggingInfo {
   Future<FormData> toFormData() async {
+    List<MultipartFile> imageFiles = [];
+    for (var i = 0; i < images.length; i++) {
+      imageFiles.add(
+        await MultipartFile.fromFile(images[i].path,
+            filename: "image_${i}.png"),
+      );
+    }
     Map<String, dynamic> formDataMap = {
       "runDate": runDate,
       "runName": runName,
       "runRange": runRange,
       "runTime": runTime,
-      "calorie": calorie, // 칼로리도 추가
+      "images": imageFiles,
     };
 
-    for (var i = 0; i < images.length; i++) {
-      var imageFile = await MultipartFile.fromFile(images[i].path,
-          filename: "image_${i}.png");
-      formDataMap["images[$i]"] = imageFile;
-    }
+    FormData formData = FormData.fromMap(formDataMap);
 
-    return FormData.fromMap(formDataMap);
+    return formData;
   }
 }

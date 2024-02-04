@@ -66,7 +66,16 @@ class _SettingScreenState extends ConsumerState<SettingScreen> {
                 .read(settingScreenControllerProvider.notifier)
                 .handleTapFlogginRecord,
           ),
-          customerCenter(),
+          customerCenter(
+              onPressedMethod: ref
+                  .read(settingScreenControllerProvider.notifier)
+                  .handlePressedMethod,
+              onPressedInvidualQuery: ref
+                  .read(settingScreenControllerProvider.notifier)
+                  .handlePressedInvidualQuery,
+              onPressedTermsOfUse: ref
+                  .read(settingScreenControllerProvider.notifier)
+                  .handlePressedTermsOfUse),
           login(
               onPressedSignOut:
                   ref.read(authControllerProvider.notifier).signOut,
