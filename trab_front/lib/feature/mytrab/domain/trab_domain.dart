@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/feature/all_providers.dart';
+import 'package:trab_front/feature/mytrab/data/dataSource/trab_data_source.dart';
 
-import 'package:trab_front/feature/myTrab/data/dataSource/trab_data_source.dart';
-import 'package:trab_front/feature/myTrab/data/model/trab_model.dart';
-import 'package:trab_front/feature/mytrab/data/model/trab_funiture_model.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_furniture_model.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_trash_list_model.dart';
 import 'package:trab_front/helpers/typedefs.dart';
@@ -12,25 +12,25 @@ part 'trab_domain.g.dart';
 
 class TrabState {
   TrabDataSource trabDataSource;
-  List<TrabFunitureModel> trabFuniture;
+  List<TrabFurnitureModel> trabFurniture;
   List<TrabTrashListModel> trabTrashList;
   TrabSnackModel? trabSnack;
   TrabModel? trab;
   TrabState({
     required this.trabDataSource,
     this.trab,
-    required this.trabFuniture,
+    required this.trabFurniture,
     this.trabSnack,
     required this.trabTrashList,
   });
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class TrabController extends _$TrabController {
   @override
   TrabState build() {
     return TrabState(
-      trabFuniture: [],
+      trabFurniture: [],
       trabTrashList: [],
       trabDataSource: TrabDataSource(apiService: ref.watch(apiServiceProvider)),
     );
@@ -40,7 +40,7 @@ class TrabController extends _$TrabController {
     state = TrabState(
         trabSnack: state.trabSnack,
         trabTrashList: state.trabTrashList,
-        trabFuniture: state.trabFuniture,
+        trabFurniture: state.trabFurniture,
         trabDataSource: state.trabDataSource,
         trab: state.trab);
   }
@@ -69,9 +69,20 @@ class TrabController extends _$TrabController {
     return null;
   }
 
+  Future<void> patchTrab({required JSON data}) async {
+    try {
+      TrabModel? userInfo = await state.trabDataSource
+          .patchTrab(data: data, trabId: state.trab?.trabId);
+      state.trab = userInfo;
+      setState();
+    } catch (error) {
+      print(error);
+    }
+  }
+
   Future<void> getTrabFunitureList() async {
     try {
-      state.trabFuniture = await state.trabDataSource.getTrabFunitureList();
+      state.trabFurniture = await state.trabDataSource.getTrabFunitureList();
       setState();
     } catch (error) {
       print(error);
@@ -88,15 +99,15 @@ class TrabController extends _$TrabController {
 
   Future<void> getTrabFunitureArranged() async {
     try {
-      await state.trabDataSource.getTrabFunitureArranged();
+      await state.trabDataSource.getTrabFurnitureArranged();
     } catch (error) {
       print(error);
     }
   }
 
-  Future<void> patchTrabFuniture({required JSON data}) async {
+  Future<void> patchTrabFurniture({required JSON data}) async {
     try {
-      await state.trabDataSource.patchTrabFuniture(data: data);
+      await state.trabDataSource.patchTrabFurniture(data: data);
     } catch (error) {
       print(error);
     }

@@ -5,6 +5,7 @@ import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/no_padding_button.dart';
+import 'package:trab_front/feature/plogging/domain/plogging_domain.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_gifs.dart';
@@ -24,6 +25,7 @@ class _PloggingCalculateScreenState
     extends ConsumerState<PloggingCalculateScreen> {
   @override
   Widget build(BuildContext context) {
+    ref.watch(ploggingControllerProvider);
     return PopScope(
       canPop: false,
       child: Scaffold(

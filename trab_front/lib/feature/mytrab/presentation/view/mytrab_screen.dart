@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gif/gif.dart';
 import 'package:trab_front/feature/mytrab/presentation/viewmodel/mytrab_view_model.dart';
 import 'package:trab_front/feature/common/widget/custom_bubble_text.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/house_name_widget.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/iconbtn.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_gifs.dart';
-import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
@@ -21,10 +21,13 @@ class MyTrabScreen extends ConsumerStatefulWidget {
   }
 }
 
-class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
+class _MyTrabScreen extends ConsumerState<MyTrabScreen>
+    with TickerProviderStateMixin {
+  late final GifController gifController;
   @override
   void initState() {
     super.initState();
+    gifController = GifController(vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(myTrabScreenControllerProvider.notifier).init();
     });
@@ -34,16 +37,6 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
   void dispose() {
     ref.read(myTrabScreenControllerProvider.notifier).dispose();
     super.dispose();
-  }
-
-  // GIF를 다시 로드하기 위한 키
-  Key gifKey = UniqueKey();
-
-  void restartGif() {
-    // UniqueKey를 생성하여 GIF를 다시 로드하도록 함
-    setState(() {
-      gifKey = UniqueKey();
-    });
   }
 
   @override
@@ -79,7 +72,7 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
 
             //icons
             Positioned(
-              top: 40.h,
+              top: 60.h,
               left: 26.h,
               child: myTrabIconBtn(
                   onTap: ref
@@ -88,8 +81,9 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
                   text: AppStrings.furnitureT,
                   icon: AppSvgs.furnitureIcon),
             ),
+
             Positioned(
-              top: 122.h,
+              top: 144.h,
               left: 26.h,
               child: myTrabIconBtn(
                   onTap: ref
@@ -116,25 +110,26 @@ class _MyTrabScreen extends ConsumerState<MyTrabScreen> {
               child: customBubbleText(
                 dir: "top",
                 trabSay: trabSay,
-                onTap: ref
-                    .read(myTrabScreenControllerProvider.notifier)
-                    .getTrabSay,
               ),
             ),
 
             Positioned(
-              top: 350.h,
+              top: 400.h,
               left: 0,
               right: 0,
-              bottom: 170.h,
-              child: GestureDetector(
-                onTap: restartGif,
-                child: SizedBox(
-                  width: 148.w,
-                  height: 221.w,
-                  child: Image.asset(
-                    AppGifs.smileTrab_1,
-                    key: gifKey,
+              bottom: 0.h,
+              child: SizedBox(
+                height: 221.h,
+                width: 148.w,
+                child: GestureDetector(
+                  onTap: () => ref
+                      .read(myTrabScreenControllerProvider.notifier)
+                      .handleTabTrab(gifController: gifController),
+                  child: Gif(
+                    controller: gifController,
+                    width: 148.w,
+                    height: 221.h,
+                    image: AssetImage(AppGifs.smileTrab_1),
                   ),
                 ),
               ),

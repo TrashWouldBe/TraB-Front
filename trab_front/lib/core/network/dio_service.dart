@@ -71,11 +71,13 @@ class DioService {
   Future<ResponseModel<R>> patch<R>({
     required String endpoint,
     JSON? data,
+    JSON? queryParams,
     Options? options,
   }) async {
     final response = await _dio.patch<JSON>(
       endpoint,
       data: data,
+      queryParameters: queryParams,
       options: options,
     );
     return ResponseModel<R>.fromJson(response.data!);

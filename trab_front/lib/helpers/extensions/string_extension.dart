@@ -2,6 +2,7 @@
 
 import 'package:path/path.dart' as p;
 import 'package:trab_front/helpers/constants/strings.dart';
+import 'package:trab_front/helpers/enums/trash_type.dart';
 import 'package:trab_front/helpers/extensions/datetime_extension.dart';
 
 import '../constants/app_utils.dart' show Regexes;

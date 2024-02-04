@@ -144,6 +144,7 @@ class ApiService implements ApiInterface {
   Future<T> updateData<T>({
     required String endpoint,
     required JSON data,
+    JSON? queryParams,
     required T Function(ResponseModel<JSON> response) converter,
   }) async {
     ResponseModel<JSON> response;
@@ -153,6 +154,7 @@ class ApiService implements ApiInterface {
       response = await _dioService.patch<JSON>(
         endpoint: endpoint,
         data: data,
+        queryParams: queryParams,
       );
     } on Exception catch (ex) {
       throw CustomException.fromDioException(ex);

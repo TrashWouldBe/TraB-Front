@@ -32,9 +32,7 @@ class UserDataSource {
   Future<void> deleteUser() async {
     return _apiService.deleteData<void>(
       endpoint: ApiEndpoint.user(UserEndpoint.USER),
-      converter: (response) {
-        print(response);
-      },
+      converter: (response) {},
     );
   }
 

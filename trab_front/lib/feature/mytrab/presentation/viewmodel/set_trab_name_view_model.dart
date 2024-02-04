@@ -3,8 +3,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
 import 'package:trab_front/feature/common/widget/loading.dart';
-import 'package:trab_front/feature/myTrab/data/model/trab_model.dart';
-import 'package:trab_front/feature/myTrab/domain/trab_domain.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_model.dart';
+import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
 
 part 'set_trab_name_view_model.g.dart';
 

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
+import 'package:trab_front/feature/plogging/domain/plogging_domain.dart';
 import 'package:trab_front/feature/plogging/presentation/types.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_end_view_model.dart';
@@ -23,12 +24,20 @@ class PloggingEndScreen extends ConsumerStatefulWidget {
 }
 
 class _PloggingEndScreenState extends ConsumerState<PloggingEndScreen> {
+  TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    ref.watch(ploggingControllerProvider);
     PloggingInfo ploggingInfo =
         ref.watch(ploggingInfoControllerProvider).ploggingInfo;
-    TextEditingController textEditingController =
-        ref.watch(ploggingEndScreenControllerProvider).textEditingController;
+
     MapScreen mapScreen = ref.watch(mapScreenProvider);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -82,9 +91,10 @@ class _PloggingEndScreenState extends ConsumerState<PloggingEndScreen> {
                   ),
                   containerButton(
                     title: AppStrings.snackSettlement,
-                    onPressed: ref
+                    onPressed: () => ref
                         .read(ploggingEndScreenControllerProvider.notifier)
-                        .handleCalculateSnackButton,
+                        .handleCalculateSnackButton(
+                            runName: textEditingController.text),
                   )
                 ],
               ),

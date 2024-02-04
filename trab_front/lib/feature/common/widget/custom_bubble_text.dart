@@ -9,7 +9,7 @@ import 'package:trab_front/helpers/constants/app_typography.dart';
 */
 Widget customBubbleText({
   required String trabSay,
-  required onTap,
+  onTap,
   String dir = "bottom",
 }) {
   return GestureDetector(
