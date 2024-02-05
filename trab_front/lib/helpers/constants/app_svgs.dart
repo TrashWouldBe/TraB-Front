@@ -28,7 +28,7 @@ class AppSvgs {
   static String plastic = "$basePath/plastic.svg";
   static String vinyl = "$basePath/vinyl.svg";
   static String can = "$basePath/can.svg";
-  static String waste = "$basePath/common.svg";
+  static String general = "$basePath/general.svg";
   static String styrofoam = "$basePath/styrofoam.svg";
   static String glass = "$basePath/glass.svg";
   static String food = "$basePath/food.svg";
@@ -36,7 +36,7 @@ class AppSvgs {
   static String plasticStroke = "$basePath/plastic_stroke.svg";
   static String vinylStroke = "$basePath/vinyl_stroke.svg";
   static String canStroke = "$basePath/can_stroke.svg";
-  static String wasteStroke = "$basePath/waste_stroke.svg";
+  static String generalStroke = "$basePath/general_stroke.svg";
   static String styrofoamStroke = "$basePath/styrofoam_stroke.svg";
   static String glassStroke = "$basePath/glass_stroke.svg";
   static String foodStroke = "$basePath/food_stroke.svg";
@@ -46,17 +46,17 @@ class AppSvgs {
   static String groundBtn = "$basePath/ground_btn.svg";
   static String lightBtn = "$basePath/light_btn.svg";
   static String luckyPotBtn = "$basePath/lucky_pot_btn.svg";
-  static String lugBtn = "$basePath/lug_btn.svg";
+  static String rugBtn = "$basePath/rug_btn.svg";
   static String tableBtn = "$basePath/table_btn.svg";
   static String trashcanBtn = "$basePath/trashcan_btn.svg";
   static String wallpaperBtn = "$basePath/wall_paper_btn.svg";
   static String locked = "$basePath/locked.svg";
 
-  static String notiFamilyPicture = "$basePath/noti_family_picture.svg";
+  static String notiFamilyPicture = "$basePath/noti_family_photo.svg";
   static String notiGround = "$basePath/noti_ground.svg";
-  static String notiLight = "$basePath/noti_lightsvg";
+  static String notiLight = "$basePath/noti_light.svg";
   static String notiLuckyPot = "$basePath/noti_lucky_pot.svg";
-  static String notiLug = "$basePath/noti_lug.svg";
+  static String notiRug = "$basePath/noti_rug.svg";
   static String notiTable = "$basePath/noti_table.svg";
   static String notiTrashcan = "$basePath/noti_trashcan.svg";
   static String notiWallpaper = "$basePath/noti_wall.svg";

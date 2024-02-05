@@ -61,12 +61,16 @@ class ApiEndpoint {
         return '$path/furniture/list';
       case TrabEndpoint.FURNITURE_INFO:
         return '$path/furniture/info';
-      case TrabEndpoint.FURNITURE_ARRANGED:
-        return '$path/furniture/arranged';
+      case TrabEndpoint.FURNITURE_ARRANGE:
+        return '$path/furniture/arrange';
       case TrabEndpoint.SNACK:
         return '$path/snack';
+      case TrabEndpoint.SNACK_TOTAL:
+        return '$path/totalSnack';
       case TrabEndpoint.SNACK_TRASH_LIST:
         return '$path/snack/trashList';
+      case TrabEndpoint.SNACK_TRASH_TOTAL_LIST:
+        return '$path/snack/totalTrashList';
     }
   }
 }
@@ -96,7 +100,9 @@ enum TrabEndpoint {
   FURNITURE,
   FURNITURE_LIST,
   FURNITURE_INFO,
-  FURNITURE_ARRANGED,
+  FURNITURE_ARRANGE,
   SNACK,
+  SNACK_TOTAL,
   SNACK_TRASH_LIST,
+  SNACK_TRASH_TOTAL_LIST,
 }

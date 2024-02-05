@@ -35,11 +35,6 @@ Widget furnitureItem(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
-                      // BoxShadow(
-                      //   offset: const Offset(0, 1),
-                      //   blurRadius: 3.0,
-                      //   color: const Color(0xFF000000).withOpacity(0.1)
-                      // ),
                       BoxShadow(
                           offset: const Offset(0, 6),
                           blurRadius: 6.0,
