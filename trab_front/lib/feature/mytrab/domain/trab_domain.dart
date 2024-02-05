@@ -1,11 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/feature/all_providers.dart';
+import 'package:trab_front/feature/camera/data/model/image_model.dart';
 import 'package:trab_front/feature/mytrab/data/dataSource/trab_data_source.dart';
 
 import 'package:trab_front/feature/mytrab/data/model/trab_furniture_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
-import 'package:trab_front/feature/mytrab/data/model/trab_trash_list_model.dart';
 import 'package:trab_front/helpers/typedefs.dart';
 
 part 'trab_domain.g.dart';
@@ -13,14 +13,18 @@ part 'trab_domain.g.dart';
 class TrabState {
   TrabDataSource trabDataSource;
   List<TrabFurnitureModel> trabFurniture;
-  List<TrabTrashListModel> trabTrashList;
+  List<ImageModel> trabTrashList;
+  List<ImageModel> trabTotalTrashList;
   TrabSnackModel? trabSnack;
+  TrabSnackModel? trabTotalSnack;
   TrabModel? trab;
   TrabState({
     required this.trabDataSource,
     this.trab,
     required this.trabFurniture,
+    required this.trabTotalTrashList,
     this.trabSnack,
+    this.trabTotalSnack,
     required this.trabTrashList,
   });
 }
@@ -32,6 +36,7 @@ class TrabController extends _$TrabController {
     return TrabState(
       trabFurniture: [],
       trabTrashList: [],
+      trabTotalTrashList: [],
       trabDataSource: TrabDataSource(apiService: ref.watch(apiServiceProvider)),
     );
   }
@@ -39,8 +44,10 @@ class TrabController extends _$TrabController {
   void setState() {
     state = TrabState(
         trabSnack: state.trabSnack,
+        trabTotalTrashList: state.trabTotalTrashList,
         trabTrashList: state.trabTrashList,
         trabFurniture: state.trabFurniture,
+        trabTotalSnack: state.trabTotalSnack,
         trabDataSource: state.trabDataSource,
         trab: state.trab);
   }
@@ -89,17 +96,12 @@ class TrabController extends _$TrabController {
     }
   }
 
-  // Future<void> getTrabFunitureInfo() async {
-  //   try {
-  //     await state.trabDataSource.getTrabFunitureInfo();
-  //   } catch (error) {
-  //     print(error);
-  //   }
-  // }
-
-  Future<void> getTrabFunitureArranged() async {
+  Future<void> patchTrabFurnitureArrange({required String funitureName}) async {
     try {
-      await state.trabDataSource.getTrabFurnitureArranged();
+      await state.trabDataSource.patchTrabFurnitureArrage(
+          funitureName: funitureName, trabId: state.trab?.trabId);
+      await getTrabSnack();
+      await getTrabFunitureList();
     } catch (error) {
       print(error);
     }
@@ -107,7 +109,10 @@ class TrabController extends _$TrabController {
 
   Future<void> patchTrabFurniture({required JSON data}) async {
     try {
-      await state.trabDataSource.patchTrabFurniture(data: data);
+      await state.trabDataSource
+          .patchTrabFurniture(data: data, trabId: state.trab?.trabId);
+      await getTrabSnack();
+      await getTrabFunitureList();
     } catch (error) {
       print(error);
     }
@@ -122,15 +127,32 @@ class TrabController extends _$TrabController {
     }
   }
 
+  Future<void> getTrabTotalSnack() async {
+    try {
+      state.trabTotalSnack = await state.trabDataSource.getTrabTotalSnack();
+      setState();
+    } catch (error) {
+      print(error);
+    }
+  }
+
   Future<void> getTrabSnackTrashList() async {
     try {
-      int? trabId = ref.read(trabControllerProvider).trab?.trabId;
+      state.trabTrashList = await state.trabDataSource
+          .getTrabSnackTrashList(trabId: state.trab?.trabId);
 
-      if (trabId != null) {
-        state.trabTrashList =
-            await state.trabDataSource.getTrabSnackTrashList(trabId: trabId);
-        setState();
-      }
+      setState();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> getTrabTotalSnackTrashList() async {
+    try {
+      state.trabTotalTrashList = await state.trabDataSource
+          .getTrabTotalSnackTrashList(trabId: state.trab?.trabId);
+
+      setState();
     } catch (error) {
       print(error);
     }

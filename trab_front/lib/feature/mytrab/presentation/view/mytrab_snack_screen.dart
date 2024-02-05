@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trab_front/feature/camera/data/model/image_model.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
 import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
+import 'package:trab_front/feature/mytrab/presentation/viewmodel/mytrab_snack_screen_view_model.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/classified_photo_widget.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/total_count_container.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/trab_snack_info_container.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
-import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
-import 'package:trab_front/helpers/enums/trash_type.dart';
 
 class MyTrabSnackScreen extends ConsumerStatefulWidget {
   const MyTrabSnackScreen({super.key});
@@ -24,15 +25,18 @@ class MyTrabSnackScreen extends ConsumerStatefulWidget {
 class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(trabControllerProvider.notifier).getTrabSnackTrashList();
+      ref.read(myTrabSnackScreenControllerProvider.notifier).init();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    List<ImageModel> trabTotalTrashList =
+        ref.watch(trabControllerProvider).trabTotalTrashList;
+    TrabSnackModel? trabSnackTotalModel =
+        ref.watch(trabControllerProvider).trabTotalSnack;
     return Scaffold(
       appBar: CustomAppBar(
         title: AppStrings.myTrabSnacks,
@@ -55,8 +59,9 @@ class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
               height: 5.h,
             ),
             totalCountContainer(
-                totalCount: 0,
+                totalCount: trabTotalTrashList.length,
                 backgroundColor: AppColors.accentColor,
+                type: "total",
                 textColor: AppColors.body1),
             Text(
               "Tip! 내가 직접 주운 트래비 간식들을 올바르게 분리배출해서 트래비와 지속가능한 걸음을 만들어나가요!",
@@ -64,14 +69,7 @@ class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
                   color: AppColors.grey2, fontWeight: FontWeight.w600),
             ),
             trabSnackInfoContainer(
-              plasticAmount: 0,
-              vinylAmount: 0,
-              canAmount: 0,
-              wasteAmount: 0,
-              styrofoamAmount: 0,
-              glassAmount: 0,
-              foodAmount: 0,
-              paperAmount: 0,
+              trabSnackModel: trabSnackTotalModel,
             ),
             Container(
               height: 1.h,
@@ -80,12 +78,12 @@ class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
             Expanded(
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: 8,
+                itemCount: trabTotalTrashList.length,
                 itemBuilder: (context, index) {
                   return classifiedPhotoWidget(
                       index: index,
-                      item: TrashType.styrofoam,
-                      img: AppImages.appleLogin);
+                      item: trabTotalTrashList[index].trashEnumType,
+                      img: trabTotalTrashList[index].imageUrl);
                 },
               ),
             )

@@ -1,12 +1,12 @@
 enum TrashType {
   glass,
   paper,
-  can,
+  metal,
   plastic,
   vinyl,
   styrofoam,
-  general_waste,
-  food_waste,
+  general,
+  food,
 }
 
 extension TrashTypeExtension on TrashType {
@@ -18,16 +18,13 @@ extension TrashTypeExtension on TrashType {
   }
 
   String toJson() => name;
-}
-
-extension WasteTypeExtension on TrashType {
   String toKorean() {
     switch (this) {
       case TrashType.glass:
         return '유리';
       case TrashType.paper:
         return '종이';
-      case TrashType.can:
+      case TrashType.metal:
         return '캔';
       case TrashType.plastic:
         return '플라스틱';
@@ -35,9 +32,9 @@ extension WasteTypeExtension on TrashType {
         return '비닐';
       case TrashType.styrofoam:
         return '스티로폼';
-      case TrashType.general_waste:
+      case TrashType.general:
         return '일반';
-      case TrashType.food_waste:
+      case TrashType.food:
         return '음식물';
       default:
         return '알 수 없음';

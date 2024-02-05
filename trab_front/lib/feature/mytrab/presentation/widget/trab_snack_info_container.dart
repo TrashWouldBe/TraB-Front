@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-Widget trabSnackInfoContainer(
-    {required int plasticAmount,
-    required int vinylAmount,
-    required int canAmount,
-    required int wasteAmount,
-    required int styrofoamAmount,
-    required int glassAmount,
-    required int foodAmount,
-    required int paperAmount}) {
+Widget trabSnackInfoContainer({required TrabSnackModel? trabSnackModel}) {
   return Container(
     margin: EdgeInsets.symmetric(vertical: 16.h),
     child: Column(
@@ -22,10 +15,12 @@ Widget trabSnackInfoContainer(
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            eachItemContainer(plasticAmount, AppSvgs.plasticStroke),
-            eachItemContainer(vinylAmount, AppSvgs.vinylStroke),
-            eachItemContainer(canAmount, AppSvgs.canStroke),
-            eachItemContainer(wasteAmount, AppSvgs.wasteStroke),
+            eachItemContainer(
+                trabSnackModel?.plastic ?? 0, AppSvgs.plasticStroke),
+            eachItemContainer(trabSnackModel?.vinyl ?? 0, AppSvgs.vinylStroke),
+            eachItemContainer(trabSnackModel?.can ?? 0, AppSvgs.canStroke),
+            eachItemContainer(
+                trabSnackModel?.general ?? 0, AppSvgs.generalStroke),
           ],
         ),
         SizedBox(
@@ -34,10 +29,11 @@ Widget trabSnackInfoContainer(
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            eachItemContainer(styrofoamAmount, AppSvgs.styrofoamStroke),
-            eachItemContainer(glassAmount, AppSvgs.glassStroke),
-            eachItemContainer(foodAmount, AppSvgs.foodStroke),
-            eachItemContainer(paperAmount, AppSvgs.paperStroke),
+            eachItemContainer(
+                trabSnackModel?.styrofoam ?? 0, AppSvgs.styrofoamStroke),
+            eachItemContainer(trabSnackModel?.glass ?? 0, AppSvgs.glassStroke),
+            eachItemContainer(trabSnackModel?.food ?? 0, AppSvgs.foodStroke),
+            eachItemContainer(trabSnackModel?.paper ?? 0, AppSvgs.paperStroke),
           ],
         ),
       ],

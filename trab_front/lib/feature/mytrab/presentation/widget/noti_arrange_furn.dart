@@ -48,7 +48,7 @@ class NotiArrangeFurniture extends StatelessWidget {
                   GestureDetector(
                       behavior: HitTestBehavior.opaque,
                       onTap: () {
-                        onTap;
+                        onTap();
                         Navigator.of(context).pop();
                         showDialog(
                             context: context,
