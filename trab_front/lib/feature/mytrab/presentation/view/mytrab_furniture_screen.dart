@@ -109,6 +109,7 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
                                     trabFurnitureModel:
                                         trabFurnitureModel[index],
                                   ),
+                              isArrange: trabFurnitureModel[index].isArrange,
                             );
                           },
                         );

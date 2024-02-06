@@ -43,6 +43,10 @@ class AppStrings {
 
   static String time = "시간";
 
+  static String no = "아니요";
+
+  static String arrange = "배치하기";
+
   static String cameraExpain = "내가 주운 쓰레기를 촬영해\n분리배출 방법을 알아볼까요?";
 
   static String seeMyTrabSnacks = "내가 주운 트래비 간식 보러가기";
@@ -101,6 +105,8 @@ class AppStrings {
 
   static String close = "닫기";
 
+  static String cancle = "취소하기";
+
   static String pleaseSetTrabName = "함께 지속가능한 걸음을 만들어나갈\n나만의 트래비 이름을 지어주세요.";
 
   static String pleaseInputLeastTwo = "2글자 이상 입력해주세요!";
@@ -122,4 +128,8 @@ class AppStrings {
   static String end = "종료하기";
 
   static String trabHouseT = "의 트래비 하우스";
+
+  static String arrangeFunitureQuery = "가구를 배치하시겠습니까?";
+
+  static String cancelArrangeFunitureQuery = "가구 배치를 취소하시겠습니까?";
 }
