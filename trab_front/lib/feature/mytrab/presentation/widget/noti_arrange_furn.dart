@@ -3,10 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/noti_happy.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
+import 'package:trab_front/helpers/constants/strings.dart';
 
+// ignore: must_be_immutable
 class NotiArrangeFurniture extends StatelessWidget {
-  const NotiArrangeFurniture({super.key, required this.onTap});
-  final VoidCallback onTap;
+  NotiArrangeFurniture(
+      {super.key, required this.onTap, required this.isArrange});
+  final Function onTap;
+  bool isArrange;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,9 @@ class NotiArrangeFurniture extends StatelessWidget {
                 height: 8.h,
               ),
               Text(
-                "가구를 배치하시겠습니까?",
+                isArrange
+                    ? AppStrings.cancelArrangeFunitureQuery
+                    : AppStrings.arrangeFunitureQuery,
                 style: AppTypography.mainCaption_1
                     .copyWith(color: AppColors.textColor_2),
               ),
@@ -41,26 +47,31 @@ class NotiArrangeFurniture extends StatelessWidget {
                         Navigator.of(context).pop();
                       },
                       child: Text(
-                        "아니요",
+                        AppStrings.no,
                         style: AppTypography.mainCaption_1
                             .copyWith(color: AppColors.grey1),
                       )),
                   GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () {
-                        onTap();
-                        Navigator.of(context).pop();
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () async {
+                      await onTap();
+                      // ignore: use_build_context_synchronously
+                      Navigator.of(context).pop();
+                      // ignore: use_build_context_synchronously
+                      if (!isArrange)
                         showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return const NotiHappy();
-                            });
-                      },
-                      child: Text(
-                        "배치하기",
-                        style: AppTypography.mainCaption_1
-                            .copyWith(color: AppColors.accentColor),
-                      ))
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const NotiHappy();
+                          },
+                        );
+                    },
+                    child: Text(
+                      isArrange ? AppStrings.cancle : AppStrings.arrange,
+                      style: AppTypography.mainCaption_1
+                          .copyWith(color: AppColors.accentColor),
+                    ),
+                  )
                 ],
               )
             ],
