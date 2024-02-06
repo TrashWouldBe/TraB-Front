@@ -6,6 +6,7 @@ import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
 import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
 import 'package:trab_front/helpers/enums/furniture_type.dart';
 import 'package:trab_front/helpers/enums/trash_type.dart';
+import 'package:trab_front/helpers/extensions/furnituretype_extension.dart';
 
 part 'mytrab_furniture_view_model.g.dart';
 

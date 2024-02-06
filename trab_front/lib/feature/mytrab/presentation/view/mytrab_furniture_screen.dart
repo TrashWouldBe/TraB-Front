@@ -13,7 +13,7 @@ import 'package:trab_front/feature/mytrab/presentation/widget/total_count_contai
 import 'package:trab_front/feature/mytrab/presentation/widget/trab_furn_info_container.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
-import 'package:trab_front/helpers/enums/furniture_type.dart';
+import 'package:trab_front/helpers/extensions/furnituretype_extension.dart';
 
 class MyTrabFurnitureScreen extends ConsumerStatefulWidget {
   const MyTrabFurnitureScreen({super.key});
