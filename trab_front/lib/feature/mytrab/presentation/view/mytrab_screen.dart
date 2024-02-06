@@ -13,7 +13,7 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_gifs.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
-import 'package:trab_front/helpers/enums/furniture_type.dart';
+import 'package:trab_front/helpers/extensions/furnituretype_extension.dart';
 
 class MyTrabScreen extends ConsumerStatefulWidget {
   const MyTrabScreen({super.key});

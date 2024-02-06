@@ -8,7 +8,7 @@ import 'package:trab_front/feature/camera/presentation/widget/sorted_trash_image
 import 'package:trab_front/feature/common/widget/container_button.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
-import 'package:trab_front/helpers/enums/trash_type.dart';
+import 'package:trab_front/helpers/extensions/trashtype_extension.dart';
 
 class SortedTrashScreen extends ConsumerStatefulWidget {
   const SortedTrashScreen({super.key});
