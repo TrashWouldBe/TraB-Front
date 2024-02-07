@@ -35,4 +35,5 @@ Runner/GoogleService-Info.plist
 !default.perspectivev3
 
 Config.xcconfig
+firebase_app_id_file.json
 
