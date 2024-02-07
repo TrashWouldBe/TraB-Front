@@ -33,7 +33,7 @@ class PloggingInfoController extends _$PloggingInfoController {
           runTime: AppStrings.initialTime,
           calorie: 0,
           images: []),
-      isPlogging: true,
+      isPlogging: false,
     );
   }
 
