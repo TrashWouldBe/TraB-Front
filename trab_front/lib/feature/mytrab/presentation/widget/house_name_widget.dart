@@ -46,7 +46,7 @@ SizedBox houseNameWidget(
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       contentPadding: Platform.isAndroid
-                          ? EdgeInsets.only(bottom: 18.h, top: 18.h)
+                          ? EdgeInsets.only(bottom: 13.h, top: 18.h)
                           : EdgeInsets.only(
                               bottom: 19.w,
                             ),
