@@ -44,6 +44,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   gif: ^2.3.0
   url_launcher: ^6.2.4
+  flutter_dotenv: ^5.1.0
 
 flutter_launcher_icons:
   image_path_android: "assets/images/trab_icon.png"
@@ -72,6 +73,7 @@ flutter:
     - assets/images/.
     - assets/svgs/.
     - assets/gifs/.
+    - .env
   fonts:
     - family: Pretendard
       fonts:

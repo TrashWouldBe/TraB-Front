@@ -8,7 +8,7 @@ import '../../config/config.dart';
 @immutable
 class ApiEndpoint {
   const ApiEndpoint._();
-  static const baseUrl = Config.baseUrl;
+  static String baseUrl = Config.baseUrl;
 
   static String auth(AuthEndpoint endpoint) {
     const path = '/auth';
