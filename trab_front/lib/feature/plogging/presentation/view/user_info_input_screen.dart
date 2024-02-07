@@ -20,20 +20,32 @@ class UserInfoInputScreen extends ConsumerStatefulWidget {
 }
 
 class _UserInfoInputScreenState extends ConsumerState<UserInfoInputScreen> {
+  List<FocusNode> focusNodes = List.generate(2, (_) => FocusNode());
+  List<TextEditingController> textEditingControllers =
+      List.generate(2, (_) => TextEditingController());
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(userInfoInputScreenControllerProvider.notifier).init();
+      ref.read(userInfoInputScreenControllerProvider.notifier).init(
+          textEditingController: textEditingControllers, focusNode: focusNodes);
     });
   }
 
   @override
+  void dispose() {
+    focusNodes.forEach((element) {
+      element.dispose();
+    });
+    textEditingControllers.forEach((element) {
+      element.dispose();
+    });
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<TextEditingController> textEditingControllers =
-        ref.watch(userInfoInputScreenControllerProvider).textEditingController;
-    List<FocusNode> focusNodes =
-        ref.watch(userInfoInputScreenControllerProvider).focusNode;
+    ref.watch(userInfoInputScreenControllerProvider);
     bool isButtonEnabled = textEditingControllers[0].text != AppStrings.empty &&
         textEditingControllers[1].text != AppStrings.empty;
     return GestureDetector(
@@ -111,10 +123,11 @@ class _UserInfoInputScreenState extends ConsumerState<UserInfoInputScreen> {
                   ),
                   Center(
                     child: containerButton(
-                        onPressed: ref
+                        onPressed: () => ref
                             .read(
                                 userInfoInputScreenControllerProvider.notifier)
-                            .handlePressedContainerButton,
+                            .handlePressedContainerButton(
+                                textEditingController: textEditingControllers),
                         title: isButtonEnabled
                             ? AppStrings.startPlogging
                             : AppStrings.noWeightPlogging,

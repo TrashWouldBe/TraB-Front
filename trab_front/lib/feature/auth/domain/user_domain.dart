@@ -28,14 +28,16 @@ class UserController extends _$UserController {
         userDataSource: state.userDataSource, userInfo: state.userInfo);
   }
 
-  Future<void> getUserInfo() async {
+  Future<UserInfoModel?> getUserInfo() async {
     try {
       UserInfoModel userInfo = await state.userDataSource.getUserInfo();
       state.userInfo = userInfo;
       setState();
+      return userInfo;
     } catch (error) {
       print(error);
     }
+    return null;
   }
 
   Future<void> postUserInfo({required UserInfo data}) async {

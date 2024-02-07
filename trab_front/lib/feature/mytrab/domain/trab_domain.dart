@@ -54,10 +54,10 @@ class TrabController extends _$TrabController {
 
   Future<TrabModel?> getTrab() async {
     try {
-      TrabModel? userInfo = await state.trabDataSource.getTrab();
-      state.trab = userInfo;
+      TrabModel? trabInfo = await state.trabDataSource.getTrab();
+      state.trab = trabInfo;
       setState();
-      return userInfo;
+      return trabInfo;
     } catch (error) {
       print(error);
     }
@@ -66,10 +66,11 @@ class TrabController extends _$TrabController {
 
   Future<TrabModel?> postTrab({required JSON data}) async {
     try {
-      TrabModel? userInfo = await state.trabDataSource.postTrab(data: data);
-      state.trab = userInfo;
+      TrabModel? trabInfo = await state.trabDataSource.postTrab(data: data);
+      print(trabInfo);
+      state.trab = trabInfo;
       setState();
-      return userInfo;
+      return trabInfo;
     } catch (error) {
       print(error);
     }
@@ -89,7 +90,8 @@ class TrabController extends _$TrabController {
 
   Future<void> getTrabFunitureList() async {
     try {
-      state.trabFurniture = await state.trabDataSource.getTrabFunitureList();
+      state.trabFurniture = await state.trabDataSource
+          .getTrabFunitureList(trabId: state.trab?.trabId);
       setState();
     } catch (error) {
       print(error);
@@ -120,7 +122,8 @@ class TrabController extends _$TrabController {
 
   Future<void> getTrabSnack() async {
     try {
-      state.trabSnack = await state.trabDataSource.getTrabSnack();
+      state.trabSnack =
+          await state.trabDataSource.getTrabSnack(trabId: state.trab?.trabId);
       setState();
     } catch (error) {
       print(error);
@@ -129,7 +132,8 @@ class TrabController extends _$TrabController {
 
   Future<void> getTrabTotalSnack() async {
     try {
-      state.trabTotalSnack = await state.trabDataSource.getTrabTotalSnack();
+      state.trabTotalSnack = await state.trabDataSource
+          .getTrabTotalSnack(trabId: state.trab?.trabId);
       setState();
     } catch (error) {
       print(error);

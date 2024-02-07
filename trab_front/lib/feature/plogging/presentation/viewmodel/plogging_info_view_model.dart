@@ -46,7 +46,7 @@ class PloggingInfoController extends _$PloggingInfoController {
     );
   }
 
-  Future<void> getImage({required ImageSource imageSource}) async {
+  void getImage({required ImageSource imageSource}) async {
     Loading.show();
     stopTimer();
     final ImagePicker picker = ImagePicker();

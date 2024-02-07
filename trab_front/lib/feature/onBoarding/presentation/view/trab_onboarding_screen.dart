@@ -15,24 +15,36 @@ class TrabOnBoardingScreen extends ConsumerStatefulWidget {
 }
 
 class _TrabOnBoardingScreenState extends ConsumerState<TrabOnBoardingScreen> {
+  List<TextEditingController> textEditingControllers =
+      List.generate(2, (_) => TextEditingController());
+  PageController pageController = PageController(initialPage: 0);
+  List<FocusNode> focusNodes = List.generate(2, (_) => FocusNode());
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(trabOnBoardingScreenControllerProvider.notifier).init();
+      ref.read(trabOnBoardingScreenControllerProvider.notifier).init(
+          textEditingController: textEditingControllers, focusNode: focusNodes);
     });
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    focusNodes.forEach((element) {
+      element.dispose();
+    });
+    textEditingControllers.forEach((element) {
+      element.dispose();
+    });
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     int selectedIndex =
         ref.watch(trabOnBoardingScreenControllerProvider).selectedPage;
-    PageController pageController =
-        ref.watch(trabOnBoardingScreenControllerProvider).pageController;
-    List<FocusNode> focusNodes =
-        ref.watch(trabOnBoardingScreenControllerProvider).focusNode;
-    List<TextEditingController> textEditingControllers =
-        ref.watch(trabOnBoardingScreenControllerProvider).textEditingController;
+
     return PopScope(
       canPop: false,
       child: GestureDetector(
@@ -46,9 +58,11 @@ class _TrabOnBoardingScreenState extends ConsumerState<TrabOnBoardingScreen> {
             backgroundColor: AppColors.backgroundColor,
             trailingColor:
                 selectedIndex == 2 ? AppColors.primaryColor : AppColors.grey1,
-            onPressedTrailing: ref
+            onPressedTrailing: () => ref
                 .read(trabOnBoardingScreenControllerProvider.notifier)
-                .handlePressedTrailing,
+                .handlePressedTrailing(
+                    pageController: pageController,
+                    textEditingController: textEditingControllers),
           ),
           body: SafeArea(
             child: PageView.builder(

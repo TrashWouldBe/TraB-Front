@@ -11,43 +11,34 @@ import 'package:trab_front/helpers/constants/strings.dart';
 part 'user_info_input_screen_view_model.g.dart';
 
 class UserInfoInputScreenState {
-  List<FocusNode> focusNode;
-  List<TextEditingController> textEditingController;
-  UserInfoInputScreenState({
-    required this.focusNode,
-    required this.textEditingController,
-  });
+  UserInfoInputScreenState();
 }
 
 @riverpod
 class UserInfoInputScreenController extends _$UserInfoInputScreenController {
   @override
   UserInfoInputScreenState build() {
-    return UserInfoInputScreenState(
-      focusNode: List.generate(2, (_) => FocusNode()),
-      textEditingController: List.generate(2, (_) => TextEditingController()),
-    );
+    return UserInfoInputScreenState();
   }
 
   void setState() {
-    state = UserInfoInputScreenState(
-        focusNode: state.focusNode,
-        textEditingController: state.textEditingController);
+    state = UserInfoInputScreenState();
   }
 
-  void init() {
+  void init(
+      {required List<TextEditingController> textEditingController,
+      required List<FocusNode> focusNode}) {
     UserInfoModel? userInfoModel = ref.read(userControllerProvider).userInfo;
-    state.textEditingController[0].text = userInfoModel?.name ?? "";
-    state.textEditingController[1].text =
-        userInfoModel?.weight?.toString() ?? "";
-    state.focusNode.forEach(
+    textEditingController[0].text = userInfoModel?.name ?? "";
+    textEditingController[1].text = userInfoModel?.weight?.toString() ?? "";
+    focusNode.forEach(
       (focusNode) => focusNode.addListener(
         () {
           setState();
         },
       ),
     );
-    state.textEditingController.forEach(
+    textEditingController.forEach(
       (textEditor) => textEditor.addListener(
         () {
           setState();
@@ -57,14 +48,15 @@ class UserInfoInputScreenController extends _$UserInfoInputScreenController {
     setState();
   }
 
-  void handlePressedContainerButton() async {
+  void handlePressedContainerButton(
+      {required List<TextEditingController> textEditingController}) async {
     Loading.show();
     await ref.read(userControllerProvider.notifier).postUserInfo(
           data: UserInfo(
-            name: state.textEditingController[0].text == AppStrings.empty
+            name: textEditingController[0].text == AppStrings.empty
                 ? null
-                : state.textEditingController[0].text,
-            weight: int.tryParse(state.textEditingController[1].text),
+                : textEditingController[0].text,
+            weight: int.tryParse(textEditingController[1].text),
           ),
         );
     Loading.close();

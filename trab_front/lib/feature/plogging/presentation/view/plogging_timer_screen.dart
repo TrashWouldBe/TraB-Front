@@ -88,9 +88,9 @@ class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
                   onPressedStartButton: ref
                       .read(ploggingInfoControllerProvider.notifier)
                       .startTimer,
-                  onPressedCameraButton: () async => await ref
+                  onPressedCameraButton: () => ref
                       .read(ploggingInfoControllerProvider.notifier)
-                      .getImage(imageSource: ImageSource.camera),
+                      .getImage(imageSource: ImageSource.gallery),
                 ),
               ],
             ),

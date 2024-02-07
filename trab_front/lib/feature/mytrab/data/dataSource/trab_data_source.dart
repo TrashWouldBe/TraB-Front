@@ -50,9 +50,13 @@ class TrabDataSource {
     );
   }
 
-  Future<List<TrabFurnitureModel>> getTrabFunitureList() async {
+  Future<List<TrabFurnitureModel>> getTrabFunitureList(
+      {required int? trabId}) async {
     return _apiService.getDocumentData<List<TrabFurnitureModel>>(
       endpoint: ApiEndpoint.trab(TrabEndpoint.FURNITURE_LIST),
+      queryParams: {
+        "trab_id": trabId,
+      },
       converter: (response) {
         return TrabFurnitureModel.fromJsonList(response.body);
       },
@@ -86,18 +90,24 @@ class TrabDataSource {
     );
   }
 
-  Future<TrabSnackModel> getTrabSnack() async {
+  Future<TrabSnackModel> getTrabSnack({required int? trabId}) async {
     return _apiService.getDocumentData<TrabSnackModel>(
       endpoint: ApiEndpoint.trab(TrabEndpoint.SNACK),
+      queryParams: {
+        "trab_id": trabId,
+      },
       converter: (response) {
         return TrabSnackModel.fromJson(response.body);
       },
     );
   }
 
-  Future<TrabSnackModel> getTrabTotalSnack() async {
+  Future<TrabSnackModel> getTrabTotalSnack({required int? trabId}) async {
     return _apiService.getDocumentData<TrabSnackModel>(
       endpoint: ApiEndpoint.trab(TrabEndpoint.SNACK_TOTAL),
+      queryParams: {
+        "trab_id": trabId,
+      },
       converter: (response) {
         return TrabSnackModel.fromJson(response.body);
       },
