@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +22,7 @@ class CameraScreen extends ConsumerStatefulWidget {
 class _CameraScreenState extends ConsumerState<CameraScreen> {
   @override
   Widget build(BuildContext context) {
-    File? image = ref.watch(cameraScreenControllerProvider).image;
+    ref.watch(cameraScreenControllerProvider).imageModel;
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 25.w),

@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
@@ -18,38 +17,38 @@ class LoginScreenController extends _$LoginScreenController {
     return LoginScreenState();
   }
 
-  void socialSignInWithKakao({required BuildContext context}) async {
+  void socialSignInWithKakao() async {
     try {
-      showLoading(context: context);
+      Loading.show();
       await ref.read(authControllerProvider.notifier).socialSignInWithKakao();
-      closeLoading(context: context);
-      AppRouter.pushAndRemoveUntil(Routes.InitialRoute);
+      Loading.close();
+      AppRouter.pushNamed(Routes.InitialRoute);
     } catch (error) {
-      closeLoading(context: context);
+      Loading.close();
       print(error);
     }
   }
 
-  void socialSignInWithGoogle({required BuildContext context}) async {
+  void socialSignInWithGoogle() async {
     try {
-      showLoading(context: context);
+      Loading.show();
       await ref.read(authControllerProvider.notifier).socialSignInWithGoogle();
-      closeLoading(context: context);
-      AppRouter.pushAndRemoveUntil(Routes.InitialRoute);
+      Loading.close();
+      AppRouter.pushNamed(Routes.InitialRoute);
     } catch (error) {
-      closeLoading(context: context);
+      Loading.close();
       print(error);
     }
   }
 
-  void socialSignInWithApple({required BuildContext context}) async {
+  void socialSignInWithApple() async {
     try {
-      showLoading(context: context);
+      Loading.show();
       await ref.read(authControllerProvider.notifier).socialSignInWithApple();
-      closeLoading(context: context);
-      AppRouter.pushAndRemoveUntil(Routes.InitialRoute);
+      Loading.close();
+      AppRouter.pushNamed(Routes.InitialRoute);
     } catch (error) {
-      closeLoading(context: context);
+      Loading.close();
       print(error);
     }
   }

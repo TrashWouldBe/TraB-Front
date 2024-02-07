@@ -1,4 +1,4 @@
-package com.example.trab_front
+package com.solutionChallenge.trabFront
 
 import io.flutter.embedding.android.FlutterActivity
 

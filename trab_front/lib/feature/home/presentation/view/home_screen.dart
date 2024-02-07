@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trab_front/feature/camera/presentation/view/camera_screen.dart';
+import 'package:trab_front/feature/mytrab/presentation/view/mytrab_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/view/plogging_start_screen.dart';
 import 'package:trab_front/feature/home/presentation/viewmodel/home_screen_view_model.dart';
 import 'package:trab_front/feature/setting/presentation/view/setting_screen.dart';
@@ -27,6 +28,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return PopScope(
       canPop: false,
       child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: AppColors.backgroundColor,
           bottomNavigationBar: CupertinoTabBar(
             height: 56.h,
@@ -66,6 +68,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             children: const [
               PloggingStartScreen(),
               CameraScreen(),
+              MyTrabScreen(),
               SettingScreen()
             ],
           )),

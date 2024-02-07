@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,9 +77,9 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                       width: 183.w,
                       height: 45.h,
                     ),
-                    onPressed: () => ref
+                    onPressed: ref
                         .read(loginScreenControllerProvider.notifier)
-                        .socialSignInWithKakao(context: context),
+                        .socialSignInWithKakao,
                   ),
                   SizedBox(
                     height: 13.h,
@@ -88,23 +90,28 @@ class _LogInScreenState extends ConsumerState<LogInScreen> {
                       width: 183.w,
                       height: 45.h,
                     ),
-                    onPressed: () => ref
+                    onPressed: ref
                         .read(loginScreenControllerProvider.notifier)
-                        .socialSignInWithGoogle(context: context),
+                        .socialSignInWithGoogle,
                   ),
                   SizedBox(
                     height: 13.h,
                   ),
-                  noPaddingButton(
-                    child: Image.asset(
-                      AppImages.appleLogin,
-                      width: 183.w,
+                  if (Platform.isAndroid)
+                    SizedBox(
                       height: 45.h,
                     ),
-                    onPressed: () => ref
-                        .read(loginScreenControllerProvider.notifier)
-                        .socialSignInWithApple(context: context),
-                  )
+                  if (Platform.isIOS)
+                    noPaddingButton(
+                      child: Image.asset(
+                        AppImages.appleLogin,
+                        width: 183.w,
+                        height: 45.h,
+                      ),
+                      onPressed: ref
+                          .read(loginScreenControllerProvider.notifier)
+                          .socialSignInWithApple,
+                    ),
                 ],
               ),
             ),

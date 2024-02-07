@@ -17,7 +17,7 @@ Future<void> showCustomDialog(
         style:
             AppTypography.mainCaption_1.copyWith(color: AppColors.textColor_1),
       ),
-      content: content == null ? null : Text(content!),
+      content: content == null ? null : Text(content),
       actions: actions,
     ),
   );

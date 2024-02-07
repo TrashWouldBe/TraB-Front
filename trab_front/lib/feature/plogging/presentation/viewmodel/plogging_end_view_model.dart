@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:trab_front/config/routes/app_router.dart';
 import 'package:trab_front/config/routes/routes.dart';
+import 'package:trab_front/feature/common/widget/loading.dart';
+import 'package:trab_front/feature/plogging/domain/plogging_domain.dart';
+import 'package:trab_front/feature/plogging/presentation/types.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/feature/setting/presentation/widget/adaptive_dialog.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
@@ -14,7 +17,7 @@ class PloggingEndScreenState {
   PloggingEndScreenState();
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 class PloggingEndScreenController extends _$PloggingEndScreenController {
   @override
   PloggingEndScreenState build() {
@@ -31,8 +34,7 @@ class PloggingEndScreenController extends _$PloggingEndScreenController {
           onPressed: () {
             Navigator.of(context).pop();
             ref.read(ploggingInfoControllerProvider.notifier).endTimer();
-
-            AppRouter.pushAndRemoveUntil(Routes.HomeScreenRoute);
+            AppRouter.popUntil(Routes.HomeScreenRoute);
           },
           child: Text(
             AppStrings.notDo,
@@ -52,7 +54,18 @@ class PloggingEndScreenController extends _$PloggingEndScreenController {
     );
   }
 
-  void handleCalculateSnackButton() {
+  void handleCalculateSnackButton({required String runName}) async {
+    Loading.show();
+
+    PloggingInfo ploggingInfo =
+        ref.read(ploggingInfoControllerProvider).ploggingInfo.copyWith(
+              runName: runName,
+            );
+    ref.read(ploggingInfoControllerProvider.notifier).endTimer();
+    await ref
+        .read(ploggingControllerProvider.notifier)
+        .postPlogging(ploggingInfo: ploggingInfo);
+    Loading.close();
     AppRouter.pushNamed(Routes.PloggingCalculateScreenRoute);
   }
 }

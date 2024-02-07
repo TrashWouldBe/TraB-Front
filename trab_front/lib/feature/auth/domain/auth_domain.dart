@@ -12,6 +12,7 @@ import 'package:trab_front/feature/auth/data/dataSource/auth_data_source.dart';
 import 'package:trab_front/feature/auth/data/model/auth_model.dart';
 import 'package:trab_front/feature/auth/domain/user_domain.dart';
 import 'package:trab_front/feature/auth/types.dart';
+import 'package:trab_front/feature/common/widget/loading.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
 part 'auth_domain.g.dart';
@@ -135,8 +136,10 @@ class AuthController extends _$AuthController {
 
   void signOut() async {
     try {
+      Loading.show();
       await firebase_auth.FirebaseAuth.instance.signOut();
-      AppRouter.pushAndRemoveUntil(Routes.LoginScreenRoute);
+      Loading.close();
+      AppRouter.pushNamed(Routes.LoginScreenRoute);
     } catch (e) {
       print(e);
     }
@@ -144,9 +147,11 @@ class AuthController extends _$AuthController {
 
   void withdrawal() async {
     try {
+      Loading.show();
       await ref.read(userControllerProvider.notifier).deleteUser();
       await firebase_auth.FirebaseAuth.instance.signOut();
-      AppRouter.pushAndRemoveUntil(Routes.LoginScreenRoute);
+      Loading.close();
+      AppRouter.pushNamed(Routes.LoginScreenRoute);
     } catch (e) {
       print(e);
     }

@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/map_screen_view_model.dart';
 
-//TODO: 10초마다 받아와서 polylines에 저장 ㅠ
-
 class MapScreen extends ConsumerStatefulWidget {
   const MapScreen({super.key});
 
@@ -15,24 +13,26 @@ class MapScreen extends ConsumerStatefulWidget {
 }
 
 class _MapScreenState extends ConsumerState<MapScreen> {
-  GoogleMapController? mapController;
-
   @override
   Widget build(BuildContext context) {
-    var _currentLocation =
+    LatLng currentLocation =
         ref.watch(mapScreenControllerProvider).currentLocation;
-    var _polyLine = ref.watch(mapScreenControllerProvider).polylines;
+    Set<Polyline> polyLine = ref.watch(mapScreenControllerProvider).polylines;
     return GoogleMap(
       myLocationEnabled: true,
       onMapCreated: ref.read(mapScreenControllerProvider.notifier).onMapCreated,
       initialCameraPosition: CameraPosition(
-        target: _currentLocation,
+        target: currentLocation,
         zoom: 17.0,
       ),
       minMaxZoomPreference: const MinMaxZoomPreference(13, 20),
-      polylines: _polyLine,
+      polylines: polyLine,
       myLocationButtonEnabled: true,
       buildingsEnabled: false,
     );
   }
 }
+
+final mapScreenProvider = Provider<MapScreen>((ref) {
+  return const MapScreen();
+});

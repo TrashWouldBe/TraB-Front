@@ -8,7 +8,7 @@ import '../../config/config.dart';
 @immutable
 class ApiEndpoint {
   const ApiEndpoint._();
-  static const baseUrl = Config.baseUrl;
+  static String baseUrl = Config.baseUrl;
 
   static String auth(AuthEndpoint endpoint) {
     const path = '/auth';
@@ -32,13 +32,21 @@ class ApiEndpoint {
     }
   }
 
-  static String plogging(PloggingEndPoint endPoint) {
+  static String plogging(PloggingEndpoint endPoint) {
     const path = '/plogging';
     switch (endPoint) {
-      case PloggingEndPoint.PLOGGING:
+      case PloggingEndpoint.PLOGGING:
         return '$path';
-      case PloggingEndPoint.LIST:
+      case PloggingEndpoint.LIST:
         return '$path/list';
+    }
+  }
+
+  static String image(ImageEndPoint endPoint) {
+    const path = '/image';
+    switch (endPoint) {
+      case ImageEndPoint.Image:
+        return '$path';
     }
   }
 
@@ -47,6 +55,22 @@ class ApiEndpoint {
     switch (endpoint) {
       case TrabEndpoint.TRAB:
         return '$path';
+      case TrabEndpoint.FURNITURE:
+        return '$path/furniture';
+      case TrabEndpoint.FURNITURE_LIST:
+        return '$path/furniture/list';
+      case TrabEndpoint.FURNITURE_INFO:
+        return '$path/furniture/info';
+      case TrabEndpoint.FURNITURE_ARRANGE:
+        return '$path/furniture/arrange';
+      case TrabEndpoint.SNACK:
+        return '$path/snack';
+      case TrabEndpoint.SNACK_TOTAL:
+        return '$path/totalSnack';
+      case TrabEndpoint.SNACK_TRASH_LIST:
+        return '$path/snack/trashList';
+      case TrabEndpoint.SNACK_TRASH_TOTAL_LIST:
+        return '$path/snack/totalTrashList';
     }
   }
 }
@@ -62,11 +86,23 @@ enum UserEndpoint {
   IMAGE,
 }
 
-enum PloggingEndPoint {
+enum ImageEndPoint {
+  Image,
+}
+
+enum PloggingEndpoint {
   PLOGGING,
   LIST,
 }
 
 enum TrabEndpoint {
   TRAB,
+  FURNITURE,
+  FURNITURE_LIST,
+  FURNITURE_INFO,
+  FURNITURE_ARRANGE,
+  SNACK,
+  SNACK_TOTAL,
+  SNACK_TRASH_LIST,
+  SNACK_TRASH_TOTAL_LIST,
 }

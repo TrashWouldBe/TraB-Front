@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:trab_front/feature/plogging/presentation/types.dart';
+import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/plogging_infos.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/timer_bottom_buttons.dart';
@@ -15,16 +15,16 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_gifs.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 
-class FlogginTimerScreen extends ConsumerStatefulWidget {
-  const FlogginTimerScreen({super.key});
+class PloggingTimerScreen extends ConsumerStatefulWidget {
+  const PloggingTimerScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _FlogginTimerScreenState();
+    return _PloggingTimerScreenState();
   }
 }
 
-class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
+class _PloggingTimerScreenState extends ConsumerState<PloggingTimerScreen> {
   @override
   void initState() {
     super.initState();
@@ -35,10 +35,10 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String time = ref.watch(ploggingInfoControllerProvider).time;
-    List<File> snacks = ref.watch(ploggingInfoControllerProvider).trabSnacks;
+    PloggingInfo ploggingInfo =
+        ref.watch(ploggingInfoControllerProvider).ploggingInfo;
     bool isPlogging = ref.watch(ploggingInfoControllerProvider).isPlogging;
-    double distance = ref.watch(ploggingInfoControllerProvider).distance;
+    ref.read(mapScreenProvider);
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -76,10 +76,7 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                   height: 40.h,
                 ),
                 ploggingTimerInfos(
-                  snack: snacks.length.toString(),
-                  calorie: "0",
-                  time: time,
-                  distance: distance.toStringAsFixed(2),
+                  ploggingInfo: ploggingInfo,
                   type: InfoType.timer,
                 ),
                 SizedBox(
@@ -91,7 +88,7 @@ class _FlogginTimerScreenState extends ConsumerState<FlogginTimerScreen> {
                   onPressedStartButton: ref
                       .read(ploggingInfoControllerProvider.notifier)
                       .startTimer,
-                  onPressedCameraButton: () async => await ref
+                  onPressedCameraButton: () => ref
                       .read(ploggingInfoControllerProvider.notifier)
                       .getImage(imageSource: ImageSource.camera),
                 ),

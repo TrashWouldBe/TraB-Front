@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:trab_front/feature/common/widget/no_padding_button.dart';
+import 'package:trab_front/feature/common/widget/page_indicator.dart';
 import 'package:trab_front/feature/plogging/presentation/view/map_screen.dart';
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_start_screen_view_model.dart';
 import 'package:trab_front/feature/plogging/presentation/widget/plogging_tips.dart';
@@ -24,13 +25,14 @@ class PloggingStartScreen extends ConsumerStatefulWidget {
 class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
   @override
   Widget build(BuildContext context) {
-    int _selectedPage =
+    int selectedPage =
         ref.watch(ploggingStartScreenControllerProvider).selectedPage;
+    MapScreen mapScreen = ref.read(mapScreenProvider);
     return SafeArea(
       top: Platform.isAndroid ? true : false,
       child: Stack(
         children: [
-          const MapScreen(),
+          mapScreen,
           Positioned(
             top: -350.h,
             bottom: 0,
@@ -61,20 +63,9 @@ class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
             left: 0,
             right: 0,
             child: Align(
-                alignment: Alignment.center,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: 2,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == _selectedPage) {
-                      return ploggingExplainIndicator(
-                          color: AppColors.accentColor);
-                    } else {
-                      return ploggingExplainIndicator(color: AppColors.body1);
-                    }
-                  },
-                )),
+              alignment: Alignment.center,
+              child: pageIndicator(selectedPage: selectedPage, itemCount: 2),
+            ),
           ),
           Positioned(
             top: 400.h,

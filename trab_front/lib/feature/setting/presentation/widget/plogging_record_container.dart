@@ -5,7 +5,6 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_images.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
-import 'package:trab_front/helpers/extensions/string_extension.dart';
 
 Widget ploggingRecordContainer({required PloggingModel plogging}) {
   return Padding(
@@ -30,7 +29,7 @@ Widget ploggingRecordContainer({required PloggingModel plogging}) {
                 SizedBox(
                   height: 22.h,
                   child: Text(
-                    plogging.runDate.getDateUpperString,
+                    plogging.runDate.toUpperCase(),
                     style: AppTypography.mainSubtitle
                         .copyWith(color: AppColors.grey2),
                   ),
@@ -57,10 +56,10 @@ Widget ploggingRecordContainer({required PloggingModel plogging}) {
                       constraints: BoxConstraints(
                         maxHeight: 22.h,
                         minHeight: 22.h,
-                        maxWidth: 65.w,
+                        maxWidth: 60.w,
                       ),
                       child: Text(
-                        "${plogging.runRange} ",
+                        plogging.runRange.toStringAsFixed(2),
                         overflow: TextOverflow.ellipsis,
                         style:
                             AppTypography.body.copyWith(color: AppColors.grey2),

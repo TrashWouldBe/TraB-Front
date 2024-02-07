@@ -27,6 +27,6 @@ class PloggingStartScreenController extends _$PloggingStartScreenController {
   }
 
   void handleTapStartButton() {
-    AppRouter.pushNamed(Routes.PloggingTimerScreenRoute);
+    AppRouter.pushNamed(Routes.UserInfoInputScreenRoute);
   }
 }

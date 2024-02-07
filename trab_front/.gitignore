@@ -45,3 +45,6 @@ app.*.map.json
 # .DS_Store
 .DS_Store
 
+
+*.env
+/lib/firebase_options.dart

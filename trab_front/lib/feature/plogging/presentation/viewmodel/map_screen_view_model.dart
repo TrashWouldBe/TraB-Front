@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:geolocator/geolocator.dart' as geo;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:trab_front/feature/plogging/presentation/viewmodel/plogging_info_view_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
+
 part 'map_screen_view_model.g.dart';
 
 class MapScreenState {
@@ -12,25 +15,24 @@ class MapScreenState {
   Set<Polyline> polylines;
   LatLng currentLocation;
   List<LatLng> polylineCoordinates;
-  LatLng? lastPosition;
 
   MapScreenState({
     required this.mapController,
     required this.polylines,
     required this.currentLocation,
     required this.polylineCoordinates,
-    this.lastPosition,
   });
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class MapScreenController extends _$MapScreenController {
   @override
   MapScreenState build() {
     return MapScreenState(
       mapController: null,
       polylines: {},
-      currentLocation: const LatLng(37.555922776159356, 127.04933257899165),
+      currentLocation:
+          const LatLng(37.555922776159356, 127.04933257899165), //한양대학교
       polylineCoordinates: [],
     );
   }
@@ -50,6 +52,27 @@ class MapScreenController extends _$MapScreenController {
   void onMapCreated(GoogleMapController controller) async {
     state.mapController = controller;
 
+    // 초기 위치 설정
+    getInitialLocation();
+  }
+
+  void getInitialLocation() async {
+    final currentLocation = await geo.Geolocator.getCurrentPosition();
+    if (state.mapController != null) {
+      state.mapController!.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(currentLocation.latitude!, currentLocation.longitude!),
+          zoom: 17.0,
+        ),
+      ));
+      state.currentLocation =
+          LatLng(currentLocation.latitude, currentLocation.longitude);
+      setState();
+    }
+  }
+
+  // 위치 서비스 활성화
+  Future<void> checkLocationService() async {
     bool serviceEnabled;
     PermissionStatus permissionGranted;
 
@@ -68,30 +91,8 @@ class MapScreenController extends _$MapScreenController {
         return;
       }
     }
-
-    await location.enableBackgroundMode(enable: true);
-
-    getInitialLocation();
   }
 
-  void getInitialLocation() async {
-    Location location = Location();
-    final currentLocation = await location.getLocation();
-
-    if (state.mapController != null) {
-      state.mapController!.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: LatLng(currentLocation.latitude!, currentLocation.longitude!),
-          zoom: 17.0,
-        ),
-      ));
-      state.currentLocation =
-          LatLng(currentLocation.latitude!, currentLocation.longitude!);
-      setState();
-    }
-  }
-
-  //TODO: 시뮬레이터로 시험해보기
   void startLocationSubscription() async {
     if (locationSubscription != null) {
       if (locationSubscription!.isPaused) {
@@ -99,31 +100,40 @@ class MapScreenController extends _$MapScreenController {
         return;
       }
     }
-    locationSubscription =
-        location.onLocationChanged.listen((LocationData currentLocation) {
-      LatLng newPosition =
-          LatLng(currentLocation.latitude!, currentLocation.longitude!);
-      if (state.lastPosition == null || state.lastPosition != newPosition) {
-        state.lastPosition = newPosition;
 
-        state.polylineCoordinates.add(newPosition);
+    await checkLocationService();
+
+    // 백그라운드 모드 활성화
+    await location.enableBackgroundMode(enable: true);
+
+    bool changeSettings = await location.changeSettings(
+      accuracy: LocationAccuracy.high,
+      interval: 1000,
+      distanceFilter: 10,
+    );
+
+    if (changeSettings) {
+      locationSubscription =
+          location.onLocationChanged.listen((LocationData currentLocation) {
+        LatLng newPosition =
+            LatLng(currentLocation.latitude!, currentLocation.longitude!);
         ref.read(ploggingInfoControllerProvider.notifier).calculateDistance(
-              lastPosition: state.lastPosition,
+              lastPosition: state.currentLocation,
               newPosition: newPosition,
             );
-
+        state.polylineCoordinates.add(newPosition);
         Polyline polyline = Polyline(
           polylineId: const PolylineId('poly'),
           visible: true,
           points: state.polylineCoordinates,
-          width: 5,
+          width: 7,
           color: AppColors.primaryColor,
         );
         state.polylines = {polyline};
 
         setState();
-      }
-    });
+      });
+    }
   }
 
   void clearPolylines() {
@@ -131,6 +141,7 @@ class MapScreenController extends _$MapScreenController {
       state.polylines = {};
       state.polylineCoordinates = [];
       locationSubscription!.cancel();
+      locationSubscription = null;
       setState();
     }
   }
