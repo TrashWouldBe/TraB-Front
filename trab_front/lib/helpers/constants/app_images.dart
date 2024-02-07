@@ -22,4 +22,13 @@ class AppImages {
   static String nameSettingCompleteBackggound =
       "$basePath/name_setting_complete_background.png";
   static String myTrabDefault = "$basePath/my_trab_default.png";
+
+  static String floor = "$basePath/floor.png";
+  static String light = "$basePath/light.png";
+  static String photoFrame = "$basePath/photo_frame.png";
+  static String pot = "$basePath/pot.png";
+  static String rug = "$basePath/rug.png";
+  static String table = "$basePath/table.png";
+  static String trashCan = "$basePath/trash_can.png";
+  static String wallPaper = "$basePath/wall_paper.png";
 }

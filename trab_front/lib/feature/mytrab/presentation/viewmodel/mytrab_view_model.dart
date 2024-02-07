@@ -41,6 +41,7 @@ class MyTrabScreenController extends _$MyTrabScreenController {
       AppRouter.pushNamed(Routes.SetTrabNameScreenRoute);
     } else {
       state.textEditingController.text = trabModel.trabName;
+      await ref.read(trabControllerProvider.notifier).getTrabFunitureList();
       setState();
     }
   }

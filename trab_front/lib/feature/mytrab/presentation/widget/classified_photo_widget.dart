@@ -24,20 +24,20 @@ Column classifiedPhotoWidget(
             "비닐 속 이물질이 제거되지 않는다면 종량제 봉투에 배출해주세요. 오염된 부분만 가위로 오려내서  배출해도 좋아요. ",
         svg: AppSvgs.vinyl,
         img: img);
-  } else if (item == TrashType.can) {
+  } else if (item == TrashType.metal) {
     return classifiedPhotoContainer(
         index: index,
         title: "캔",
         content: "캔은 내용물을 비우고 물로 헹구는 등  이물질을 제거하여 전용함에 배출해야해요.",
         svg: AppSvgs.can,
         img: img);
-  } else if (item == TrashType.general_waste) {
+  } else if (item == TrashType.general) {
     return classifiedPhotoContainer(
         index: index,
         title: "일반",
         content:
             "종량제 봉투안에 생활음식물과 재활용 쓰레기를 혼합해서 버릴경우 과태료 대상이 될 수 있어요. 종량제 봉투를 사용하여 잘 배출하도록 해요!",
-        svg: AppSvgs.waste,
+        svg: AppSvgs.general,
         img: img);
   } else if (item == TrashType.styrofoam) {
     return classifiedPhotoContainer(
@@ -55,7 +55,7 @@ Column classifiedPhotoWidget(
             "유리병은 용기 속 표시를 확인해야해요! 재활용 표시가 있다면 유리 전용 수거함에 배출하고 재사용 표시가 있다면 반환처에 반환해야해요.",
         svg: AppSvgs.glass,
         img: img);
-  } else if (item == TrashType.food_waste) {
+  } else if (item == TrashType.food) {
     return classifiedPhotoContainer(
         index: index,
         title: "음식물",
@@ -97,13 +97,14 @@ Column classifiedPhotoContainer(
             child: Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                   child: Container(
                     width: 114.w,
                     height: 180.h,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xFF393939)),
+                      borderRadius: BorderRadius.circular(20.r),
+                      color: const Color(0xFF393939),
+                    ),
                     child: CustomNetworkImage(
                       imageUrl: img,
                       fit: BoxFit.cover,
@@ -136,7 +137,7 @@ Column classifiedPhotoContainer(
                   margin: EdgeInsets.only(bottom: 12.h),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(15.r),
                       color: AppColors.primaryColor),
                   child: Text(
                     title,

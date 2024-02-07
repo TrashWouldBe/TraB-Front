@@ -1,9 +1,9 @@
 import 'package:trab_front/core/network/api_endpoint.dart';
 import 'package:trab_front/core/network/api_service.dart';
+import 'package:trab_front/feature/camera/data/model/image_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_furniture_model.dart';
 import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
-import 'package:trab_front/feature/mytrab/data/model/trab_trash_list_model.dart';
 import 'package:trab_front/helpers/typedefs.dart';
 
 class TrabDataSource {
@@ -59,25 +59,26 @@ class TrabDataSource {
     );
   }
 
-  // Future<void> getTrabFunitureInfo() async {
-  //   return _apiService.getDocumentData<void>(
-  //     endpoint: ApiEndpoint.trab(TrabEndpoint.FUNITURE_INFO),
-  //     converter: (response) {},
-  //   );
-  // }
-
-  Future<List<TrabFurnitureModel>> getTrabFurnitureArranged() async {
-    return _apiService.getDocumentData<List<TrabFurnitureModel>>(
-      endpoint: ApiEndpoint.trab(TrabEndpoint.FURNITURE_ARRANGED),
-      converter: (response) {
-        return TrabFurnitureModel.fromJsonList(response.body);
+  Future<void> patchTrabFurnitureArrage(
+      {required String funitureName, required int? trabId}) async {
+    return _apiService.updateData<void>(
+      endpoint: ApiEndpoint.trab(TrabEndpoint.FURNITURE_ARRANGE),
+      queryParams: {
+        "trab_id": trabId,
+        "furniture_name": funitureName,
       },
+      data: {},
+      converter: (response) {},
     );
   }
 
-  Future<TrabFurnitureModel> patchTrabFurniture({required JSON data}) async {
-    return _apiService.setData<TrabFurnitureModel>(
+  Future<TrabFurnitureModel> patchTrabFurniture(
+      {required JSON data, required int? trabId}) async {
+    return _apiService.updateData<TrabFurnitureModel>(
       endpoint: ApiEndpoint.trab(TrabEndpoint.FURNITURE),
+      queryParams: {
+        "trab_id": trabId,
+      },
       data: data,
       converter: (response) {
         return TrabFurnitureModel.fromJson(response.body);
@@ -94,15 +95,36 @@ class TrabDataSource {
     );
   }
 
-  Future<List<TrabTrashListModel>> getTrabSnackTrashList(
-      {required int trabId}) async {
-    return _apiService.getDocumentData<List<TrabTrashListModel>>(
+  Future<TrabSnackModel> getTrabTotalSnack() async {
+    return _apiService.getDocumentData<TrabSnackModel>(
+      endpoint: ApiEndpoint.trab(TrabEndpoint.SNACK_TOTAL),
+      converter: (response) {
+        return TrabSnackModel.fromJson(response.body);
+      },
+    );
+  }
+
+  Future<List<ImageModel>> getTrabSnackTrashList({required int? trabId}) async {
+    return _apiService.getDocumentData<List<ImageModel>>(
       endpoint: ApiEndpoint.trab(TrabEndpoint.SNACK_TRASH_LIST),
       queryParams: {
         "trab_id": trabId,
       },
       converter: (response) {
-        return TrabTrashListModel.fromJsonList(response.body);
+        return ImageModel.fromJsonList(response.body);
+      },
+    );
+  }
+
+  Future<List<ImageModel>> getTrabTotalSnackTrashList(
+      {required int? trabId}) async {
+    return _apiService.getDocumentData<List<ImageModel>>(
+      endpoint: ApiEndpoint.trab(TrabEndpoint.SNACK_TRASH_TOTAL_LIST),
+      queryParams: {
+        "trab_id": trabId,
+      },
+      converter: (response) {
+        return ImageModel.fromJsonList(response.body);
       },
     );
   }
