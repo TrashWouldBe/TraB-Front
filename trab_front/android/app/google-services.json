@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:767428666945:android:a87eb2a5da56c7f867c8c0",
         "android_client_info": {
-          "package_name": "com.example.trab_front"
+          "package_name": "com.trashwouldbe.trab_front"
         }
       },
       "oauth_client": [],
@@ -26,11 +26,11 @@
     }
   ],
   "configuration_version": "1",
-  "installed":{
-    "client_id":"335769600902-nes44upmko3u34r6lpsf64u044j83b75.apps.googleusercontent.com",
-    "project_id":"clever-coast-409912",
-    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
-    "token_uri":"https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"
+  "installed": {
+    "client_id": "335769600902-nes44upmko3u34r6lpsf64u044j83b75.apps.googleusercontent.com",
+    "project_id": "clever-coast-409912",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs"
   }
 }
