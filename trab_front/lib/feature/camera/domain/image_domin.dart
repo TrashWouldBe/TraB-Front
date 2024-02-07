@@ -43,6 +43,7 @@ class ImageController extends _$ImageController {
       );
       ImageModel? imageModel =
           await state.imageDataSource.postImage(data: formData);
+
       return imageModel;
     } catch (error) {
       print(error);

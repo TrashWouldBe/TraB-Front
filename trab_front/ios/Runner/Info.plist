@@ -56,15 +56,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>camera</string>
+	<string>"TraB"이 찍은 사진을 분류하고, 프로필 사진을 등록하기 위해 사용.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app needs access to location when open and in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs access to location when open.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Save Image to your device</string>
+	<string>"TraB"이 찍은 사진을 분류하고, 프로필 사진을 디바이스에 저장하기 위해 사용.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Get Image from your device</string>
+	<string>"TraB"이 찍은 사진을 분류하고, 프로필 사진을 등록하기 위해 사용.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>LSApplicationQueriesSchemes</key>

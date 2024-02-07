@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trab_front/feature/common/widget/custom_appbar.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_furniture_model.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
 import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
+import 'package:trab_front/feature/mytrab/presentation/viewmodel/mytrab_furniture_view_model.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/furniture_item.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/noti_arrange_furn.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/noti_want_to_purchase.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/total_count_container.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/trab_furn_info_container.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
-import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
+import 'package:trab_front/helpers/extensions/furnituretype_extension.dart';
 
 class MyTrabFurnitureScreen extends ConsumerStatefulWidget {
   const MyTrabFurnitureScreen({super.key});
@@ -27,12 +30,16 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(trabControllerProvider.notifier).getTrabFunitureList();
+      ref.read(myTrabFurnitureScreenControllerProvider.notifier).init();
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    TrabSnackModel? trabSnackModel =
+        ref.watch(trabControllerProvider).trabSnack;
+    List<TrabFurnitureModel>? trabFurnitureModel =
+        ref.watch(trabControllerProvider).trabFurniture;
     return Scaffold(
       backgroundColor: AppColors.subColor,
       appBar: CustomAppBar(
@@ -52,7 +59,8 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
             child: Column(
               children: [
                 totalCountContainer(
-                    totalCount: 0,
+                    type: "snack",
+                    totalCount: trabSnackModel?.getTotalWasteCount() ?? 0,
                     backgroundColor: AppColors.body1,
                     textColor: AppColors.textColor_2),
                 Text(
@@ -61,14 +69,8 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
                       .copyWith(color: AppColors.backgroundColor),
                 ),
                 trabFurnInfoContainer(
-                    plasticAmount: 0,
-                    vinylAmount: 0,
-                    canAmount: 0,
-                    wasteAmount: 0,
-                    styrofoamAmount: 0,
-                    glassAmount: 0,
-                    foodAmount: 0,
-                    paperAmount: 0)
+                  trabSnackModel: trabSnackModel,
+                )
               ],
             ),
           ),
@@ -76,68 +78,63 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 12.h),
-              child: GridView(
+              child: GridView.builder(
                 physics: const BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 0,
-                    childAspectRatio: (0.78 / 1)),
-                children: [
-                  furnitureItem(
-                      svg: AppSvgs.familyPictureBtn,
-                      activate: true,
-                      onTap: () {
-                        if ("true" == "true") {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return NotiArrangeFurniture(onTap: () {});
-                              });
-                        } else {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return NotiWantToPurchase(
-                                  svg: AppSvgs.notiFamilyPicture,
-                                  onTap: () {},
-                                );
-                              });
-                        }
-                      }),
-                  furnitureItem(
-                      svg: AppSvgs.groundBtn,
-                      activate: false,
-                      onTap: () {
-                        if ("locked" == "true") {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return NotiArrangeFurniture(onTap: () {});
-                              });
-                        } else {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return NotiWantToPurchase(
-                                  svg: AppSvgs.notiGround,
-                                  onTap: () {},
-                                );
-                              });
-                        }
-                      }),
-                  furnitureItem(
-                      svg: AppSvgs.lightBtn, activate: false, onTap: () {}),
-                  furnitureItem(
-                      svg: AppSvgs.luckyPotBtn, activate: false, onTap: () {}),
-                  furnitureItem(
-                      svg: AppSvgs.lugBtn, activate: false, onTap: () {}),
-                  furnitureItem(
-                      svg: AppSvgs.tableBtn, activate: false, onTap: () {}),
-                  furnitureItem(
-                      svg: AppSvgs.trashcanBtn, activate: false, onTap: () {}),
-                  furnitureItem(
-                      svg: AppSvgs.wallpaperBtn, activate: false, onTap: () {}),
-                ],
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 0,
+                  childAspectRatio: (0.78 / 1),
+                ),
+                itemCount: trabFurnitureModel.length,
+                itemBuilder: (context, index) {
+                  return furnitureItem(
+                    svg: trabFurnitureModel[index].furnitureEnumType.buttonSvg,
+                    activate: trabFurnitureModel[index].isGet,
+                    onTap: () {
+                      if (ref
+                              .read(myTrabFurnitureScreenControllerProvider
+                                  .notifier)
+                              .canPurchaseOrArrange(
+                                  trabFurnitureModel[index].furnitureEnumType,
+                                  trabSnackModel) &&
+                          trabFurnitureModel[index].isGet) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return NotiArrangeFurniture(
+                              onTap: () => ref
+                                  .read(myTrabFurnitureScreenControllerProvider
+                                      .notifier)
+                                  .handleTapArrangeButton(
+                                    trabFurnitureModel:
+                                        trabFurnitureModel[index],
+                                  ),
+                              isArrange: trabFurnitureModel[index].isArrange,
+                            );
+                          },
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return NotiWantToPurchase(
+                              svg: trabFurnitureModel[index]
+                                  .furnitureEnumType
+                                  .notiSvg,
+                              onTap: () => ref
+                                  .read(myTrabFurnitureScreenControllerProvider
+                                      .notifier)
+                                  .handleTapPurchaseButton(
+                                    trabFurnitureModel:
+                                        trabFurnitureModel[index],
+                                  ),
+                            );
+                          },
+                        );
+                      }
+                    },
+                  );
+                },
               ),
             ),
           )

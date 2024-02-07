@@ -40,7 +40,7 @@ class CameraScreenController extends _$CameraScreenController {
 
   void handlePressedContainerButton() async {
     Loading.show();
-    await getImage(imageSource: ImageSource.gallery);
+    await getImage(imageSource: ImageSource.camera);
     Loading.close();
     if (state.imageModel != null) {
       AppRouter.pushNamed(Routes.SortedTrashScreenRoute);

@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 
-Widget trabFurnInfoContainer(
-    {required int plasticAmount,
-    required int vinylAmount,
-    required int canAmount,
-    required int wasteAmount,
-    required int styrofoamAmount,
-    required int glassAmount,
-    required int foodAmount,
-    required int paperAmount}) {
+Widget trabFurnInfoContainer({required TrabSnackModel? trabSnackModel}) {
   return Container(
     margin: EdgeInsets.symmetric(vertical: 16.h),
     child: Column(
@@ -22,10 +15,10 @@ Widget trabFurnInfoContainer(
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            eachItemContainer(plasticAmount, AppSvgs.plastic),
-            eachItemContainer(vinylAmount, AppSvgs.vinyl),
-            eachItemContainer(canAmount, AppSvgs.can),
-            eachItemContainer(wasteAmount, AppSvgs.waste),
+            eachItemContainer(trabSnackModel?.plastic ?? 0, AppSvgs.plastic),
+            eachItemContainer(trabSnackModel?.vinyl ?? 0, AppSvgs.vinyl),
+            eachItemContainer(trabSnackModel?.can ?? 0, AppSvgs.can),
+            eachItemContainer(trabSnackModel?.general ?? 0, AppSvgs.general),
           ],
         ),
         SizedBox(
@@ -34,10 +27,11 @@ Widget trabFurnInfoContainer(
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            eachItemContainer(styrofoamAmount, AppSvgs.styrofoam),
-            eachItemContainer(glassAmount, AppSvgs.glass),
-            eachItemContainer(foodAmount, AppSvgs.food),
-            eachItemContainer(paperAmount, AppSvgs.paper),
+            eachItemContainer(
+                trabSnackModel?.styrofoam ?? 0, AppSvgs.styrofoam),
+            eachItemContainer(trabSnackModel?.glass ?? 0, AppSvgs.glass),
+            eachItemContainer(trabSnackModel?.food ?? 0, AppSvgs.food),
+            eachItemContainer(trabSnackModel?.paper ?? 0, AppSvgs.paper),
           ],
         )
       ],

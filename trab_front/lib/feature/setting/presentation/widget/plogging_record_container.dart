@@ -56,10 +56,10 @@ Widget ploggingRecordContainer({required PloggingModel plogging}) {
                       constraints: BoxConstraints(
                         maxHeight: 22.h,
                         minHeight: 22.h,
-                        maxWidth: 65.w,
+                        maxWidth: 60.w,
                       ),
                       child: Text(
-                        "${plogging.runRange} ",
+                        plogging.runRange.toStringAsFixed(2),
                         overflow: TextOverflow.ellipsis,
                         style:
                             AppTypography.body.copyWith(color: AppColors.grey2),
