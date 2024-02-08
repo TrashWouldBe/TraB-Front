@@ -130,7 +130,7 @@ class MapScreenController extends _$MapScreenController {
           color: AppColors.primaryColor,
         );
         state.polylines = {polyline};
-
+        state.currentLocation = newPosition;
         setState();
       });
     }
