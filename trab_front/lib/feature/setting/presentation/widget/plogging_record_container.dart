@@ -27,7 +27,7 @@ Widget ploggingRecordContainer({required PloggingModel plogging}) {
                   height: 16.h,
                 ),
                 SizedBox(
-                  height: 22.h,
+                  height: 27.h,
                   child: Text(
                     plogging.runDate.toUpperCase(),
                     style: AppTypography.mainSubtitle
@@ -35,20 +35,14 @@ Widget ploggingRecordContainer({required PloggingModel plogging}) {
                   ),
                 ),
                 SizedBox(
-                  height: 2.h,
-                ),
-                SizedBox(
                   width: 180.w,
-                  height: 22.h,
+                  height: 32.h,
                   child: Text(
                     plogging.runName,
                     overflow: TextOverflow.ellipsis,
                     style: AppTypography.subTitle_1
                         .copyWith(color: AppColors.textColor_1),
                   ),
-                ),
-                SizedBox(
-                  height: 7.h,
                 ),
                 Row(
                   children: [

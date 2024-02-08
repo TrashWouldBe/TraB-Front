@@ -9,7 +9,6 @@ import 'package:trab_front/helpers/constants/app_svgs.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
-//TODO: userInfo
 Widget upperView(
     {required String name, required String? image, required onPressedImage}) {
   return Padding(

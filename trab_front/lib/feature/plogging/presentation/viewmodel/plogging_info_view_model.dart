@@ -99,7 +99,6 @@ class PloggingInfoController extends _$PloggingInfoController {
     }
   }
 
-  //TODO: 간식 정산할때 호출
   void endTimer() {
     stopTimer();
     state.ploggingInfo = PloggingInfo(
