@@ -11,13 +11,13 @@ class Uris {
     switch (notionUrls) {
       case NotionUrls.METHOD:
         return Uri.parse(
-            "https://childish-musician-9c7.notion.site/936d01f8ca59407f94c019c506294b36?pvs=4");
+            "https://trashwouldbe.notion.site/936d01f8ca59407f94c019c506294b36?pvs=4");
       case NotionUrls.INVIDUALQUERY:
         return Uri.parse(
-            "https://childish-musician-9c7.notion.site/1-1-0daaf1b0ab3d426e8eba8ac48fa34fdc?pvs=4");
+            "https://trashwouldbe.notion.site/1-1-0daaf1b0ab3d426e8eba8ac48fa34fdc?pvs=4");
       case NotionUrls.TERMSOFUSE:
         return Uri.parse(
-            "https://childish-musician-9c7.notion.site/05391db15d5d4598bccea6225880772a?pvs=4");
+            "https://trashwouldbe.notion.site/05391db15d5d4598bccea6225880772a?pvs=4");
     }
   }
 }

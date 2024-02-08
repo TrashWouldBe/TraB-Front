@@ -126,7 +126,7 @@ class PloggingInfoController extends _$PloggingInfoController {
         newPosition.longitude,
       );
       state.ploggingInfo = state.ploggingInfo.copyWith(
-          runRange: state.ploggingInfo.runRange + (distanceInMeters / 1000));
+          runRange: state.ploggingInfo.runRange + (distanceInMeters / 10000));
       setState();
     }
   }
