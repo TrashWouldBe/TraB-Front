@@ -5,7 +5,6 @@ import 'package:trab_front/helpers/constants/app_colors.dart';
 import 'package:trab_front/helpers/constants/app_typography.dart';
 import 'package:trab_front/helpers/constants/strings.dart';
 
-//TODO: onPress Event
 Widget customerCenter(
     {required Function() onPressedMethod,
     required Function() onPressedInvidualQuery,

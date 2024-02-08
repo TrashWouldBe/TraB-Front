@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-//TODO: 텍스트 추가하는 스크린 작업할 때 마다 textStyle 추가
-
 @immutable
 class AppTypography {
   const AppTypography._();

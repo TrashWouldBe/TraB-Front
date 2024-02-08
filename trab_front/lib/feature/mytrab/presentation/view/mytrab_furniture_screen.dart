@@ -27,7 +27,6 @@ class MyTrabFurnitureScreen extends ConsumerStatefulWidget {
 class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(myTrabFurnitureScreenControllerProvider.notifier).init();
