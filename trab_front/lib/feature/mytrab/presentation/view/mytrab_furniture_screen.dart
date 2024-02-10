@@ -51,25 +51,30 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
           const Divider(
             color: AppColors.backgroundColor,
           ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              totalCountContainer(
+                  type: "snack",
+                  totalCount: trabSnackModel?.getTotalWasteCount() ?? 0,
+                  backgroundColor: AppColors.body1,
+                  textColor: AppColors.textColor_2),
+              SizedBox(
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    "내가 주운 간식으로 트래비에게 가구를 선물해 줄 수 있어요!",
+                    style: AppTypography.semibold
+                        .copyWith(color: AppColors.backgroundColor),
+                  ),
+                ),
+              ),
+            ],
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 18.w),
             child: Column(
               children: [
-                totalCountContainer(
-                    type: "snack",
-                    totalCount: trabSnackModel?.getTotalWasteCount() ?? 0,
-                    backgroundColor: AppColors.body1,
-                    textColor: AppColors.textColor_2),
-                SizedBox(
-                  width: double.infinity,
-                  child: Center(
-                    child: Text(
-                      "내가 주운 간식으로 트래비에게 가구를 선물해 줄 수 있어요!",
-                      style: AppTypography.semibold
-                          .copyWith(color: AppColors.backgroundColor),
-                    ),
-                  ),
-                ),
                 trabFurnInfoContainer(
                   trabSnackModel: trabSnackModel,
                 )
