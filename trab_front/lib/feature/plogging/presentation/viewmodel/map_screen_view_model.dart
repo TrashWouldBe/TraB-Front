@@ -103,6 +103,10 @@ class MapScreenController extends _$MapScreenController {
       }
     }
 
+    final currentLocation = await geo.Geolocator.getCurrentPosition();
+    state.currentLocation =
+        LatLng(currentLocation.latitude, currentLocation.longitude);
+    setState();
     await checkLocationService();
 
     // 백그라운드 모드 활성화

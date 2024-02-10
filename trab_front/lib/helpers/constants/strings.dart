@@ -134,4 +134,6 @@ class AppStrings {
   static String arrangeFunitureQuery = "가구를 배치하시겠습니까?";
 
   static String cancelArrangeFunitureQuery = "가구 배치를 취소하시겠습니까?";
+
+  static String cannotPurchaseFurniutre = "가구를 구매할 수 없습니다.";
 }
