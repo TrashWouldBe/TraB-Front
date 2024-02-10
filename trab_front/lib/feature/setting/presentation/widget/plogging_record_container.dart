@@ -60,10 +60,7 @@ Widget ploggingRecordContainer({required PloggingModel plogging}) {
                       ),
                     ),
                     SizedBox(
-                      width: 1.w,
-                    ),
-                    SizedBox(
-                      height: 22.h,
+                      height: 24.h,
                       child: Text(
                         AppStrings.kiloMeter,
                         style:
@@ -73,8 +70,8 @@ Widget ploggingRecordContainer({required PloggingModel plogging}) {
                     const Spacer(),
                     ConstrainedBox(
                       constraints: BoxConstraints(
-                        maxHeight: 22.h,
-                        minHeight: 22.h,
+                        maxHeight: 24.h,
+                        minHeight: 24.h,
                         maxWidth: 65.w,
                       ),
                       child: Text(
@@ -85,7 +82,7 @@ Widget ploggingRecordContainer({required PloggingModel plogging}) {
                       ),
                     ),
                     SizedBox(
-                      height: 22.h,
+                      height: 24.h,
                       child: Text(
                         AppStrings.snack,
                         style:

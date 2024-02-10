@@ -43,7 +43,7 @@ class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
               child: SizedBox(
                 height: 111.h,
                 child: PageView.builder(
-                  itemCount: 2,
+                  itemCount: 3,
                   itemBuilder: (context, index) {
                     return ploggingExplainContiner(
                       title: AppStrings.ploggingTitle(index),
@@ -64,7 +64,7 @@ class _PloggingStartScreenState extends ConsumerState<PloggingStartScreen> {
             right: 0,
             child: Align(
               alignment: Alignment.center,
-              child: pageIndicator(selectedPage: selectedPage, itemCount: 2),
+              child: pageIndicator(selectedPage: selectedPage, itemCount: 3),
             ),
           ),
           Positioned(

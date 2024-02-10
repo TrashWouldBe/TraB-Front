@@ -44,28 +44,30 @@ class _CompleteSetTrabNameScreenState
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 103.w),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 15.w,
-                              height: 15.h,
-                              decoration: const BoxDecoration(
-                                  color: AppColors.primaryColor,
-                                  shape: BoxShape.circle),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 15.w,
+                            height: 15.h,
+                            decoration: const BoxDecoration(
+                                color: AppColors.primaryColor,
+                                shape: BoxShape.circle),
+                          ),
+                          SizedBox(
+                            height: 9.h,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Center(
+                              child: Text(AppStrings.nameToMe,
+                                  style: AppTypography.body_5),
                             ),
-                            SizedBox(
-                              height: 9.h,
-                            ),
-                            Text(AppStrings.nameToMe,
-                                style: AppTypography.body_5),
-                            SizedBox(
-                              height: 27.h,
-                            ),
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: 27.h,
+                          ),
+                        ],
                       ),
                       trabContainer(),
                       SizedBox(

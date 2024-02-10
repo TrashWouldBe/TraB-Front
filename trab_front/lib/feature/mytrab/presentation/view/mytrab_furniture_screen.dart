@@ -7,8 +7,6 @@ import 'package:trab_front/feature/mytrab/data/model/trab_snack_model.dart';
 import 'package:trab_front/feature/mytrab/domain/trab_domain.dart';
 import 'package:trab_front/feature/mytrab/presentation/viewmodel/mytrab_furniture_view_model.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/furniture_item.dart';
-import 'package:trab_front/feature/mytrab/presentation/widget/noti_arrange_furn.dart';
-import 'package:trab_front/feature/mytrab/presentation/widget/noti_want_to_purchase.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/total_count_container.dart';
 import 'package:trab_front/feature/mytrab/presentation/widget/trab_furn_info_container.dart';
 import 'package:trab_front/helpers/constants/app_colors.dart';
@@ -53,20 +51,30 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
           const Divider(
             color: AppColors.backgroundColor,
           ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              totalCountContainer(
+                  type: "snack",
+                  totalCount: trabSnackModel?.getTotalWasteCount() ?? 0,
+                  backgroundColor: AppColors.body1,
+                  textColor: AppColors.textColor_2),
+              SizedBox(
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    "내가 주운 간식으로 트래비에게 가구를 선물해 줄 수 있어요!",
+                    style: AppTypography.semibold
+                        .copyWith(color: AppColors.backgroundColor),
+                  ),
+                ),
+              ),
+            ],
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 18.w),
             child: Column(
               children: [
-                totalCountContainer(
-                    type: "snack",
-                    totalCount: trabSnackModel?.getTotalWasteCount() ?? 0,
-                    backgroundColor: AppColors.body1,
-                    textColor: AppColors.textColor_2),
-                Text(
-                  "내가 주운 간식으로 트래비에게 가구를 선물해 줄 수 있어요!",
-                  style: AppTypography.semibold
-                      .copyWith(color: AppColors.backgroundColor),
-                ),
                 trabFurnInfoContainer(
                   trabSnackModel: trabSnackModel,
                 )
@@ -89,49 +97,12 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
                   return furnitureItem(
                     svg: trabFurnitureModel[index].furnitureEnumType.buttonSvg,
                     activate: trabFurnitureModel[index].isGet,
-                    onTap: () {
-                      if (ref
-                              .read(myTrabFurnitureScreenControllerProvider
-                                  .notifier)
-                              .canPurchaseOrArrange(
-                                  trabFurnitureModel[index].furnitureEnumType,
-                                  trabSnackModel) &&
-                          trabFurnitureModel[index].isGet) {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return NotiArrangeFurniture(
-                              onTap: () => ref
-                                  .read(myTrabFurnitureScreenControllerProvider
-                                      .notifier)
-                                  .handleTapArrangeButton(
-                                    trabFurnitureModel:
-                                        trabFurnitureModel[index],
-                                  ),
-                              isArrange: trabFurnitureModel[index].isArrange,
-                            );
-                          },
-                        );
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return NotiWantToPurchase(
-                              svg: trabFurnitureModel[index]
-                                  .furnitureEnumType
-                                  .notiSvg,
-                              onTap: () => ref
-                                  .read(myTrabFurnitureScreenControllerProvider
-                                      .notifier)
-                                  .handleTapPurchaseButton(
-                                    trabFurnitureModel:
-                                        trabFurnitureModel[index],
-                                  ),
-                            );
-                          },
-                        );
-                      }
-                    },
+                    onTap: () => ref
+                        .read(myTrabFurnitureScreenControllerProvider.notifier)
+                        .handleTapFurnitureItem(
+                            context: context,
+                            furnitureModel: trabFurnitureModel[index],
+                            trabSnackModel: trabSnackModel),
                   );
                 },
               ),
