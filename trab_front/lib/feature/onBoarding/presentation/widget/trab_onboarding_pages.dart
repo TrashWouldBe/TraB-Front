@@ -47,7 +47,7 @@ Widget trabOnboardingPage({required int selectedPage}) {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '찰캌! ',
+                          text: '찰칵! ',
                           style: AppTypography.onBoarding_head_1.copyWith(
                             height: 1.h,
                             color: AppColors.textColor_1,
