@@ -34,8 +34,10 @@ class CameraScreenController extends _$CameraScreenController {
       state.imageModel = await ref
           .read(imageControllerProvider.notifier)
           .postImage(file: img.path);
-      setState();
+    } else {
+      state.imageModel = null;
     }
+    setState();
   }
 
   void handlePressedContainerButton() async {
