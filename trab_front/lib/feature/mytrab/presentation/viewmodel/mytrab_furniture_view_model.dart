@@ -29,7 +29,7 @@ class MyTrabFurnitureScreenController
     Loading.close();
   }
 
-  bool canPurchaseOrArrange(
+  bool canPurchase(
       FurnitureType furnitureType, TrabSnackModel? trabSnackModel) {
     if (trabSnackModel == null) return false;
     Map<TrashType, int> requiredTrashCounts = furnitureType.requiredTrash;

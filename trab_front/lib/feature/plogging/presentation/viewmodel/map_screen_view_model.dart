@@ -80,6 +80,7 @@ class MapScreenController extends _$MapScreenController {
     if (!serviceEnabled) {
       serviceEnabled = await location.requestService();
       if (!serviceEnabled) {
+        geo.Geolocator.openLocationSettings();
         return;
       }
     }
@@ -88,6 +89,7 @@ class MapScreenController extends _$MapScreenController {
     if (permissionGranted == PermissionStatus.denied) {
       permissionGranted = await location.requestPermission();
       if (permissionGranted != PermissionStatus.granted) {
+        geo.Geolocator.openLocationSettings();
         return;
       }
     }

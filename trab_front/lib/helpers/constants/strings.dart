@@ -4,13 +4,15 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 class AppStrings {
   const AppStrings._();
   static String ploggingTitle(index) {
-    return index == 1 ? "지속가능한 걸음을 위한 준비물" : "지속가능한 걸음을 위한 Tip!";
+    return index == 0 || index == 2 ? "지속가능한 걸음을 위한 Tip!" : "지속가능한 걸음을 위한 준비물";
   }
 
   static String ploggingBody(index) {
-    return index == 1
-        ? "장갑과 봉투, 집게를 준비하면 더욱\n편리하게 플로깅 할 수 있어요!"
-        : "분리수거용 봉지와 일반 쓰레기용\n봉지 두 개를 준비하면 더욱 좋아요!";
+    return index == 0
+        ? "위치 접근 항상 허용을 통해\n트래비와 함께 걸음을 기록해보세요!"
+        : index == 1
+            ? "장갑과 봉투, 집게를 준비하면 더욱\n편리하게 플로깅 할 수 있어요!"
+            : "분리수거용 봉지와 일반 쓰레기용\n봉지 두 개를 준비하면 더욱 좋아요!";
   }
 
   static String googleSignInError = "구글 로그인에 실패했습니다.";

@@ -63,10 +63,12 @@ class _MyTrabSnackScreen extends ConsumerState<MyTrabSnackScreen> {
                 backgroundColor: AppColors.accentColor,
                 type: "total",
                 textColor: AppColors.body1),
-            Text(
-              "Tip! 내가 직접 주운 트래비 간식들을 올바르게 분리배출해서 트래비와 지속가능한 걸음을 만들어나가요!",
-              style: AppTypography.iconTxt.copyWith(
-                  color: AppColors.grey2, fontWeight: FontWeight.w600),
+            SizedBox(
+              child: Text(
+                "Tip! 내가 직접 주운 트래비 간식들을 올바르게 분리배출해서 트래비와 지속가능한 걸음을 만들어나가요!",
+                style: AppTypography.iconTxt.copyWith(
+                    color: AppColors.grey2, fontWeight: FontWeight.w600),
+              ),
             ),
             trabSnackInfoContainer(
               trabSnackModel: trabSnackTotalModel,

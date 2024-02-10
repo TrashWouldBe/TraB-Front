@@ -59,8 +59,13 @@ class _CompleteSetTrabNameScreenState
                             SizedBox(
                               height: 9.h,
                             ),
-                            Text(AppStrings.nameToMe,
-                                style: AppTypography.body_5),
+                            SizedBox(
+                              width: 200.w,
+                              child: Center(
+                                child: Text(AppStrings.nameToMe,
+                                    style: AppTypography.body_5),
+                              ),
+                            ),
                             SizedBox(
                               height: 27.h,
                             ),

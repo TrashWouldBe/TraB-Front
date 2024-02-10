@@ -62,10 +62,15 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
                     totalCount: trabSnackModel?.getTotalWasteCount() ?? 0,
                     backgroundColor: AppColors.body1,
                     textColor: AppColors.textColor_2),
-                Text(
-                  "내가 주운 간식으로 트래비에게 가구를 선물해 줄 수 있어요!",
-                  style: AppTypography.semibold
-                      .copyWith(color: AppColors.backgroundColor),
+                SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      "내가 주운 간식으로 트래비에게 가구를 선물해 줄 수 있어요!",
+                      style: AppTypography.semibold
+                          .copyWith(color: AppColors.backgroundColor),
+                    ),
+                  ),
                 ),
                 trabFurnInfoContainer(
                   trabSnackModel: trabSnackModel,
@@ -93,26 +98,10 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
                       if (ref
                               .read(myTrabFurnitureScreenControllerProvider
                                   .notifier)
-                              .canPurchaseOrArrange(
+                              .canPurchase(
                                   trabFurnitureModel[index].furnitureEnumType,
                                   trabSnackModel) &&
-                          trabFurnitureModel[index].isGet) {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return NotiArrangeFurniture(
-                              onTap: () => ref
-                                  .read(myTrabFurnitureScreenControllerProvider
-                                      .notifier)
-                                  .handleTapArrangeButton(
-                                    trabFurnitureModel:
-                                        trabFurnitureModel[index],
-                                  ),
-                              isArrange: trabFurnitureModel[index].isArrange,
-                            );
-                          },
-                        );
-                      } else {
+                          !trabFurnitureModel[index].isGet) {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -127,6 +116,22 @@ class _MyTrabFurnitureScreen extends ConsumerState<MyTrabFurnitureScreen> {
                                     trabFurnitureModel:
                                         trabFurnitureModel[index],
                                   ),
+                            );
+                          },
+                        );
+                      } else if (trabFurnitureModel[index].isGet) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return NotiArrangeFurniture(
+                              onTap: () => ref
+                                  .read(myTrabFurnitureScreenControllerProvider
+                                      .notifier)
+                                  .handleTapArrangeButton(
+                                    trabFurnitureModel:
+                                        trabFurnitureModel[index],
+                                  ),
+                              isArrange: trabFurnitureModel[index].isArrange,
                             );
                           },
                         );
