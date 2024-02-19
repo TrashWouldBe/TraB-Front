@@ -52,6 +52,7 @@
 	<string>microphone</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+      	<string>kakaokompassauth</string>
 		<string>http</string>
 		<string>sms</string>
 		<string>tel</string>
