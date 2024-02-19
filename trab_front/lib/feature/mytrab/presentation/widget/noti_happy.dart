@@ -20,9 +20,6 @@ class NotiHappy extends StatelessWidget {
               borderRadius: BorderRadius.circular(30), color: AppColors.body1),
           child: Stack(
             children: [
-              SizedBox(
-                width: 329.w,
-              ),
               Positioned(
                 top: 0,
                 left: 0,
@@ -34,8 +31,8 @@ class NotiHappy extends StatelessWidget {
                   child: SvgPicture.asset(AppSvgs.xmark),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 20.w),
+              SizedBox(
+                width: 329.w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -47,10 +44,14 @@ class NotiHappy extends StatelessWidget {
                     SizedBox(
                       height: 8.h,
                     ),
-                    Text(
-                      "가구가 생겨서 너무 행복해요. 고마워요!",
-                      style: AppTypography.mainCaption_1
-                          .copyWith(color: AppColors.textColor_2),
+                    Container(
+                      width: 329.w,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "가구가 생겨서 너무 행복해요. 고마워요!",
+                        style: AppTypography.mainCaption_1
+                            .copyWith(color: AppColors.textColor_2),
+                      ),
                     ),
                   ],
                 ),
