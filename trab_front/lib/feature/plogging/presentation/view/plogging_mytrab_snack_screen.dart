@@ -74,7 +74,7 @@ class _PloggingMyTrabSnackScreenState
                 height: 10.h,
               ),
               Text(
-                "Tip! 정확한 쓰레기 분리배출 방법을 안다는 것은 트래비를 지키는 첫번째 방법이\n될 수 있어요.",
+                "Tip! 정확한 쓰레기 분리배출 방법을 안다는 것은 트래비를 지키는 첫번째 방법이 될 수 있어요.",
                 style: AppTypography.caption_3.copyWith(color: AppColors.grey2),
               ),
               SizedBox(

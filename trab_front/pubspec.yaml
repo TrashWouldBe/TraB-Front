@@ -2,7 +2,7 @@ name: trab_front
 description: "A new Flutter project."
 publish_to: "none"
 
-version: 1.0.2+3
+version: 1.0.3+4
 
 environment:
   sdk: ">=3.2.3 <4.0.0"
@@ -47,12 +47,12 @@ dependencies:
   flutter_dotenv: ^5.1.0
 
 flutter_launcher_icons:
-  image_path_android: "assets/images/trab_icon.png"
+  image_path_android: "assets/images/trab_icon_android.png"
   image_path_ios: "assets/images/trab_icon.png"
   android: true
   ios: true
   adaptive_icon_background: "#000000"
-  adaptive_icon_foreground: "assets/images/trab_icon.png"
+  adaptive_icon_foreground: "assets/images/trab_icon_android.png"
   min_sdk_android: 21
   remove_alpha_ios: true
   background_color_ios: "#000000"
