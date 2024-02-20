@@ -51,7 +51,7 @@ class MapScreenController extends _$MapScreenController {
 
   void onMapCreated(GoogleMapController controller) async {
     state.mapController = controller;
-
+    await checkLocationService();
     // 초기 위치 설정
     getInitialLocation();
   }
